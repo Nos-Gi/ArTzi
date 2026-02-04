@@ -332,5 +332,128 @@ console.log('=== MAIN.JS LOADED ===');
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
+    
+    // Gallery scroll fade-in animation and landscape detection with sorting
+    function initGalleryFadeIn() {
+        const galleryScroll = document.querySelector('.gallery-scroll');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const videoWrapper = document.querySelector('.video-wrapper.fade-in');
+        
+        if (galleryItems.length === 0 && !videoWrapper || !galleryScroll) {
+            return;
+        }
+        
+        // Pre-load all images to detect orientation before layout
+        const imagePromises = Array.from(galleryItems).map((item, index) => {
+            const img = item.querySelector('img');
+            if (!img) return Promise.resolve({ item, isLandscape: false });
+            
+            return new Promise((resolve) => {
+                const checkLandscape = function() {
+                    if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+                        const isLandscape = img.naturalWidth > img.naturalHeight;
+                        if (isLandscape) {
+                            item.classList.add('landscape');
+                            item.style.gridColumn = '1 / 4';
+                        }
+                        resolve({ item, isLandscape });
+                    } else {
+                        resolve({ item, isLandscape: false });
+                    }
+                };
+                
+                // Check immediately if already loaded
+                if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+                    checkLandscape();
+                } else {
+                    // Wait for load
+                    img.addEventListener('load', checkLandscape, { once: true });
+                    img.addEventListener('error', () => resolve({ item, isLandscape: false }), { once: true });
+                    // Fallback timeout
+                    setTimeout(() => {
+                        if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+                            checkLandscape();
+                        } else {
+                            resolve({ item, isLandscape: false });
+                        }
+                    }, 500);
+                }
+            });
+        });
+        
+        // Wait for all images to be checked, then sort and reorder
+        Promise.all(imagePromises).then((results) => {
+            // Separate landscape and vertical images
+            const landscapeItems = [];
+            const verticalItems = [];
+            
+            results.forEach(({ item, isLandscape }) => {
+                if (isLandscape) {
+                    landscapeItems.push(item);
+                } else {
+                    verticalItems.push(item);
+                }
+            });
+            
+            // Create sorted array following pattern: 1 landscape, 3 vertical, repeat
+            const sortedItems = [];
+            let landscapeIndex = 0;
+            let verticalIndex = 0;
+            
+            while (landscapeIndex < landscapeItems.length || verticalIndex < verticalItems.length) {
+                // Add 1 landscape if available
+                if (landscapeIndex < landscapeItems.length) {
+                    sortedItems.push(landscapeItems[landscapeIndex]);
+                    landscapeIndex++;
+                }
+                
+                // Add 3 vertical images if available
+                for (let i = 0; i < 3 && verticalIndex < verticalItems.length; i++) {
+                    sortedItems.push(verticalItems[verticalIndex]);
+                    verticalIndex++;
+                }
+            }
+            
+            // Reorder DOM elements to match sorted order
+            sortedItems.forEach((item) => {
+                galleryScroll.appendChild(item);
+            });
+            
+            // Force grid recalculation by triggering reflow
+            void galleryScroll.offsetHeight;
+            
+            // Set up fade-in observer after reordering
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -20px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all reordered items
+            sortedItems.forEach((item, index) => {
+                // First item should be visible immediately
+                if (index === 0) {
+                    item.classList.add('fade-in');
+                } else {
+                    observer.observe(item);
+                }
+            });
+            
+            if (videoWrapper) {
+                observer.observe(videoWrapper);
+            }
+        });
+    }
+    
+    // Initialize gallery fade-in on page load
+    initGalleryFadeIn();
     }
 })();

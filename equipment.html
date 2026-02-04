@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery | ArtZi Rehearsal Studios</title>
     <meta name="description" content="Gallery από τους χώρους του ArtZi Rehearsal Studios.">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=2.1">
 </head>
 <body>
 
@@ -36,12 +36,26 @@
             <div class="container">
                 <h1>Gallery</h1>
                 <p class="section-intro">Μια μικρή εικόνα από το πώς είναι να παίζεις στο ArtZi. Αντικατάστησε τις φωτογραφίες και το βίντεο με δικό σου υλικό.</p>
-                <div class="gallery-grid">
-                    <img src="assets/images/studio-1.jpg" alt="Χώρος πρόβας με drums και ενισχυτές">
-                    <img src="assets/images/studio-2.jpg" alt="Λεπτομέρεια εξοπλισμού στο ArtZi">
-                    <img src="assets/images/studio-3.jpg" alt="Χώρος αναμονής στο στούντιο">
+                
+                <div class="gallery-scroll">
+                    <div class="gallery-item fade-in" data-image="assets/images/IMG_8212.jpeg">
+                        <img src="assets/images/IMG_8212.jpeg" alt="Χώρος πρόβας ArtZi" loading="eager">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8215.jpeg">
+                        <img src="assets/images/IMG_8215.jpeg" alt="Εξοπλισμός στούντιο" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8220.jpeg">
+                        <img src="assets/images/IMG_8220.jpeg" alt="Χώρος πρόβας με συγκρότημα" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8225.jpeg">
+                        <img src="assets/images/IMG_8225.jpeg" alt="Λεπτομέρεια εξοπλισμού" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8230.jpeg">
+                        <img src="assets/images/IMG_8230.jpeg" alt="Χώρος ArtZi Rehearsal Studios" loading="lazy">
+                    </div>
                 </div>
-                <div class="video-wrapper">
+                
+                <div class="video-wrapper fade-in">
                     <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArtZi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
