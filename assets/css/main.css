@@ -543,6 +543,51 @@ ul {
     color: #6b7280;
 }
 
+/* ===== FORM NOTIFICATION ===== */
+.form-notification {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: #10b981;
+    color: #ffffff;
+    padding: 14px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 10001;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    max-width: 300px;
+    word-wrap: break-word;
+    pointer-events: none;
+}
+
+.form-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-notification-success {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+.form-notification-error {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+@media (max-width: 720px) {
+    .form-notification {
+        bottom: 70px;
+        right: 12px;
+        left: 12px;
+        max-width: none;
+    }
+}
+
 /* ===== FOOTER ===== */
 .bottom-bar {
     position: fixed;
