@@ -4,21 +4,10 @@ console.log('=== MAIN.JS LOADED ===');
 (function() {
     'use strict';
 
-    // Internal link click: mark so next page skips loader (loader only on initial visit / reload)
-    document.addEventListener('click', function(e) {
-        var a = e.target.closest('a');
-        if (!a || !a.href || a.target === '_blank') return;
-        try {
-            if (window.location.origin === new URL(a.href).origin) {
-                sessionStorage.setItem('internalNav', '1');
-            }
-        } catch (err) {}
-    }, true);
-
-    // View transition direction: left menu -> right menu = out left, in from right (forward); opposite = backward
     function getMenuIndex(url) {
         try {
-            var path = (url.pathname || '/').replace(/\/$/, '') || '/';
+            var u = typeof url === 'string' ? new URL(url, window.location.origin) : url;
+            var path = (u.pathname || '/').replace(/\/$/, '') || '/';
             var parts = path.split('/').filter(Boolean);
             var isEn = parts[0] === 'en';
             var page = (isEn ? parts[1] : parts[0]) || 'index';
@@ -28,132 +17,165 @@ console.log('=== MAIN.JS LOADED ===');
         } catch (e) { return 0; }
     }
 
-    window.addEventListener('pageswap', function(e) {
-        if (!e.viewTransition || !e.activation) return;
-        var fromUrl = window.location;
-        var toUrl = e.activation.entry && e.activation.entry.url ? new URL(e.activation.entry.url) : null;
-        if (!toUrl) return;
-        var fromIndex = getMenuIndex(fromUrl);
-        var toIndex = getMenuIndex(toUrl);
-        var direction = toIndex > fromIndex ? 'forward' : (toIndex < fromIndex ? 'backward' : 'forward');
-        sessionStorage.setItem('vtDirection', direction);
-        e.viewTransition.types.add(direction);
+    function initPhotoScrollFade() {
+        var sections = document.querySelectorAll('.section-photo-bg');
+        if (!sections.length) return;
+        var thresholds = [];
+        for (var i = 0; i <= 20; i++) thresholds.push(i / 20);
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                entry.target.style.setProperty('--photo-opacity', entry.intersectionRatio);
+            });
+        }, { root: null, rootMargin: '0px', threshold: thresholds });
+        sections.forEach(function(section) { observer.observe(section); });
+    }
+
+    function initPageContent() {
+        initPhotoScrollFade();
+        initContactForm();
+        initGalleryFadeIn();
+    }
+
+    // SPA navigation: fetch page, replace main+header+title, animate with same-document View Transition
+    function applyPage(html, direction) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var newMain = doc.querySelector('main.main-content');
+        var newHeader = doc.querySelector('header.top-bar');
+        var newTitle = doc.querySelector('title');
+        var main = document.querySelector('main.main-content');
+        var header = document.querySelector('header.top-bar');
+        if (!main || !newMain) return false;
+        var mainHtml = newMain.innerHTML;
+        var headerHtml = newHeader ? newHeader.innerHTML : '';
+        var titleText = newTitle ? newTitle.textContent : document.title;
+        var dirClass = direction === 'backward' ? 'vt-backward' : 'vt-forward';
+        document.documentElement.classList.add(dirClass);
+
+        function updateDOM() {
+            main.innerHTML = mainHtml;
+            document.title = titleText;
+            if (header && headerHtml) header.innerHTML = headerHtml;
+        }
+
+        if (document.startViewTransition) {
+            document.startViewTransition(updateDOM).finished.then(function() {
+                document.documentElement.classList.remove('vt-forward', 'vt-backward');
+                initPageContent();
+            }).catch(function() {
+                document.documentElement.classList.remove('vt-forward', 'vt-backward');
+                initPageContent();
+            });
+        } else {
+            updateDOM();
+            document.documentElement.classList.remove('vt-forward', 'vt-backward');
+            initPageContent();
+        }
+        return true;
+    }
+
+    function spaNavigate(href) {
+        fetch(href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+            .then(function(r) { return r.text(); })
+            .then(function(html) {
+                var fromIndex = getMenuIndex(window.location.href);
+                var toIndex = getMenuIndex(href);
+                var direction = toIndex >= fromIndex ? 'forward' : 'backward';
+                if (applyPage(html, direction)) {
+                    history.pushState({ spa: true }, '', href);
+                    var seg = new URL(href, window.location.origin).pathname.split('/').filter(Boolean)[0];
+                    document.documentElement.lang = seg === 'en' ? 'en' : 'el';
+                }
+            })
+            .catch(function() { window.location.href = href; });
+    }
+
+    document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (!a || !a.href || a.target === '_blank') return;
+        try {
+            var url = new URL(a.href);
+            if (window.location.origin !== url.origin) return;
+            if (url.pathname === window.location.pathname && url.search === window.location.search && !url.hash) return;
+            e.preventDefault();
+            spaNavigate(a.href);
+        } catch (err) {}
+    }, true);
+
+    window.addEventListener('popstate', function() {
+        var href = window.location.href;
+        fetch(href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+            .then(function(r) { return r.text(); })
+            .then(function(html) {
+                applyPage(html, 'backward');
+                var seg = window.location.pathname.split('/').filter(Boolean)[0];
+                document.documentElement.lang = seg === 'en' ? 'en' : 'el';
+            })
+            .catch(function() { window.location.reload(); });
     });
 
-    window.addEventListener('pagereveal', function(e) {
-        if (!e.viewTransition) return;
-        var direction = sessionStorage.getItem('vtDirection') || 'forward';
-        sessionStorage.removeItem('vtDirection');
-        e.viewTransition.types.add(direction);
-    });
-
-    // Wait for DOM to be ready
     if (document.readyState === 'loading') {
-        console.log('DOM is loading, waiting...');
         document.addEventListener('DOMContentLoaded', init);
     } else {
-        console.log('DOM already ready, calling init immediately');
         init();
     }
 
     function init() {
-        console.log('=== INIT FUNCTION CALLED ===');
-
-        // JS is running, so remove no-js fallback class
         document.documentElement.classList.remove('no-js');
-
-        // If we arrived via internal nav, loader was hidden by head script; remove it from DOM
         if (document.documentElement.classList.contains('skip-loader')) {
             var loader = document.getElementById('page-loader');
             if (loader) loader.remove();
         }
+        initPageContent();
 
-    // Photo sections: fade image with scroll position (tie opacity to visibility)
-    (function initPhotoScrollFade() {
-        var sections = document.querySelectorAll('.section-photo-bg');
-        if (!sections.length) return;
-
-        var thresholds = [];
-        for (var i = 0; i <= 20; i++) thresholds.push(i / 20);
-
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                var ratio = entry.intersectionRatio;
-                entry.target.style.setProperty('--photo-opacity', ratio);
+        if (!document.documentElement.classList.contains('skip-loader')) {
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    var loader = document.getElementById('page-loader');
+                    if (loader) {
+                        loader.classList.add('page-loader-fade-out');
+                        setTimeout(function() { loader.remove(); }, 500);
+                    }
+                }, 500);
             });
-        }, {
-            root: null,
-            rootMargin: '0px',
-            threshold: thresholds
-        });
+            setTimeout(function() {
+                var loader = document.getElementById('page-loader');
+                if (loader) {
+                    loader.classList.add('page-loader-fade-out');
+                    setTimeout(function() { loader.remove(); }, 500);
+                }
+            }, 8000);
+        }
+    }
 
-        sections.forEach(function(section) {
-            observer.observe(section);
-        });
-    })();
-
-    // Contact form handling with Formspree (AJAX submission)
-    console.log('=== INITIALIZING CONTACT FORM HANDLERS ===');
-    
-    // Use setTimeout to ensure DOM is fully ready
-    setTimeout(function() {
-        console.log('=== SETTING UP BUTTONS (after timeout) ===');
-        
-        // Find buttons directly by ID
-        const submitBtnGr = document.getElementById('submit-btn-gr');
-        const submitBtnEn = document.getElementById('submit-btn-en');
-        
-        console.log('submit-btn-gr found:', !!submitBtnGr);
-        console.log('submit-btn-en found:', !!submitBtnEn);
-        
-        // Find all buttons in contact forms
-        const allButtons = document.querySelectorAll('.contact-form button[type="button"]');
-        console.log('All buttons in forms:', allButtons.length);
-        
-        // Set up handlers for all found buttons
-        [submitBtnGr, submitBtnEn, ...allButtons].forEach((btn) => {
+    function initContactForm() {
+        var submitBtnGr = document.getElementById('submit-btn-gr');
+        var submitBtnEn = document.getElementById('submit-btn-en');
+        var allButtons = document.querySelectorAll('.contact-form button[type="button"]');
+        var buttons = [submitBtnGr, submitBtnEn].concat(Array.prototype.slice.call(allButtons));
+        buttons.forEach(function(btn) {
             if (!btn) return;
-            
-            console.log('Setting up button:', btn.id || 'no-id', btn.textContent);
-            
             btn.onclick = function(e) {
-                console.log('=== BUTTON CLICKED ===', this.id || this.textContent);
                 e.preventDefault();
                 e.stopPropagation();
-                
-                const form = this.closest('form');
-                if (form) {
-                    console.log('Form found, calling handleFormSubmit');
-                    handleFormSubmit(form);
-                } else {
-                    console.error('No form found for button');
-                }
+                var form = this.closest('form');
+                if (form) handleFormSubmit(form);
                 return false;
             };
         });
-        
-        // Set up form prevention
-        const contactForms = document.querySelectorAll('.contact-form');
-        console.log('Contact forms found:', contactForms.length);
-        
-        contactForms.forEach((form) => {
+        var contactForms = document.querySelectorAll('.contact-form');
+        contactForms.forEach(function(form) {
             form.removeAttribute('action');
             form.setAttribute('novalidate', 'novalidate');
-            
             form.onsubmit = function(e) {
-                console.log('Form submit prevented');
                 e.preventDefault();
                 return false;
             };
         });
-        
-        console.log('=== BUTTON SETUP COMPLETE ===');
-    }, 100);
-    
+    }
+
     async function handleFormSubmit(form) {
-        console.log('handleFormSubmit called');
-        
-        const submitBtn = form.querySelector('button[type="submit"]');
+        var submitBtn = form.querySelector('button[type="submit"]');
         if (!submitBtn) {
             console.error('Submit button not found');
             return;
@@ -437,24 +459,5 @@ console.log('=== MAIN.JS LOADED ===');
 
             toObserve.forEach((el) => observer.observe(el));
         });
-    }
-    
-    // Initialize gallery fade-in on page load
-    initGalleryFadeIn();
-
-    // Page loader: after load + 0.5s, fade out to reveal site (only when loader is shown = initial visit / reload)
-    if (!document.documentElement.classList.contains('skip-loader')) {
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                var loader = document.getElementById('page-loader');
-                if (loader) {
-                    loader.classList.add('page-loader-fade-out');
-                    setTimeout(function() {
-                        loader.remove();
-                    }, 500);
-                }
-            }, 500);
-        });
-    }
     }
 })();

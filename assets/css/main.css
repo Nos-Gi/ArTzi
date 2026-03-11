@@ -1,5 +1,5 @@
 /* ===== FONTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=optional');
 
 /* ===== DESIGN TOKENS ===== */
 :root {
@@ -40,6 +40,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    image-rendering: auto;
 }
 
 .page-loader.page-loader-fade-out {
@@ -94,6 +95,20 @@ html:active-view-transition-type(backward) {
 @keyframes view-transition-in-left {
     from { transform: translateX(-18%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
+}
+
+/* Same-document View Transition (SPA nav): direction set via class on html */
+html.vt-forward::view-transition-old(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-out-left;
+}
+html.vt-forward::view-transition-new(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-in-right;
+}
+html.vt-backward::view-transition-old(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-out-right;
+}
+html.vt-backward::view-transition-new(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-in-left;
 }
 
 /* ===== RESET & BASE ===== */
@@ -241,6 +256,11 @@ ul {
     z-index: 0;
     opacity: var(--photo-opacity, 1);
     transition: opacity 0.2s ease-out;
+    /* Keep background images sharp on HiDPI / avoid blurry scaling on deployment */
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .section-photo-bg::after {
@@ -806,6 +826,9 @@ html.no-js .gallery-item {
     display: block;
     object-fit: contain;
     max-height: 480px;
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Landscape images: span all 3 columns and force new row */
@@ -825,6 +848,7 @@ html.no-js .gallery-item {
     height: 100%;
     object-fit: cover;
     display: block;
+    image-rendering: auto;
 }
 
 @media (max-width: 960px) {
