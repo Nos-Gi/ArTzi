@@ -1,6 +1,3 @@
-// Ensure script runs
-console.log('=== MAIN.JS LOADED ===');
-
 (function() {
     'use strict';
 
@@ -32,14 +29,15 @@ console.log('=== MAIN.JS LOADED ===');
 
     // SPA navigation: fetch page, replace main+header+title, simple fade (works everywhere)
     function applyPage(html) {
+        var main = document.querySelector('main.main-content');
+        if (!main) return false;
         var parser = new DOMParser();
         var doc = parser.parseFromString(html, 'text/html');
         var newMain = doc.querySelector('main.main-content');
         var newHeader = doc.querySelector('header.top-bar');
         var newTitle = doc.querySelector('title');
-        var main = document.querySelector('main.main-content');
         var header = document.querySelector('header.top-bar');
-        if (!main || !newMain) return false;
+        if (!newMain) return false;
         var mainHtml = newMain.innerHTML;
         var headerHtml = newHeader ? newHeader.innerHTML : '';
         var titleText = newTitle ? newTitle.textContent : document.title;
@@ -52,9 +50,12 @@ console.log('=== MAIN.JS LOADED ===');
 
         main.classList.add('spa-fade-out');
         setTimeout(function() {
-            updateDOM();
-            main.classList.remove('spa-fade-out');
-            initPageContent();
+            try {
+                updateDOM();
+                initPageContent();
+            } finally {
+                main.classList.remove('spa-fade-out');
+            }
         }, 200);
         return true;
     }
@@ -81,7 +82,9 @@ console.log('=== MAIN.JS LOADED ===');
             if (url.pathname === window.location.pathname && url.search === window.location.search && !url.hash) return;
             e.preventDefault();
             spaNavigate(a.href);
-        } catch (err) {}
+        } catch (err) {
+            return;
+        }
     }, true);
 
     window.addEventListener('popstate', function() {
