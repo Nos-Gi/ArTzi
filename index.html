@@ -13,6 +13,21 @@
     <div id="page-loader" class="page-loader" aria-hidden="true">
         <img src="assets/images/RG_LOGO.JPG" alt="">
     </div>
+    <script>
+(function(){
+  if(document.documentElement.classList.contains('skip-loader'))return;
+  function hideLoader(){
+    var el=document.getElementById('page-loader');
+    if(!el)return;
+    el.classList.add('page-loader-fade-out');
+    setTimeout(function(){el.remove();},500);
+  }
+  function run(){setTimeout(hideLoader,500);}
+  if(document.readyState==='complete')run();
+  else window.addEventListener('load',run);
+  setTimeout(hideLoader,8000);
+})();
+    </script>
 
     <!-- TOP HEADER BAR -->
     <header class="top-bar">
