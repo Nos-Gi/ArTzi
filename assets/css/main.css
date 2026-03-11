@@ -158,6 +158,11 @@ ul {
 
 .main-content {
     padding: 0 0 64px;
+    transition: opacity 0.25s ease-out;
+}
+
+.main-content.spa-fade-out {
+    opacity: 0;
 }
 
 .section {

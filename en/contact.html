@@ -30,10 +30,7 @@ document.addEventListener('click',function(e){
     el.classList.add('page-loader-fade-out');
     setTimeout(function(){el.remove();},500);
   }
-  function run(){setTimeout(hideLoader,500);}
-  if(document.readyState==='complete')run();
-  else window.addEventListener('load',run);
-  setTimeout(hideLoader,8000);
+  setTimeout(hideLoader,15000);
 })();
     </script>
 

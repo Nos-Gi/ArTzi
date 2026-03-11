@@ -36,6 +36,55 @@ console.log('=== MAIN.JS LOADED ===');
         initGalleryFadeIn();
     }
 
+    function hideLoader() {
+        var el = document.getElementById('page-loader');
+        if (!el) return;
+        el.classList.add('page-loader-fade-out');
+        setTimeout(function() { el.remove(); }, 500);
+    }
+
+    function getSectionBgImageUrls() {
+        var link = document.querySelector('link[rel="stylesheet"]');
+        if (!link || !link.href) return [];
+        var parts = link.href.split('/');
+        parts.pop();
+        parts.pop();
+        parts.push('images');
+        var base = parts.join('/') + '/';
+        return [
+            base + 'IMG_8227.jpeg',
+            base + 'IMG_8222.jpeg',
+            base + 'IMG_8237.jpeg',
+            base + 'IMG_8239.jpeg'
+        ];
+    }
+
+    function loadImage(url) {
+        return new Promise(function(resolve) {
+            var img = new Image();
+            img.onload = resolve;
+            img.onerror = resolve;
+            img.src = url;
+        });
+    }
+
+    function waitForFontsAndImages() {
+        var fontReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+        var imgEls = document.querySelectorAll('img[src]');
+        var urls = [];
+        for (var i = 0; i < imgEls.length; i++) {
+            var src = imgEls[i].src || imgEls[i].getAttribute('src');
+            if (src) urls.push(src);
+        }
+        var bgUrls = getSectionBgImageUrls();
+        for (var j = 0; j < bgUrls.length; j++) urls.push(bgUrls[j]);
+        var unique = urls.filter(function(u, i, a) { return a.indexOf(u) === i; });
+        var imagePromises = unique.map(loadImage);
+        var allReady = Promise.all([fontReady].concat(imagePromises));
+        var timeout = new Promise(function(r) { setTimeout(r, 15000); });
+        return Promise.race([allReady, timeout]);
+    }
+
     // SPA navigation: fetch page, replace main+header+title, animate with same-document View Transition
     function applyPage(html, direction) {
         var parser = new DOMParser();
@@ -67,9 +116,12 @@ console.log('=== MAIN.JS LOADED ===');
                 initPageContent();
             });
         } else {
-            updateDOM();
-            document.documentElement.classList.remove('vt-forward', 'vt-backward');
-            initPageContent();
+            main.classList.add('spa-fade-out');
+            setTimeout(function() {
+                updateDOM();
+                main.classList.remove('spa-fade-out');
+                initPageContent();
+            }, 220);
         }
         return true;
     }
@@ -125,26 +177,21 @@ console.log('=== MAIN.JS LOADED ===');
         if (document.documentElement.classList.contains('skip-loader')) {
             var loader = document.getElementById('page-loader');
             if (loader) loader.remove();
+            initPageContent();
+            return;
         }
         initPageContent();
-
-        if (!document.documentElement.classList.contains('skip-loader')) {
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    var loader = document.getElementById('page-loader');
-                    if (loader) {
-                        loader.classList.add('page-loader-fade-out');
-                        setTimeout(function() { loader.remove(); }, 500);
-                    }
-                }, 500);
+        function runWhenReady() {
+            waitForFontsAndImages().then(function() {
+                setTimeout(hideLoader, 300);
+            }).catch(function() {
+                setTimeout(hideLoader, 300);
             });
-            setTimeout(function() {
-                var loader = document.getElementById('page-loader');
-                if (loader) {
-                    loader.classList.add('page-loader-fade-out');
-                    setTimeout(function() { loader.remove(); }, 500);
-                }
-            }, 8000);
+        }
+        if (document.readyState === 'complete') {
+            runWhenReady();
+        } else {
+            window.addEventListener('load', runWhenReady);
         }
     }
 
