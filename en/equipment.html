@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}</script>
     <title>Gallery | ArtZi Rehearsal Studios</title>
     <meta name="description" content="Gallery of ArtZi Rehearsal Studios.">
-    <link rel="stylesheet" href="../assets/css/main.css?v=2.1">
+    <link rel="stylesheet" href="../assets/css/main.css?v=3.0">
 </head>
 <body>
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <img src="../assets/images/RG_LOGO.JPG" alt="">
+    </div>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
@@ -32,13 +37,20 @@
     </header>
 
     <main class="main-content">
-        <section class="section">
+        <section class="section section-photo-bg section-bg-1" aria-label="Studio image">
+            <div class="section-photo-bg-inner">
+                <div class="container">
+                    <h1>Gallery</h1>
+                    <p>A glimpse of what it’s like to play at ArtZi.</p>
+                </div>
+            </div>
+        </section>
+        <section class="section section-alt">
             <div class="container">
-                <h1>Gallery</h1>
                 <p class="section-intro">A quick look at what it feels like to play at ArtZi. Replace the photos and video below with your own material.</p>
                 
                 <div class="gallery-scroll">
-                    <div class="gallery-item fade-in" data-image="../assets/images/IMG_8212.jpeg">
+                    <div class="gallery-item" data-image="../assets/images/IMG_8212.jpeg">
                         <img src="../assets/images/IMG_8212.jpeg" alt="ArtZi rehearsal space" loading="eager">
                     </div>
                     <div class="gallery-item" data-image="../assets/images/IMG_8215.jpeg">
@@ -53,9 +65,24 @@
                     <div class="gallery-item" data-image="../assets/images/IMG_8230.jpeg">
                         <img src="../assets/images/IMG_8230.jpeg" alt="ArtZi Rehearsal Studios" loading="lazy">
                     </div>
+                    <div class="gallery-item" data-image="../assets/images/IMG_8213.jpeg">
+                        <img src="../assets/images/IMG_8213.jpeg" alt="ArtZi studio" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="../assets/images/IMG_8216.jpeg">
+                        <img src="../assets/images/IMG_8216.jpeg" alt="Recording space" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="../assets/images/IMG_8222.jpeg">
+                        <img src="../assets/images/IMG_8222.jpeg" alt="Band rehearsal" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="../assets/images/IMG_8228.jpeg">
+                        <img src="../assets/images/IMG_8228.jpeg" alt="ArtZi equipment" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="../assets/images/IMG_8233.jpeg">
+                        <img src="../assets/images/IMG_8233.jpeg" alt="ArtZi Rehearsal Studios" loading="lazy">
+                    </div>
                 </div>
                 
-                <div class="video-wrapper fade-in">
+                <div class="video-wrapper gallery-scroll-visible">
                     <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArtZi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>

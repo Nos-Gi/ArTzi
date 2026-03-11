@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}</script>
     <title>Gallery | ArtZi Rehearsal Studios</title>
     <meta name="description" content="Gallery από τους χώρους του ArtZi Rehearsal Studios.">
-    <link rel="stylesheet" href="assets/css/main.css?v=2.1">
+    <link rel="stylesheet" href="assets/css/main.css?v=3.0">
 </head>
 <body>
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <img src="assets/images/RG_LOGO.JPG" alt="">
+    </div>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
@@ -32,13 +37,20 @@
     </header>
 
     <main class="main-content">
-        <section class="section">
+        <section class="section section-photo-bg section-bg-1" aria-label="Εικόνα χώρου">
+            <div class="section-photo-bg-inner">
+                <div class="container">
+                    <h1>Gallery</h1>
+                    <p>Μια μικρή εικόνα από το πώς είναι να παίζεις στο ArtZi.</p>
+                </div>
+            </div>
+        </section>
+        <section class="section section-alt">
             <div class="container">
-                <h1>Gallery</h1>
-                <p class="section-intro">Μια μικρή εικόνα από το πώς είναι να παίζεις στο ArtZi. Αντικατάστησε τις φωτογραφίες και το βίντεο με δικό σου υλικό.</p>
+                <p class="section-intro">Αντικατάστησε τις φωτογραφίες και το βίντεο με δικό σου υλικό.</p>
                 
                 <div class="gallery-scroll">
-                    <div class="gallery-item fade-in" data-image="assets/images/IMG_8212.jpeg">
+                    <div class="gallery-item" data-image="assets/images/IMG_8212.jpeg">
                         <img src="assets/images/IMG_8212.jpeg" alt="Χώρος πρόβας ArtZi" loading="eager">
                     </div>
                     <div class="gallery-item" data-image="assets/images/IMG_8215.jpeg">
@@ -53,9 +65,24 @@
                     <div class="gallery-item" data-image="assets/images/IMG_8230.jpeg">
                         <img src="assets/images/IMG_8230.jpeg" alt="Χώρος ArtZi Rehearsal Studios" loading="lazy">
                     </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8213.jpeg">
+                        <img src="assets/images/IMG_8213.jpeg" alt="Στούντιο ArtZi" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8216.jpeg">
+                        <img src="assets/images/IMG_8216.jpeg" alt="Χώρος ηχογράφησης" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8222.jpeg">
+                        <img src="assets/images/IMG_8222.jpeg" alt="Πρόβα συγκροτήματος" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8228.jpeg">
+                        <img src="assets/images/IMG_8228.jpeg" alt="Εξοπλισμός ArtZi" loading="lazy">
+                    </div>
+                    <div class="gallery-item" data-image="assets/images/IMG_8233.jpeg">
+                        <img src="assets/images/IMG_8233.jpeg" alt="Χώρος ArtZi Rehearsal Studios" loading="lazy">
+                    </div>
                 </div>
                 
-                <div class="video-wrapper fade-in">
+                <div class="video-wrapper gallery-scroll-visible">
                     <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArtZi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>

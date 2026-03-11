@@ -3,9 +3,50 @@ console.log('=== MAIN.JS LOADED ===');
 
 (function() {
     'use strict';
-    
-    console.log('=== IIFE STARTED ===');
-    
+
+    // Internal link click: mark so next page skips loader (loader only on initial visit / reload)
+    document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (!a || !a.href || a.target === '_blank') return;
+        try {
+            if (window.location.origin === new URL(a.href).origin) {
+                sessionStorage.setItem('internalNav', '1');
+            }
+        } catch (err) {}
+    }, true);
+
+    // View transition direction: left menu -> right menu = out left, in from right (forward); opposite = backward
+    function getMenuIndex(url) {
+        try {
+            var path = (url.pathname || '/').replace(/\/$/, '') || '/';
+            var parts = path.split('/').filter(Boolean);
+            var isEn = parts[0] === 'en';
+            var page = (isEn ? parts[1] : parts[0]) || 'index';
+            var name = (page.replace('.html', '') || 'index');
+            var map = { index: 0, about: 1, facility: 2, services: 3, equipment: 4, contact: 5 };
+            return map[name] !== undefined ? map[name] : 0;
+        } catch (e) { return 0; }
+    }
+
+    window.addEventListener('pageswap', function(e) {
+        if (!e.viewTransition || !e.activation) return;
+        var fromUrl = window.location;
+        var toUrl = e.activation.entry && e.activation.entry.url ? new URL(e.activation.entry.url) : null;
+        if (!toUrl) return;
+        var fromIndex = getMenuIndex(fromUrl);
+        var toIndex = getMenuIndex(toUrl);
+        var direction = toIndex > fromIndex ? 'forward' : (toIndex < fromIndex ? 'backward' : 'forward');
+        sessionStorage.setItem('vtDirection', direction);
+        e.viewTransition.types.add(direction);
+    });
+
+    window.addEventListener('pagereveal', function(e) {
+        if (!e.viewTransition) return;
+        var direction = sessionStorage.getItem('vtDirection') || 'forward';
+        sessionStorage.removeItem('vtDirection');
+        e.viewTransition.types.add(direction);
+    });
+
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {
         console.log('DOM is loading, waiting...');
@@ -14,96 +55,39 @@ console.log('=== MAIN.JS LOADED ===');
         console.log('DOM already ready, calling init immediately');
         init();
     }
-    
+
     function init() {
         console.log('=== INIT FUNCTION CALLED ===');
-    const carousels = document.querySelectorAll('[data-carousel]');
 
-    carousels.forEach((carousel) => {
-        const track = carousel.querySelector('[data-carousel-track]');
-        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
-        const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
-        const prevBtn = carousel.querySelector('[data-carousel-prev]');
-        const nextBtn = carousel.querySelector('[data-carousel-next]');
-
-        if (!track || slides.length === 0) {
-            return;
+        // If we arrived via internal nav, loader was hidden by head script; remove it from DOM
+        if (document.documentElement.classList.contains('skip-loader')) {
+            var loader = document.getElementById('page-loader');
+            if (loader) loader.remove();
         }
 
-        let index = 0;
-        let autoTimer;
-        const slideCount = slides.length;
-        const intervalMs = 6000;
+    // Photo sections: fade image with scroll position (tie opacity to visibility)
+    (function initPhotoScrollFade() {
+        var sections = document.querySelectorAll('.section-photo-bg');
+        if (!sections.length) return;
 
-        function goToSlide(newIndex) {
-            index = (newIndex + slideCount) % slideCount;
-            const offset = -index * 100;
+        var thresholds = [];
+        for (var i = 0; i <= 20; i++) thresholds.push(i / 20);
 
-            track.style.transform = `translateX(${offset}%)`;
-
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('is-active', i === index);
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                var ratio = entry.intersectionRatio;
+                entry.target.style.setProperty('--photo-opacity', ratio);
             });
-
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('is-active', i === index);
-            });
-        }
-
-        function next() {
-            goToSlide(index + 1);
-        }
-
-        function prev() {
-            goToSlide(index - 1);
-        }
-
-        function startAuto() {
-            stopAuto();
-            autoTimer = window.setInterval(next, intervalMs);
-        }
-
-        function stopAuto() {
-            if (autoTimer) {
-                window.clearInterval(autoTimer);
-                autoTimer = undefined;
-            }
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                stopAuto();
-                next();
-                startAuto();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                stopAuto();
-                prev();
-                startAuto();
-            });
-        }
-
-        dots.forEach((dot) => {
-            const targetIndex = Number(dot.getAttribute('data-carousel-dot'));
-            if (!Number.isNaN(targetIndex)) {
-                dot.addEventListener('click', () => {
-                    stopAuto();
-                    goToSlide(targetIndex);
-                    startAuto();
-                });
-            }
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: thresholds
         });
 
-        carousel.addEventListener('mouseenter', stopAuto);
-        carousel.addEventListener('mouseleave', startAuto);
-
-        // initial state
-        goToSlide(0);
-        startAuto();
-    });
+        sections.forEach(function(section) {
+            observer.observe(section);
+        });
+    })();
 
     // Contact form handling with Formspree (AJAX submission)
     console.log('=== INITIALIZING CONTACT FORM HANDLERS ===');
@@ -333,21 +317,29 @@ console.log('=== MAIN.JS LOADED ===');
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
     
-    // Gallery scroll fade-in animation and landscape detection with sorting
+    // Gallery: pop in/out with scroll (visibility tied to viewport)
     function initGalleryFadeIn() {
         const galleryScroll = document.querySelector('.gallery-scroll');
         const galleryItems = document.querySelectorAll('.gallery-item');
-        const videoWrapper = document.querySelector('.video-wrapper.fade-in');
-        
-        if (galleryItems.length === 0 && !videoWrapper || !galleryScroll) {
+        const videoWrapper = document.querySelector('.video-wrapper.gallery-scroll-visible');
+
+        if (!galleryScroll && !videoWrapper) {
             return;
         }
-        
-        // Pre-load all images to detect orientation before layout
-        const imagePromises = Array.from(galleryItems).map((item, index) => {
+
+        // Elements to observe for scroll-based visibility
+        const observeTargets = Array.from(galleryItems);
+        if (videoWrapper) observeTargets.push(videoWrapper);
+
+        if (observeTargets.length === 0) {
+            return;
+        }
+
+        // Pre-load images to detect orientation, then sort and set up observer
+        const imagePromises = Array.from(galleryItems).map((item) => {
             const img = item.querySelector('img');
             if (!img) return Promise.resolve({ item, isLandscape: false });
-            
+
             return new Promise((resolve) => {
                 const checkLandscape = function() {
                     if (img.naturalWidth > 0 && img.naturalHeight > 0) {
@@ -361,99 +353,105 @@ console.log('=== MAIN.JS LOADED ===');
                         resolve({ item, isLandscape: false });
                     }
                 };
-                
-                // Check immediately if already loaded
+
                 if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
                     checkLandscape();
                 } else {
-                    // Wait for load
                     img.addEventListener('load', checkLandscape, { once: true });
                     img.addEventListener('error', () => resolve({ item, isLandscape: false }), { once: true });
-                    // Fallback timeout
                     setTimeout(() => {
-                        if (img.naturalWidth > 0 && img.naturalHeight > 0) {
-                            checkLandscape();
-                        } else {
-                            resolve({ item, isLandscape: false });
-                        }
+                        if (img.naturalWidth > 0 && img.naturalHeight > 0) checkLandscape();
+                        else resolve({ item, isLandscape: false });
                     }, 500);
                 }
             });
         });
-        
-        // Wait for all images to be checked, then sort and reorder
-        Promise.all(imagePromises).then((results) => {
-            // Separate landscape and vertical images
-            const landscapeItems = [];
-            const verticalItems = [];
-            
-            results.forEach(({ item, isLandscape }) => {
-                if (isLandscape) {
-                    landscapeItems.push(item);
-                } else {
-                    verticalItems.push(item);
-                }
-            });
-            
-            // Create sorted array following pattern: 1 landscape, 3 vertical, repeat
-            const sortedItems = [];
-            let landscapeIndex = 0;
-            let verticalIndex = 0;
-            
-            while (landscapeIndex < landscapeItems.length || verticalIndex < verticalItems.length) {
-                // Add 1 landscape if available
-                if (landscapeIndex < landscapeItems.length) {
-                    sortedItems.push(landscapeItems[landscapeIndex]);
-                    landscapeIndex++;
-                }
-                
-                // Add 3 vertical images if available
-                for (let i = 0; i < 3 && verticalIndex < verticalItems.length; i++) {
-                    sortedItems.push(verticalItems[verticalIndex]);
-                    verticalIndex++;
-                }
-            }
-            
-            // Reorder DOM elements to match sorted order
-            sortedItems.forEach((item) => {
-                galleryScroll.appendChild(item);
-            });
-            
-            // Force grid recalculation by triggering reflow
-            void galleryScroll.offsetHeight;
-            
-            // Set up fade-in observer after reordering
+
+        function setupScrollObserver() {
             const observerOptions = {
-                threshold: 0.05,
-                rootMargin: '0px 0px -20px 0px'
+                threshold: [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1],
+                rootMargin: '0px 0px -40px 0px'
             };
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                        observer.unobserve(entry.target);
+                        entry.target.classList.add('gallery-visible');
+                    } else {
+                        entry.target.classList.remove('gallery-visible');
                     }
                 });
             }, observerOptions);
-            
-            // Observe all reordered items
-            sortedItems.forEach((item, index) => {
-                // First item should be visible immediately
-                if (index === 0) {
-                    item.classList.add('fade-in');
-                } else {
-                    observer.observe(item);
-                }
+
+            observeTargets.forEach((el) => observer.observe(el));
+        }
+
+        if (galleryItems.length === 0) {
+            setupScrollObserver();
+            return;
+        }
+
+        Promise.all(imagePromises).then((results) => {
+            const landscapeItems = [];
+            const verticalItems = [];
+            results.forEach(({ item, isLandscape }) => {
+                if (isLandscape) landscapeItems.push(item);
+                else verticalItems.push(item);
             });
-            
-            if (videoWrapper) {
-                observer.observe(videoWrapper);
+
+            const sortedItems = [];
+            let li = 0, vi = 0;
+            while (li < landscapeItems.length || vi < verticalItems.length) {
+                if (li < landscapeItems.length) {
+                    sortedItems.push(landscapeItems[li++]);
+                }
+                for (let i = 0; i < 3 && vi < verticalItems.length; i++) {
+                    sortedItems.push(verticalItems[vi++]);
+                }
             }
+
+            sortedItems.forEach((item) => galleryScroll.appendChild(item));
+            void galleryScroll.offsetHeight;
+
+            // Rebuild observe list: reordered gallery items + video
+            const toObserve = sortedItems.slice();
+            if (videoWrapper) toObserve.push(videoWrapper);
+
+            const observerOptions = {
+                threshold: [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1],
+                rootMargin: '0px 0px -40px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('gallery-visible');
+                    } else {
+                        entry.target.classList.remove('gallery-visible');
+                    }
+                });
+            }, observerOptions);
+
+            toObserve.forEach((el) => observer.observe(el));
         });
     }
     
     // Initialize gallery fade-in on page load
     initGalleryFadeIn();
+
+    // Page loader: after load + 0.5s, fade out to reveal site (only when loader is shown = initial visit / reload)
+    if (!document.documentElement.classList.contains('skip-loader')) {
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var loader = document.getElementById('page-loader');
+                if (loader) {
+                    loader.classList.add('page-loader-fade-out');
+                    setTimeout(function() {
+                        loader.remove();
+                    }, 500);
+                }
+            }, 500);
+        });
+    }
     }
 })();

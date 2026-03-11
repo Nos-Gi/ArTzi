@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}</script>
     <title>ArtZi Rehearsal Studios</title>
     <meta name="description" content="ArtZi Rehearsal Studios - σύγχρονοι, άνετοι χώροι προβών με επαγγελματικό εξοπλισμό για μουσικούς και συγκροτήματα.">
-    <link rel="stylesheet" href="assets/css/main.css?v=2.1">
+    <link rel="stylesheet" href="assets/css/main.css?v=3.0">
 </head>
 <body>
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <img src="assets/images/RG_LOGO.JPG" alt="">
+    </div>
 
     <!-- TOP HEADER BAR -->
     <header class="top-bar">
@@ -35,43 +40,13 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
-        <!-- Hero with full-width carousel -->
-        <section id="hero" class="section hero hero-full">
-            <div class="hero-carousel" data-carousel>
-                <div class="hero-carousel-inner">
-                    <div class="carousel-track" data-carousel-track>
-                        <div class="carousel-slide is-active">
-                            <img src="assets/images/IMG_8231.jpeg" alt="Χώρος πρόβας ArtZi Rehearsal Studios">
-                            <div class="hero-overlay-gradient"></div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="assets/images/IMG_8237.jpeg" alt="Χώρος πρόβας ArtZi Rehearsal Studios">
-                            <div class="hero-overlay-gradient"></div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="assets/images/IMG_8239.jpeg" alt="Χώρος πρόβας ArtZi Rehearsal Studios">
-                            <div class="hero-overlay-gradient"></div>
-                        </div>
-                    </div>
+        <!-- About Preview with photo background -->
+        <section id="about" class="section section-photo-bg section-bg-home" aria-label="Εικόνα χώρου">
+            <div class="section-photo-bg-inner">
+                <div class="container">
+                    <h2>Σχετικά με το ArtZi</h2>
+                    <p>Ήσυχος, προσεγμένος χώρος αφιερωμένος στις πρόβες — ακουστική, εξοπλισμός και άνεση.</p>
                 </div>
-                <div class="carousel-controls">
-                    <button class="carousel-arrow" type="button" aria-label="Προηγούμενη εικόνα" data-carousel-prev>&larr;</button>
-                    <button class="carousel-arrow" type="button" aria-label="Επόμενη εικόνα" data-carousel-next>&rarr;</button>
-                </div>
-                <div class="carousel-dots">
-                    <button class="carousel-dot is-active" type="button" aria-label="Εικόνα 1" data-carousel-dot="0"></button>
-                    <button class="carousel-dot" type="button" aria-label="Εικόνα 2" data-carousel-dot="1"></button>
-                    <button class="carousel-dot" type="button" aria-label="Εικόνα 3" data-carousel-dot="2"></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Preview -->
-        <section id="about" class="section section-alt">
-            <div class="container">
-                <h2>Σχετικά με το ArtZi</h2>
-                <p>Το ArtZi είναι ένας ήσυχος, προσεγμένος χώρος αφιερωμένος στις πρόβες. Επενδύουμε σε ακουστική, εξοπλισμό και άνεση, ώστε κάθε ώρα που περνάς εδώ να είναι παραγωγική.</p>
-                <p>Είτε είσαι solo μουσικός, είτε full band, μπορείς να φέρεις ιδέες, να κάνεις pre-production ή απλώς να παίξεις δυνατά χωρίς περιορισμούς.</p>
             </div>
         </section>
 

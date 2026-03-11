@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}</script>
     <title>Τιμές | ArtZi Rehearsal Studios</title>
     <meta name="description" content="Τιμοκατάλογος προβών στο ArtZi Rehearsal Studios.">
-    <link rel="stylesheet" href="assets/css/main.css?v=2.1">
+    <link rel="stylesheet" href="assets/css/main.css?v=3.0">
 </head>
 <body>
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <img src="assets/images/RG_LOGO.JPG" alt="">
+    </div>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
@@ -32,10 +37,17 @@
     </header>
 
     <main class="main-content">
+        <section class="section section-photo-bg section-bg-3" aria-label="Εικόνα χώρου">
+            <div class="section-photo-bg-inner">
+                <div class="container">
+                    <h1>Τιμές</h1>
+                    <p>Απλές, ξεκάθαρες τιμές χωρίς κρυφές χρεώσεις.</p>
+                </div>
+            </div>
+        </section>
         <section class="section section-alt">
             <div class="container">
-                <h1>Τιμές</h1>
-                <p class="section-intro">Απλές, ξεκάθαρες τιμές χωρίς κρυφές χρεώσεις. Οι τιμές είναι ενδεικτικές – μπορούμε να τις προσαρμόσουμε ανάλογα με τις ανάγκες σου.</p>
+                <p class="section-intro">Οι τιμές είναι ενδεικτικές – μπορούμε να τις προσαρμόσουμε ανάλογα με τις ανάγκες σου.</p>
                 <div class="pricing-grid">
                     <article class="card pricing-card">
                         <h3>Ώρα πρόβας</h3>

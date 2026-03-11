@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}</script>
     <title>About | ArtZi Rehearsal Studios</title>
     <meta name="description" content="About ArtZi Rehearsal Studios - rehearsal spaces with focus on acoustics, gear and comfort.">
-    <link rel="stylesheet" href="../assets/css/main.css?v=2.1">
+    <link rel="stylesheet" href="../assets/css/main.css?v=3.0">
 </head>
 <body>
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <img src="../assets/images/RG_LOGO.JPG" alt="">
+    </div>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
@@ -36,6 +41,7 @@
             <div class="container two-column">
                 <div>
                     <h1>About ArtZi</h1>
+                    <p>The evolution of Argiriou Recording Studio — 45 years in Greek recorded music.</p>
                     <p>Artzi Recording and Rehearsing Studio is the evolution of Argiriou Recording Studio, a space that has been serving Greek recorded music for 45 years.</p>
                     <p>At 36 Taxiarchon Street you now find a space equipped with state-of-the-art technology for the modern form of traditional music rehearsal.</p>
                     <p>On top of straightforward recording, mix and mastering are now offered, so clients get their material in the format they want.</p>

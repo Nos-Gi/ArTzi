@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}</script>
     <title>ArtZi Rehearsal Studios</title>
     <meta name="description" content="ArtZi Rehearsal Studios - modern rehearsal spaces with professional equipment for bands and musicians.">
-    <link rel="stylesheet" href="../assets/css/main.css?v=2.1">
+    <link rel="stylesheet" href="../assets/css/main.css?v=3.0">
 </head>
 <body>
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <img src="../assets/images/RG_LOGO.JPG" alt="">
+    </div>
 
     <!-- TOP HEADER BAR -->
     <header class="top-bar">
@@ -35,43 +40,13 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
-        <!-- Hero with full-width carousel -->
-        <section id="hero" class="section hero hero-full">
-            <div class="hero-carousel" data-carousel>
-                <div class="hero-carousel-inner">
-                    <div class="carousel-track" data-carousel-track>
-                        <div class="carousel-slide is-active">
-                            <img src="../assets/images/IMG_8231.jpeg" alt="ArtZi Rehearsal Studios">
-                            <div class="hero-overlay-gradient"></div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="../assets/images/IMG_8237.jpeg" alt="ArtZi Rehearsal Studios">
-                            <div class="hero-overlay-gradient"></div>
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="../assets/images/IMG_8239.jpeg" alt="ArtZi Rehearsal Studios">
-                            <div class="hero-overlay-gradient"></div>
-                        </div>
-                    </div>
+        <!-- About Preview with photo background -->
+        <section id="about" class="section section-photo-bg section-bg-home" aria-label="Studio image">
+            <div class="section-photo-bg-inner">
+                <div class="container">
+                    <h2>About ArtZi</h2>
+                    <p>A quiet, considered space for rehearsals — acoustics, equipment and comfort.</p>
                 </div>
-                <div class="carousel-controls">
-                    <button class="carousel-arrow" type="button" aria-label="Previous image" data-carousel-prev>&larr;</button>
-                    <button class="carousel-arrow" type="button" aria-label="Next image" data-carousel-next>&rarr;</button>
-                </div>
-                <div class="carousel-dots">
-                    <button class="carousel-dot is-active" type="button" aria-label="Image 1" data-carousel-dot="0"></button>
-                    <button class="carousel-dot" type="button" aria-label="Image 2" data-carousel-dot="1"></button>
-                    <button class="carousel-dot" type="button" aria-label="Image 3" data-carousel-dot="2"></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Preview -->
-        <section id="about" class="section section-alt">
-            <div class="container">
-                <h2>About ArtZi</h2>
-                <p>ArtZi is a quiet, carefully designed space dedicated to rehearsals. We invest in acoustics, equipment and comfort so every hour you spend here is productive.</p>
-                <p>Whether you're a solo musician or a full band, you can bring ideas, work on pre-production or simply play loud without limits.</p>
             </div>
         </section>
 
