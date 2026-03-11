@@ -4,19 +4,6 @@ console.log('=== MAIN.JS LOADED ===');
 (function() {
     'use strict';
 
-    function getMenuIndex(url) {
-        try {
-            var u = typeof url === 'string' ? new URL(url, window.location.origin) : url;
-            var path = (u.pathname || '/').replace(/\/$/, '') || '/';
-            var parts = path.split('/').filter(Boolean);
-            var isEn = parts[0] === 'en';
-            var page = (isEn ? parts[1] : parts[0]) || 'index';
-            var name = (page.replace('.html', '') || 'index');
-            var map = { index: 0, about: 1, facility: 2, services: 3, equipment: 4, contact: 5 };
-            return map[name] !== undefined ? map[name] : 0;
-        } catch (e) { return 0; }
-    }
-
     function initPhotoScrollFade() {
         var sections = document.querySelectorAll('.section-photo-bg');
         if (!sections.length) return;
@@ -43,50 +30,8 @@ console.log('=== MAIN.JS LOADED ===');
         setTimeout(function() { el.remove(); }, 500);
     }
 
-    function getSectionBgImageUrls() {
-        var link = document.querySelector('link[rel="stylesheet"]');
-        if (!link || !link.href) return [];
-        var parts = link.href.split('/');
-        parts.pop();
-        parts.pop();
-        parts.push('images');
-        var base = parts.join('/') + '/';
-        return [
-            base + 'IMG_8227.jpeg',
-            base + 'IMG_8222.jpeg',
-            base + 'IMG_8237.jpeg',
-            base + 'IMG_8239.jpeg'
-        ];
-    }
-
-    function loadImage(url) {
-        return new Promise(function(resolve) {
-            var img = new Image();
-            img.onload = resolve;
-            img.onerror = resolve;
-            img.src = url;
-        });
-    }
-
-    function waitForFontsAndImages() {
-        var fontReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-        var imgEls = document.querySelectorAll('img[src]');
-        var urls = [];
-        for (var i = 0; i < imgEls.length; i++) {
-            var src = imgEls[i].src || imgEls[i].getAttribute('src');
-            if (src) urls.push(src);
-        }
-        var bgUrls = getSectionBgImageUrls();
-        for (var j = 0; j < bgUrls.length; j++) urls.push(bgUrls[j]);
-        var unique = urls.filter(function(u, i, a) { return a.indexOf(u) === i; });
-        var imagePromises = unique.map(loadImage);
-        var allReady = Promise.all([fontReady].concat(imagePromises));
-        var timeout = new Promise(function(r) { setTimeout(r, 15000); });
-        return Promise.race([allReady, timeout]);
-    }
-
-    // SPA navigation: fetch page, replace main+header+title, animate with same-document View Transition
-    function applyPage(html, direction) {
+    // SPA navigation: fetch page, replace main+header+title, simple fade (works everywhere)
+    function applyPage(html) {
         var parser = new DOMParser();
         var doc = parser.parseFromString(html, 'text/html');
         var newMain = doc.querySelector('main.main-content');
@@ -98,8 +43,6 @@ console.log('=== MAIN.JS LOADED ===');
         var mainHtml = newMain.innerHTML;
         var headerHtml = newHeader ? newHeader.innerHTML : '';
         var titleText = newTitle ? newTitle.textContent : document.title;
-        var dirClass = direction === 'backward' ? 'vt-backward' : 'vt-forward';
-        document.documentElement.classList.add(dirClass);
 
         function updateDOM() {
             main.innerHTML = mainHtml;
@@ -107,22 +50,12 @@ console.log('=== MAIN.JS LOADED ===');
             if (header && headerHtml) header.innerHTML = headerHtml;
         }
 
-        if (document.startViewTransition) {
-            document.startViewTransition(updateDOM).finished.then(function() {
-                document.documentElement.classList.remove('vt-forward', 'vt-backward');
-                initPageContent();
-            }).catch(function() {
-                document.documentElement.classList.remove('vt-forward', 'vt-backward');
-                initPageContent();
-            });
-        } else {
-            main.classList.add('spa-fade-out');
-            setTimeout(function() {
-                updateDOM();
-                main.classList.remove('spa-fade-out');
-                initPageContent();
-            }, 220);
-        }
+        main.classList.add('spa-fade-out');
+        setTimeout(function() {
+            updateDOM();
+            main.classList.remove('spa-fade-out');
+            initPageContent();
+        }, 200);
         return true;
     }
 
@@ -130,10 +63,7 @@ console.log('=== MAIN.JS LOADED ===');
         fetch(href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
             .then(function(r) { return r.text(); })
             .then(function(html) {
-                var fromIndex = getMenuIndex(window.location.href);
-                var toIndex = getMenuIndex(href);
-                var direction = toIndex >= fromIndex ? 'forward' : 'backward';
-                if (applyPage(html, direction)) {
+                if (applyPage(html)) {
                     history.pushState({ spa: true }, '', href);
                     var seg = new URL(href, window.location.origin).pathname.split('/').filter(Boolean)[0];
                     document.documentElement.lang = seg === 'en' ? 'en' : 'el';
@@ -159,7 +89,7 @@ console.log('=== MAIN.JS LOADED ===');
         fetch(href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
             .then(function(r) { return r.text(); })
             .then(function(html) {
-                applyPage(html, 'backward');
+                applyPage(html);
                 var seg = window.location.pathname.split('/').filter(Boolean)[0];
                 document.documentElement.lang = seg === 'en' ? 'en' : 'el';
             })
@@ -181,18 +111,18 @@ console.log('=== MAIN.JS LOADED ===');
             return;
         }
         initPageContent();
-        function runWhenReady() {
-            waitForFontsAndImages().then(function() {
-                setTimeout(hideLoader, 300);
-            }).catch(function() {
-                setTimeout(hideLoader, 300);
-            });
+        var loaderDone = false;
+        function doHideLoader() {
+            if (loaderDone) return;
+            loaderDone = true;
+            hideLoader();
         }
         if (document.readyState === 'complete') {
-            runWhenReady();
+            setTimeout(doHideLoader, 400);
         } else {
-            window.addEventListener('load', runWhenReady);
+            window.addEventListener('load', function() { setTimeout(doHideLoader, 400); });
         }
+        setTimeout(doHideLoader, 4000);
     }
 
     function initContactForm() {
