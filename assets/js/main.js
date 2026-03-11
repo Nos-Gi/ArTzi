@@ -59,6 +59,9 @@ console.log('=== MAIN.JS LOADED ===');
     function init() {
         console.log('=== INIT FUNCTION CALLED ===');
 
+        // JS is running, so remove no-js fallback class
+        document.documentElement.classList.remove('no-js');
+
         // If we arrived via internal nav, loader was hidden by head script; remove it from DOM
         if (document.documentElement.classList.contains('skip-loader')) {
             var loader = document.getElementById('page-loader');

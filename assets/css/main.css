@@ -791,6 +791,12 @@ ul {
     transform: translateY(0);
 }
 
+/* Fallback when JS is disabled or main script fails: always show gallery images */
+html.no-js .gallery-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Vertical images: 1 column span */
 .gallery-item img {
     width: 100%;

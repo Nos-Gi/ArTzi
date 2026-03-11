@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}</script>
-    <title>Pricing | ArtZi Rehearsal Studios</title>
-    <meta name="description" content="Pricing for rehearsals at ArtZi Rehearsal Studios.">
+    <script>
+if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}
+document.addEventListener('click',function(e){
+  var t=e.target;
+  while(t&&t!==document.body){if(t.tagName==='A'&&t.href){try{if(window.location.origin===new URL(t.href).origin&&t.target!=='_blank')sessionStorage.setItem('internalNav','1');}catch(err){}return;}t=t.parentNode;}
+},true);
+    </script>
+    <title>Pricing | ArTzi Rehearsal Studios</title>
+    <meta name="description" content="Pricing for rehearsals at ArTzi Rehearsal Studios.">
     <link rel="stylesheet" href="../assets/css/main.css?v=3.0">
 </head>
 <body>
@@ -31,8 +37,8 @@
 
     <header class="top-bar">
         <div class="container top-bar-inner">
-            <a href="index.html" class="brand" aria-label="ArtZi - Home">
-                <span class="brand-title">ArtZi</span>
+            <a href="index.html" class="brand" aria-label="ArTzi - Home">
+                <span class="brand-title">ArTzi</span>
                 <span class="brand-subtitle">Rehearsal Studios</span>
             </a>
             <nav class="main-nav">
@@ -95,7 +101,7 @@
 
     <footer class="bottom-bar">
         <div class="container">
-            <span>© <span id="year-en">2026</span> ArtZi Rehearsal Studios</span>
+            <span>© <span id="year-en">2026</span> ArTzi Rehearsal Studios</span>
         </div>
     </footer>
 
