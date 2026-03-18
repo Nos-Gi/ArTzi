@@ -1062,11 +1062,34 @@ body.home-fixed .home-hero-spacer {
     align-self: center; /* centered horizontally at bottom */
 }
 
-.home-gallery-strip {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+/* Home gallery preview: hover-only slow carousel */
+.home-gallery-viewport {
     margin-top: 12px;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.home-gallery-track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    padding: 0;
+    transform: translateX(0);
+    animation: homeGalleryScroll 18s linear infinite;
+    animation-play-state: paused;
+    will-change: transform;
+}
+
+/* Only animate on hover-capable devices */
+@media (hover: hover) and (pointer: fine) {
+    .home-board--gallery:hover .home-gallery-track {
+        animation-play-state: running;
+    }
+}
+
+@keyframes homeGalleryScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
 
 .home-thumb {
@@ -1076,6 +1099,7 @@ body.home-fixed .home-hero-spacer {
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
     display: block;
     text-decoration: none;
+    flex: 0 0 320px;
 }
 
 .home-thumb img {
@@ -1143,8 +1167,12 @@ body.home-fixed .home-hero-spacer {
     .home-split {
         grid-template-columns: 1fr;
     }
-    .home-gallery-strip {
-        grid-template-columns: 1fr;
+    .home-gallery-track {
+        animation: none;
+        transform: none;
+    }
+    .home-thumb {
+        flex-basis: 260px;
     }
     .home-thumb img {
         height: 220px;

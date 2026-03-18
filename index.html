@@ -84,16 +84,28 @@ document.addEventListener('click',function(e){
         <section id="home-modules" class="section home-modules">
             <div class="container">
                 <div class="home-board home-board--gallery">
-                    <div class="home-gallery-strip" aria-label="Gallery preview">
-                        <a class="home-thumb" href="equipment.html">
-                            <img src="assets/images/IMG_8230.webp" alt="ArTzi preview 1" loading="lazy">
-                        </a>
-                        <a class="home-thumb" href="equipment.html">
-                            <img src="assets/images/IMG_8222.webp" alt="ArTzi preview 2" loading="lazy">
-                        </a>
-                        <a class="home-thumb" href="equipment.html">
-                            <img src="assets/images/IMG_8233.webp" alt="ArTzi preview 3" loading="lazy">
-                        </a>
+                    <div class="home-gallery-viewport" aria-label="Gallery preview">
+                        <div class="home-gallery-track">
+                            <a class="home-thumb" href="equipment.html">
+                                <img src="assets/images/IMG_8230.webp" alt="ArTzi preview 1" loading="lazy">
+                            </a>
+                            <a class="home-thumb" href="equipment.html">
+                                <img src="assets/images/IMG_8222.webp" alt="ArTzi preview 2" loading="lazy">
+                            </a>
+                            <a class="home-thumb" href="equipment.html">
+                                <img src="assets/images/IMG_8233.webp" alt="ArTzi preview 3" loading="lazy">
+                            </a>
+                            <!-- duplicate for seamless loop -->
+                            <a class="home-thumb" href="equipment.html" aria-hidden="true" tabindex="-1">
+                                <img src="assets/images/IMG_8230.webp" alt="" loading="lazy">
+                            </a>
+                            <a class="home-thumb" href="equipment.html" aria-hidden="true" tabindex="-1">
+                                <img src="assets/images/IMG_8222.webp" alt="" loading="lazy">
+                            </a>
+                            <a class="home-thumb" href="equipment.html" aria-hidden="true" tabindex="-1">
+                                <img src="assets/images/IMG_8233.webp" alt="" loading="lazy">
+                            </a>
+                        </div>
                     </div>
                 </div>
 
