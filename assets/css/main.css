@@ -791,7 +791,7 @@ body.pricing-fixed {
 .pricing-menu {
     /* “Board” container */
     border-radius: 22px;
-    background: linear-gradient(180deg, rgba(56, 56, 62, 0.78), rgba(56, 56, 62, 0.62));
+    background: linear-gradient(180deg, rgba(56, 56, 62, 0.90), rgba(56, 56, 62, 0.78));
     border: 1px solid rgba(0, 0, 0, 0.28);
     box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(18px);
@@ -826,7 +826,7 @@ body.pricing-fixed .pricing-grid {
 
 body.pricing-fixed .pricing-card {
     /* “Connected” packages inside the board */
-    background: rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(0, 0, 0, 0.18);
     border-radius: 16px;
     padding: 1.15rem 1.1rem;
