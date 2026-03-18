@@ -4,16 +4,24 @@
 
 /* ===== DESIGN TOKENS ===== */
 :root {
-    --color-bg: #0c0c0e;
-    --color-bg-elevated: #141418;
-    --color-bg-card: #1a1a1e;
-    --color-surface: #222228;
-    --color-text: #e8e6e1;
-    --color-text-muted: #9c9992;
+    /* Backgrounds */
+    --color-bg: #2d2d32;
+    --color-bg-elevated: #38383e;
+    --color-bg-card: #404048;
+    --color-surface: #4a4a52;
+    /* Text */
+    --color-text: #f2f0ec;
+    --color-text-muted: #b8b5ae;
+    /* Accent (light blue) */
     --color-accent: #7eb4d4;
+    --color-accent-hover: #9ac4dc;
     --color-accent-soft: rgba(126, 180, 212, 0.15);
-    --color-border: rgba(255, 255, 255, 0.06);
-    --color-border-strong: rgba(255, 255, 255, 0.12);
+    /* UI */
+    --color-border: rgba(0, 0, 0, 0.15);
+    --color-border-strong: rgba(0, 0, 0, 0.25);
+    --color-success: #10b981;
+    --color-error: #9f2a2a;
+    --color-notification-bg: #0f7a4a;
     --font-heading: 'Syne', sans-serif;
     --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -53,29 +61,25 @@ html.skip-loader #page-loader {
     display: none !important;
 }
 
-/* ===== CROSS-DOCUMENT VIEW TRANSITION (direction-aware: left→right = out left, in from right; right→left = opposite) ===== */
-@view-transition {
-    navigation: auto;
-}
+/* ===== VIEW TRANSITIONS =====
+   Note: keep this block in plain CSS (no nesting) so it can't break in older browsers.
+*/
+@view-transition { navigation: auto; }
 
 /* Forward: going to a menu item to the right → current page out left, new page in from right */
-html:active-view-transition-type(forward) {
-    &::view-transition-old(root) {
-        animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-out-left;
-    }
-    &::view-transition-new(root) {
-        animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-in-right;
-    }
+html:active-view-transition-type(forward)::view-transition-old(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-out-left;
+}
+html:active-view-transition-type(forward)::view-transition-new(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-in-right;
 }
 
 /* Backward: going to a menu item to the left → current page out right, new page in from left */
-html:active-view-transition-type(backward) {
-    &::view-transition-old(root) {
-        animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-out-right;
-    }
-    &::view-transition-new(root) {
-        animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-in-left;
-    }
+html:active-view-transition-type(backward)::view-transition-old(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-out-right;
+}
+html:active-view-transition-type(backward)::view-transition-new(root) {
+    animation: 0.4s cubic-bezier(0.32, 0.72, 0, 1) both view-transition-in-left;
 }
 
 @keyframes view-transition-out-left {
@@ -135,6 +139,7 @@ body {
 img {
     max-width: 100%;
     display: block;
+    height: auto;
 }
 
 a {
@@ -179,6 +184,15 @@ ul {
     background: var(--color-bg);
 }
 
+/* ----- Typography (scale) -----
+   Page title (h1):     clamp(2.5rem–3.75rem)
+   Page title (h2):     clamp(2.25rem–3.25rem)
+   Section intro:      1.1rem
+   Section body (p):    1rem, line-height 1.75
+   Card/block title:    1.15rem–1.35rem
+   Small/labels:        0.8rem
+   Body base:           1rem (body line-height 1.65)
+   ----- */
 .section h1,
 .section h2 {
     font-family: var(--font-heading);
@@ -193,6 +207,51 @@ ul {
 .section h1 {
     font-size: clamp(2.5rem, 5vw, 3.75rem);
     font-weight: 800;
+}
+
+/* Page titles: light-blue highlight (all sections) */
+.section h1,
+.section h2 {
+    display: inline;
+    padding: 0.06em 0.18em;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg,
+        rgba(126, 180, 212, 0.38) 0%,
+        rgba(126, 180, 212, 0.22) 55%,
+        rgba(126, 180, 212, 0.10) 100%
+    );
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* On image sections, the blue highlight can look muddy: switch to crisp text + accent underline */
+.section-photo-bg h1,
+.section-photo-bg h2 {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    text-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.75),
+        0 1px 2px rgba(0, 0, 0, 0.6);
+    box-decoration-break: initial;
+    -webkit-box-decoration-break: initial;
+    display: inline-block;
+}
+
+.section-photo-bg h1::after,
+.section-photo-bg h2::after {
+    content: "";
+    display: block;
+    margin-top: 0.35em;
+    width: clamp(72px, 18%, 140px);
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-accent) 0%, rgba(126, 180, 212, 0.15) 100%);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
 }
 
 .section-intro {
@@ -214,6 +273,7 @@ ul {
     margin-bottom: 0;
 }
 
+/* Optional subsection label (e.g. "What you'll find") */
 .section-heading {
     font-family: var(--font-heading);
     font-size: 1.1rem;
@@ -230,7 +290,7 @@ ul {
 }
 
 .section a:hover {
-    color: #9ac4dc;
+    color: var(--color-accent-hover);
 }
 
 /* ===== PHOTO BACKGROUND SECTIONS (gradient fade) ===== */
@@ -275,7 +335,7 @@ ul {
     inset: 0;
     top: auto;
     height: 28%;
-    background: linear-gradient(to top, rgba(12, 12, 14, 0.4) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(45, 45, 50, 0.5) 0%, transparent 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -314,7 +374,7 @@ ul {
     position: fixed;
     inset: 0 0 auto;
     height: 72px;
-    background: rgba(12, 12, 14, 0.85);
+    background: rgba(45, 45, 50, 0.92);
     color: var(--color-text);
     display: flex;
     align-items: center;
@@ -358,10 +418,12 @@ ul {
     letter-spacing: 0.06em;
     color: var(--color-text);
     transition: color var(--transition-smooth);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.9), 1px 0 1px #000, 0 -1px 1px #000, -1px 0 1px #000;
 }
 
 .brand:hover .brand-title {
     color: var(--color-accent);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.9), 1px 0 1px #000, 0 -1px 1px #000, -1px 0 1px #000;
 }
 
 .brand-subtitle {
@@ -370,6 +432,7 @@ ul {
     text-transform: uppercase;
     color: var(--color-text-muted);
     font-weight: 500;
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .main-nav ul {
@@ -390,10 +453,12 @@ ul {
     padding: 8px 4px;
     position: relative;
     transition: color var(--transition-smooth);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .main-nav a:hover {
     color: var(--color-text);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.9), 1px 0 1px #000, 0 -1px 1px #000, -1px 0 1px #000;
 }
 
 .main-nav a::after {
@@ -421,20 +486,24 @@ ul {
     align-items: center;
     gap: 4px;
     color: var(--color-text-muted);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .lang-switch a {
     text-decoration: none;
     color: var(--color-text-muted);
     transition: color var(--transition-smooth);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .lang-switch a:hover {
     color: var(--color-accent);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 .lang-switch span {
     color: var(--color-accent);
+    text-shadow: 0 0 1px #000, 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 /* ===== HERO & CAROUSEL ===== */
@@ -467,7 +536,7 @@ ul {
 .hero-static .hero-overlay-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(12, 12, 14, 0.18) 0%, transparent 14%);
+    background: linear-gradient(to top, rgba(45, 45, 50, 0.35) 0%, transparent 14%);
     pointer-events: none;
 }
 
@@ -507,7 +576,7 @@ ul {
 .hero-overlay-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(12, 12, 14, 0.18) 0%, transparent 14%);
+    background: linear-gradient(to top, rgba(45, 45, 50, 0.35) 0%, transparent 14%);
     pointer-events: none;
 }
 
@@ -523,7 +592,7 @@ ul {
 .carousel-arrow {
     pointer-events: auto;
     border: 1px solid var(--color-border-strong);
-    background: rgba(12, 12, 14, 0.5);
+    background: rgba(45, 45, 50, 0.6);
     color: var(--color-text);
     width: 48px;
     height: 48px;
@@ -584,7 +653,7 @@ ul {
 
 .hero-text p {
     font-size: 1.02rem;
-    color: #4b5563;
+    color: var(--color-text-muted);
     max-width: 540px;
     margin-bottom: 24px;
 }
@@ -617,8 +686,8 @@ ul {
 }
 
 .btn.primary:hover {
-    background: #8fc0dc;
-    border-color: #8fc0dc;
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
     color: var(--color-bg);
 }
 
@@ -950,7 +1019,7 @@ html.no-js .gallery-item {
 }
 
 .contact-details a:hover {
-    color: #9ac4dc;
+    color: var(--color-accent-hover);
 }
 
 .social-links {
@@ -1030,8 +1099,8 @@ html.no-js .gallery-item {
     position: fixed;
     bottom: 72px;
     right: 20px;
-    background: #0f7a4a;
-    color: #fff;
+    background: var(--color-notification-bg);
+    color: var(--color-text);
     padding: 12px 18px;
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-card);
@@ -1052,13 +1121,13 @@ html.no-js .gallery-item {
 }
 
 .form-notification-success {
-    background-color: #10b981;
-    color: #ffffff;
+    background-color: var(--color-success);
+    color: var(--color-text);
 }
 
 .form-notification-error {
-    background: #9f2a2a;
-    color: #fff;
+    background: var(--color-error);
+    color: var(--color-text);
 }
 
 @media (max-width: 720px) {
