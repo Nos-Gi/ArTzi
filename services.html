@@ -18,7 +18,7 @@ document.addEventListener('click',function(e){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="assets/css/main.css?v=4.0">
 </head>
-<body>
+<body class="pricing-fixed">
 
     <div id="page-loader" class="page-loader" aria-hidden="true">
         <img src="assets/images/RG_LOGO.JPG" alt="">
@@ -58,18 +58,19 @@ document.addEventListener('click',function(e){
         </div>
     </header>
 
-    <main class="main-content">
-        <section class="section section-photo-bg section-bg-3" aria-label="Εικόνα χώρου">
-            <div class="section-photo-bg-inner">
-                <div class="container">
+    <div class="pricing-fixed-bg" aria-hidden="true"></div>
+
+    <main class="main-content pricing-fixed-main">
+        <section class="pricing-fixed-shell" aria-label="Τιμές">
+            <div class="pricing-fixed-spacer" aria-hidden="true"></div>
+
+            <aside class="pricing-menu" aria-label="Μενού τιμών">
+                <header class="pricing-menu-header">
                     <h1>Τιμές</h1>
                     <p>Απλές, ξεκάθαρες τιμές χωρίς κρυφές χρεώσεις.</p>
-                </div>
-            </div>
-        </section>
-        <section class="section section-alt">
-            <div class="container">
-                <p class="section-intro">Οι τιμές είναι ενδεικτικές – μπορούμε να τις προσαρμόσουμε ανάλογα με τις ανάγκες σου.</p>
+                    <p class="pricing-menu-note">Οι τιμές είναι ενδεικτικές – μπορούμε να τις προσαρμόσουμε ανάλογα με τις ανάγκες σου.</p>
+                </header>
+
                 <div class="pricing-grid">
                     <article class="card pricing-card">
                         <h3>Ώρα πρόβας</h3>
@@ -79,6 +80,7 @@ document.addEventListener('click',function(e){
                             <li>Ελάχιστη διάρκεια 2 ώρες</li>
                         </ul>
                     </article>
+
                     <article class="card pricing-card">
                         <h3>Πακέτο 5 προβών</h3>
                         <p class="price">€X / πακέτο</p>
@@ -87,6 +89,7 @@ document.addEventListener('click',function(e){
                             <li>Ευέλικτη χρήση εντός 2 μηνών</li>
                         </ul>
                     </article>
+
                     <article class="card pricing-card">
                         <h3>Μηνιαία συνεργασία</h3>
                         <p class="price">Κατόπιν συνεννόησης</p>
@@ -96,7 +99,7 @@ document.addEventListener('click',function(e){
                         </ul>
                     </article>
                 </div>
-            </div>
+            </aside>
         </section>
     </main>
 

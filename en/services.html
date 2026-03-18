@@ -18,7 +18,7 @@ document.addEventListener('click',function(e){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="../assets/css/main.css?v=4.0">
 </head>
-<body>
+<body class="pricing-fixed">
 
     <div id="page-loader" class="page-loader" aria-hidden="true">
         <img src="../assets/images/RG_LOGO.JPG" alt="">
@@ -58,18 +58,19 @@ document.addEventListener('click',function(e){
         </div>
     </header>
 
-    <main class="main-content">
-        <section class="section section-photo-bg section-bg-3" aria-label="Studio image">
-            <div class="section-photo-bg-inner">
-                <div class="container">
+    <div class="pricing-fixed-bg" aria-hidden="true"></div>
+
+    <main class="main-content pricing-fixed-main">
+        <section class="pricing-fixed-shell" aria-label="Pricing">
+            <div class="pricing-fixed-spacer" aria-hidden="true"></div>
+
+            <aside class="pricing-menu" aria-label="Pricing menu">
+                <header class="pricing-menu-header">
                     <h1>Pricing</h1>
                     <p>Simple, transparent pricing with no hidden fees.</p>
-                </div>
-            </div>
-        </section>
-        <section class="section section-alt">
-            <div class="container">
-                <p class="section-intro">Values below are placeholders – we can tailor them to your needs.</p>
+                    <p class="pricing-menu-note">Values below are placeholders – we can tailor them to your needs.</p>
+                </header>
+
                 <div class="pricing-grid">
                     <article class="card pricing-card">
                         <h3>Rehearsal hour</h3>
@@ -79,6 +80,7 @@ document.addEventListener('click',function(e){
                             <li>Minimum booking 2 hours</li>
                         </ul>
                     </article>
+
                     <article class="card pricing-card">
                         <h3>5‑session pack</h3>
                         <p class="price">€X / pack</p>
@@ -87,6 +89,7 @@ document.addEventListener('click',function(e){
                             <li>Flexible use within 2 months</li>
                         </ul>
                     </article>
+
                     <article class="card pricing-card">
                         <h3>Monthly plan</h3>
                         <p class="price">On request</p>
@@ -96,7 +99,7 @@ document.addEventListener('click',function(e){
                         </ul>
                     </article>
                 </div>
-            </div>
+            </aside>
         </section>
     </main>
 
