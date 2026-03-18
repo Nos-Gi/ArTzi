@@ -41,8 +41,24 @@
         var mainHtml = newMain.innerHTML;
         var headerHtml = newHeader ? newHeader.innerHTML : '';
         var titleText = newTitle ? newTitle.textContent : document.title;
+        var nextBodyClass = (doc.body && doc.body.className) ? doc.body.className : '';
+        var nextHasPricingBg = !!doc.querySelector('.pricing-fixed-bg');
 
         function updateDOM() {
+            // Keep page-scoped fixed layers in sync (prevents pricing background flashing on other pages)
+            var currentPricingBg = document.querySelector('.pricing-fixed-bg');
+            if (currentPricingBg && !nextHasPricingBg) {
+                currentPricingBg.remove();
+            } else if (!currentPricingBg && nextHasPricingBg) {
+                var newBg = document.createElement('div');
+                newBg.className = 'pricing-fixed-bg';
+                newBg.setAttribute('aria-hidden', 'true');
+                document.body.insertBefore(newBg, document.body.firstChild);
+            }
+
+            // Sync body class (e.g. pricing-fixed)
+            document.body.className = nextBodyClass;
+
             main.innerHTML = mainHtml;
             document.title = titleText;
             if (header && headerHtml) header.innerHTML = headerHtml;
