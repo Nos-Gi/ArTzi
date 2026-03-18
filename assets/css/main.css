@@ -788,6 +788,25 @@ body.pricing-fixed {
     overflow: visible;
 }
 
+.pricing-menu {
+    /* “Board” container */
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(56, 56, 62, 0.78), rgba(56, 56, 62, 0.62));
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.pricing-menu-header {
+    padding: clamp(10px, 1.8vw, 16px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+.pricing-menu-header h1 {
+    margin-bottom: 0.8rem;
+}
+
 .pricing-menu-header p {
     margin-bottom: 0.75rem;
 }
@@ -800,16 +819,23 @@ body.pricing-fixed {
 body.pricing-fixed .pricing-grid {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 18px;
+    gap: 0;
+    margin-top: 0;
+    padding: clamp(10px, 1.8vw, 16px);
 }
 
 body.pricing-fixed .pricing-card {
-    background: rgba(56, 56, 62, 0.72);
-    border: 1px solid rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    padding: 1.4rem 1.25rem; /* smaller “menu” boxes */
+    /* “Connected” packages inside the board */
+    background: rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 16px;
+    padding: 1.15rem 1.1rem;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    transition: transform var(--transition-smooth), border-color var(--transition-smooth), background var(--transition-smooth);
+}
+
+body.pricing-fixed .pricing-card + .pricing-card {
+    margin-top: 12px;
 }
 
 body.pricing-fixed .pricing-card h3 {
@@ -827,7 +853,9 @@ body.pricing-fixed .pricing-card ul {
 }
 
 body.pricing-fixed .card:hover {
-    border-color: rgba(0, 0, 0, 0.34);
+    border-color: rgba(0, 0, 0, 0.32);
+    background: rgba(126, 180, 212, 0.08);
+    transform: translateY(-2px);
 }
 
 @media (max-width: 960px) {
@@ -848,10 +876,13 @@ body.pricing-fixed .card:hover {
         padding-top: 100px; /* matches mobile header height behavior */
     }
     .pricing-menu {
-        padding: 14px;
+        padding: 12px;
     }
-    body.pricing-fixed .pricing-card {
-        background: rgba(56, 56, 62, 0.82);
+    .pricing-menu-header {
+        padding: 10px;
+    }
+    body.pricing-fixed .pricing-grid {
+        padding: 10px;
     }
 }
 
