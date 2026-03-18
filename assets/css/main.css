@@ -809,6 +809,21 @@ body.pricing-fixed .pricing-card {
     border: 1px solid rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+    padding: 1.4rem 1.25rem; /* smaller “menu” boxes */
+}
+
+body.pricing-fixed .pricing-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.55rem;
+}
+
+body.pricing-fixed .pricing-card .price {
+    font-size: 1.45rem;
+    margin-bottom: 0.55rem;
+}
+
+body.pricing-fixed .pricing-card ul {
+    font-size: 0.86rem;
 }
 
 body.pricing-fixed .card:hover {
