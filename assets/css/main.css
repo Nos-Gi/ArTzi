@@ -1076,7 +1076,7 @@ body.home-fixed .home-hero-spacer {
     padding: 0;
     transform: translateX(0);
     /* Slightly faster scroll (about 30% faster than before) */
-    animation: homeGalleryScroll 12s linear infinite;
+    animation: homeGalleryScroll 12s linear infinite alternate;
     animation-play-state: paused;
     will-change: transform;
 }
@@ -1090,7 +1090,9 @@ body.home-fixed .home-hero-spacer {
 
 @keyframes homeGalleryScroll {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    /* Slide far enough to feel like motion but never past the last image,
+       so we don't reveal empty space on very wide screens. */
+    to { transform: translateX(-40%); }
 }
 
 .home-thumb {
