@@ -974,6 +974,21 @@ body.home-fixed .home-hero-spacer {
     height: 100%;
 }
 
+.home-highlight-card {
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.home-highlight-card .home-section-title {
+    margin-bottom: 10px;
+}
+
+.home-highlight-card .home-bullets {
+    margin: 0;
+}
+
 .home-highlights .map-embed {
     margin-top: 14px;
 }
