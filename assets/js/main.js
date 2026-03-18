@@ -43,18 +43,24 @@
         var titleText = newTitle ? newTitle.textContent : document.title;
         var nextBodyClass = (doc.body && doc.body.className) ? doc.body.className : '';
         var nextHasPricingBg = !!doc.querySelector('.pricing-fixed-bg');
+        var nextHasHomeBg = !!doc.querySelector('.home-fixed-bg');
 
         function updateDOM() {
-            // Keep page-scoped fixed layers in sync (prevents pricing background flashing on other pages)
-            var currentPricingBg = document.querySelector('.pricing-fixed-bg');
-            if (currentPricingBg && !nextHasPricingBg) {
-                currentPricingBg.remove();
-            } else if (!currentPricingBg && nextHasPricingBg) {
-                var newBg = document.createElement('div');
-                newBg.className = 'pricing-fixed-bg';
-                newBg.setAttribute('aria-hidden', 'true');
-                document.body.insertBefore(newBg, document.body.firstChild);
+            // Keep page-scoped fixed layers in sync (prevents background flashing/sticking between pages)
+            function syncFixedLayer(selector, className, shouldExist) {
+                var current = document.querySelector(selector);
+                if (current && !shouldExist) {
+                    current.remove();
+                } else if (!current && shouldExist) {
+                    var el = document.createElement('div');
+                    el.className = className;
+                    el.setAttribute('aria-hidden', 'true');
+                    document.body.insertBefore(el, document.body.firstChild);
+                }
             }
+
+            syncFixedLayer('.pricing-fixed-bg', 'pricing-fixed-bg', nextHasPricingBg);
+            syncFixedLayer('.home-fixed-bg', 'home-fixed-bg', nextHasHomeBg);
 
             // Sync body class (e.g. pricing-fixed)
             document.body.className = nextBodyClass;

@@ -18,7 +18,7 @@ document.addEventListener('click',function(e){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="../assets/css/main.css?v=4.0">
 </head>
-<body>
+<body class="home-fixed">
 
     <div id="page-loader" class="page-loader" aria-hidden="true">
         <img src="../assets/images/RG_LOGO.JPG" alt="">
@@ -59,6 +59,8 @@ document.addEventListener('click',function(e){
         </div>
     </header>
 
+    <div class="home-fixed-bg" aria-hidden="true"></div>
+
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
@@ -66,8 +68,10 @@ document.addEventListener('click',function(e){
         <section id="about" class="section section-photo-bg section-bg-home" aria-label="Studio image">
             <div class="section-photo-bg-inner">
                 <div class="container">
-                    <h2>About ArTzi</h2>
-                    <p>A quiet, considered space for rehearsals — acoustics, equipment and comfort.</p>
+                    <div class="home-hero-board">
+                        <h2>About ArTzi</h2>
+                        <p>A quiet, considered space for rehearsals — acoustics, equipment and comfort.</p>
+                    </div>
                 </div>
             </div>
         </section>

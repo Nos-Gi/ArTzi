@@ -383,7 +383,7 @@ ul {
     position: fixed;
     inset: 0 0 auto;
     height: 72px;
-    background: rgba(45, 45, 50, 0.92);
+    background: rgba(45, 45, 50, 0.82);
     color: var(--color-text);
     display: flex;
     align-items: center;
@@ -752,14 +752,77 @@ body.pricing-fixed {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: brightness(0.9) contrast(1.02);
+    /* Avoid seams on some GPUs: don't use CSS filter on fixed backgrounds */
+    filter: none;
+    transform: translateZ(0);
+}
+
+.home-fixed-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('../images/IMG_8227.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Avoid seams on some GPUs: don't use CSS filter on fixed backgrounds */
+    filter: none;
+    transform: translateZ(0);
+}
+
+.home-fixed-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(1100px 760px at 35% 28%, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.62));
+}
+
+body.home-fixed .main-content {
+    position: relative;
+    z-index: 1;
+}
+
+body.home-fixed .section-photo-bg {
+    background: transparent !important;
+}
+
+body.home-fixed .section {
+    background: transparent !important;
+}
+
+/* We use a fixed background layer instead of the section's ::before image */
+body.home-fixed .section-photo-bg.section-bg-home::before {
+    background-image: none !important;
+    opacity: 0 !important;
+}
+
+/* Remove section-local gradient overlay to avoid visible “cut” at section boundary */
+body.home-fixed .section-photo-bg::after {
+    background: none !important;
+}
+
+.home-hero-board {
+    display: inline-block;
+    max-width: min(720px, 92vw);
+    padding: clamp(14px, 2.2vw, 22px);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(56, 56, 62, 0.90), rgba(56, 56, 62, 0.78));
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+body.home-fixed .section-photo-bg h1::after,
+body.home-fixed .section-photo-bg h2::after {
+    width: clamp(84px, 22%, 160px);
 }
 
 .pricing-fixed-bg::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(1200px 800px at 70% 30%, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.55));
+    background: radial-gradient(1200px 800px at 70% 30%, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.60));
 }
 
 .pricing-fixed-main {
@@ -782,9 +845,10 @@ body.pricing-fixed {
 }
 
 .pricing-menu {
-    width: min(520px, 92vw);
-    margin-right: clamp(12px, 3vw, 48px);
-    padding: clamp(14px, 2.5vw, 22px);
+    /* Rightmost 1/3 “board” on desktop */
+    width: clamp(360px, 33vw, 520px);
+    margin-right: 0;
+    padding: clamp(14px, 2.2vw, 22px);
     overflow: visible;
 }
 
@@ -1301,7 +1365,7 @@ html.no-js .gallery-item {
     position: fixed;
     inset: auto 0 0;
     height: 52px;
-    background: var(--color-bg-elevated);
+    background: rgba(56, 56, 62, 0.86);
     color: var(--color-text-muted);
     display: flex;
     align-items: center;
@@ -1310,6 +1374,8 @@ html.no-js .gallery-item {
     border-top: 1px solid var(--color-border);
     font-weight: 500;
     letter-spacing: 0.02em;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
 .bottom-bar .container {
