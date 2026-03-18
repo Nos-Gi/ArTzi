@@ -971,6 +971,7 @@ body.home-fixed .home-hero-spacer {
 .home-highlights {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .home-highlights .map-embed {
@@ -979,7 +980,28 @@ body.home-fixed .home-hero-spacer {
 
 .home-highlights .map-embed--square.map-embed--fill {
     width: 100%;
-    max-width: 460px;
+    max-width: 100%;
+}
+
+/* On large screens, let the left column “fill” by growing the map and slightly scaling text */
+@media (min-width: 1100px) {
+    .home-bullets {
+        font-size: 1rem;
+    }
+
+    .home-bullets li {
+        margin-bottom: 10px;
+    }
+
+    .home-highlights .map-embed {
+        flex: 1;
+        min-height: 320px;
+    }
+
+    .home-highlights .map-embed--square {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+    }
 }
 
 .home-teasers {
