@@ -1022,6 +1022,9 @@ body.home-fixed .home-hero-spacer {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* center content vertically */
+    align-items: flex-start; /* keep left edge alignment */
+    text-align: left;
 }
 
 .home-teaser-text {
@@ -1033,8 +1036,8 @@ body.home-fixed .home-hero-spacer {
 
 .home-teaser-btn {
     padding: 10px 16px;
-    /* Pin button to bottom when card grows */
-    margin-top: auto;
+    margin-top: 12px;
+    align-self: flex-start;
 }
 
 .home-gallery-strip {
