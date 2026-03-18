@@ -64,23 +64,103 @@ document.addEventListener('click',function(e){
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
-        <!-- About Preview with photo background -->
-        <section id="about" class="section section-photo-bg section-bg-home" aria-label="Εικόνα χώρου">
-            <div class="section-photo-bg-inner">
-                <div class="container">
-                    <div class="home-hero-board">
-                        <h2>Σχετικά με το ArTzi</h2>
-                        <p>Ήσυχος, προσεγμένος χώρος αφιερωμένος στις πρόβες — ακουστική, εξοπλισμός και άνεση.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Video -->
         <section id="video" class="section">
             <div class="container">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArTzi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero spacer (fixed background is the hero) -->
+        <section class="section section-photo-bg section-bg-home home-hero-spacer" aria-label="Εικόνα χώρου">
+            <div class="section-photo-bg-inner">
+                <div class="container"></div>
+            </div>
+        </section>
+
+        <!-- Home modules -->
+        <section id="home-modules" class="section home-modules">
+            <div class="container">
+                <div class="home-board home-board--quicklinks">
+                    <div class="home-quicklinks" aria-label="Γρήγορες επιλογές">
+                        <a class="home-mini-card" href="facility.html">
+                            <span class="home-mini-title">Χώρος</span>
+                            <span class="home-mini-desc">Δες τους χώρους και τον εξοπλισμό.</span>
+                            <span class="home-mini-cta">Περισσότερα →</span>
+                        </a>
+                        <a class="home-mini-card" href="services.html">
+                            <span class="home-mini-title">Τιμές</span>
+                            <span class="home-mini-desc">Πακέτα προβών &amp; συνεργασίες.</span>
+                            <span class="home-mini-cta">Δες τιμές →</span>
+                        </a>
+                        <a class="home-mini-card" href="equipment.html">
+                            <span class="home-mini-title">Gallery</span>
+                            <span class="home-mini-desc">Μια γρήγορη ματιά στον χώρο.</span>
+                            <span class="home-mini-cta">Δες φωτογραφίες →</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="home-board home-board--content">
+                    <div class="home-split">
+                        <div class="home-highlights" aria-label="Highlights">
+                            <h3 class="home-section-title">Στούντιο με χαρακτήρα</h3>
+                            <ul class="home-bullets">
+                                <li><strong>Ακουστική</strong> μελετημένη για καθαρό, σταθερό παίξιμο.</li>
+                                <li><strong>Backline</strong> έτοιμο (drums, ενισχυτές &amp; PA).</li>
+                                <li><strong>Recording / Mix / Mastering</strong> σε επίπεδο πρόβας.</li>
+                                <li><strong>Άνεση</strong> και εύκολη πρόσβαση για bands.</li>
+                            </ul>
+                            <div class="map-embed map-embed--square map-embed--fill" aria-label="Χάρτης">
+                                <iframe
+                                    src="https://www.google.com/maps?q=Taxiarchon%2036%2C%20Moschato%20183%2045%2C%20Greece&output=embed"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Google Maps - Taxiarchon 36"
+                                ></iframe>
+                            </div>
+                        </div>
+
+                        <div class="home-teasers" aria-label="Teasers">
+                            <div class="home-teaser">
+                                <h3 class="home-section-title">Γρήγορη τιμή</h3>
+                                <p class="home-teaser-text">Ξεκίνα με μία πρόβα και δες τα διαθέσιμα πακέτα.</p>
+                                <a class="btn primary home-teaser-btn" href="services.html">Δες πακέτα</a>
+                            </div>
+
+                            <div class="home-teaser">
+                                <h3 class="home-section-title">Τοποθεσία</h3>
+                                <p class="home-teaser-text">Ταξιαρχών 36, Αθήνα</p>
+                                <a class="btn ghost home-teaser-btn" href="contact.html">Χάρτης &amp; επικοινωνία</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home-board home-board--gallery">
+                    <div class="home-gallery-strip" aria-label="Gallery preview">
+                        <a class="home-thumb" href="equipment.html">
+                            <img src="assets/images/IMG_8230.jpeg" alt="ArTzi preview 1" loading="lazy">
+                        </a>
+                        <a class="home-thumb" href="equipment.html">
+                            <img src="assets/images/IMG_8222.jpeg" alt="ArTzi preview 2" loading="lazy">
+                        </a>
+                        <a class="home-thumb" href="equipment.html">
+                            <img src="assets/images/IMG_8233.jpeg" alt="ArTzi preview 3" loading="lazy">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="home-board home-board--cta">
+                    <div class="home-cta" aria-label="CTA">
+                        <div>
+                            <h3 class="home-cta-title">Κλείσε ώρα</h3>
+                            <p class="home-cta-text">Στείλε μήνυμα για διαθεσιμότητα ή κράτηση.</p>
+                        </div>
+                        <a class="btn primary" href="contact.html">Επικοινωνία</a>
+                    </div>
                 </div>
             </div>
         </section>

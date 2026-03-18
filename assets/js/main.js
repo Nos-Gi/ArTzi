@@ -70,6 +70,7 @@
             if (header && headerHtml) header.innerHTML = headerHtml;
         }
 
+        document.documentElement.classList.add('spa-fade-out');
         main.classList.add('spa-fade-out');
         setTimeout(function() {
             try {
@@ -77,6 +78,7 @@
                 initPageContent();
             } finally {
                 main.classList.remove('spa-fade-out');
+                document.documentElement.classList.remove('spa-fade-out');
             }
         }, 200);
         return true;
@@ -153,7 +155,7 @@
     function initContactForm() {
         var submitBtnGr = document.getElementById('submit-btn-gr');
         var submitBtnEn = document.getElementById('submit-btn-en');
-        var allButtons = document.querySelectorAll('.contact-form button[type="button"]');
+        var allButtons = document.querySelectorAll('.contact-form button');
         var buttons = [submitBtnGr, submitBtnEn].concat(Array.prototype.slice.call(allButtons));
         buttons.forEach(function(btn) {
             if (!btn) return;
@@ -171,13 +173,14 @@
             form.setAttribute('novalidate', 'novalidate');
             form.onsubmit = function(e) {
                 e.preventDefault();
+                handleFormSubmit(form);
                 return false;
             };
         });
     }
 
     async function handleFormSubmit(form) {
-        var submitBtn = form.querySelector('button[type="submit"]');
+        var submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
         if (!submitBtn) {
             console.error('Submit button not found');
             return;
