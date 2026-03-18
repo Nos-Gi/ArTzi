@@ -345,6 +345,12 @@ ul {
 .section-photo-bg.section-bg-3::before { background-image: url('../images/IMG_8239.jpeg'); }
 .section-photo-bg.section-bg-home::before { background-image: url('../images/IMG_8227.jpeg'); }
 
+.section-photo-bg .container {
+    max-width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
 .section-photo-bg .container h1,
 .section-photo-bg .container h2,
 .section-photo-bg .container p {
