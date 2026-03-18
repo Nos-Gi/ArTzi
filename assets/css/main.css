@@ -352,10 +352,10 @@ html.spa-fade-out .pricing-fixed-bg {
     pointer-events: none;
 }
 
-.section-photo-bg.section-bg-1::before { background-image: url('../images/IMG_8237.jpeg'); }
-.section-photo-bg.section-bg-2::before { background-image: url('../images/IMG_8222.jpeg'); }
-.section-photo-bg.section-bg-3::before { background-image: url('../images/IMG_8239.jpeg'); }
-.section-photo-bg.section-bg-home::before { background-image: url('../images/IMG_8227.jpeg'); }
+.section-photo-bg.section-bg-1::before { background-image: url('../images/IMG_8237.webp'); }
+.section-photo-bg.section-bg-2::before { background-image: url('../images/IMG_8222.webp'); }
+.section-photo-bg.section-bg-3::before { background-image: url('../images/IMG_8239.webp'); }
+.section-photo-bg.section-bg-home::before { background-image: url('../images/IMG_8227.webp'); }
 
 .section-photo-bg .container {
     max-width: 100%;
@@ -757,7 +757,7 @@ body.pricing-fixed {
     position: fixed;
     inset: 0;
     z-index: 0;
-    background-image: url('../images/IMG_8239.jpeg');
+    background-image: url('../images/IMG_8239.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -770,7 +770,7 @@ body.pricing-fixed {
     position: fixed;
     inset: 0;
     z-index: 0;
-    background-image: url('../images/IMG_8227.jpeg');
+    background-image: url('../images/IMG_8227.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
