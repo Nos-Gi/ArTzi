@@ -18,6 +18,7 @@
         initPhotoScrollFade();
         initContactForm();
         initGalleryFadeIn();
+        initLightbox();
     }
 
     function hideLoader() {
@@ -347,6 +348,60 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
     
+    var lightboxReady = false;
+
+    function initLightbox() {
+        if (lightboxReady) return;
+        lightboxReady = true;
+
+        var overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-label', 'Image viewer');
+
+        var img = document.createElement('img');
+        img.alt = '';
+
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'lightbox-close';
+        closeBtn.setAttribute('aria-label', 'Close');
+        closeBtn.textContent = '×';
+
+        overlay.appendChild(img);
+        overlay.appendChild(closeBtn);
+        document.body.appendChild(overlay);
+
+        function open(src) {
+            img.src = src;
+            overlay.classList.add('active');
+            document.documentElement.style.overflow = 'hidden';
+        }
+
+        function close() {
+            overlay.classList.remove('active');
+            document.documentElement.style.overflow = '';
+            setTimeout(function() { img.src = ''; }, 250);
+        }
+
+        closeBtn.addEventListener('click', close);
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) close();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) close();
+        });
+
+        document.addEventListener('click', function(e) {
+            var item = e.target.closest('.gallery-item');
+            if (!item) return;
+            var src = item.dataset.image;
+            if (src) open(src);
+        }, true);
+    }
+
     // Gallery: pop in/out with scroll (visibility tied to viewport)
     function initGalleryFadeIn() {
         const galleryScroll = document.querySelector('.gallery-scroll');

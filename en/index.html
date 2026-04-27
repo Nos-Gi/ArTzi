@@ -14,11 +14,11 @@ document.addEventListener('click',function(e){
     <meta name="description" content="ArTzi Rehearsal Studios - modern rehearsal spaces with professional equipment for bands and musicians.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css?v=4.0">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="../assets/css/main.css?v=4.9">
 </head>
-<body class="home-fixed">
+<body>
 
     <div id="page-loader" class="page-loader" aria-hidden="true">
         <img src="../assets/images/RG_LOGO.webp" alt="">
@@ -26,17 +26,11 @@ document.addEventListener('click',function(e){
     <script>
 (function(){
   if(document.documentElement.classList.contains('skip-loader'))return;
-  function hideLoader(){
-    var el=document.getElementById('page-loader');
-    if(!el)return;
-    el.classList.add('page-loader-fade-out');
-    setTimeout(function(){el.remove();},500);
-  }
+  function hideLoader(){var el=document.getElementById('page-loader');if(!el)return;el.classList.add('page-loader-fade-out');setTimeout(function(){el.remove();},500);}
   setTimeout(hideLoader,5000);
 })();
     </script>
 
-    <!-- TOP HEADER BAR -->
     <header class="top-bar">
         <div class="container top-bar-inner">
             <a href="index.html" class="brand" aria-label="ArTzi - Home">
@@ -59,13 +53,65 @@ document.addEventListener('click',function(e){
         </div>
     </header>
 
-    <div class="home-fixed-bg" aria-hidden="true"></div>
-
-    <!-- MAIN CONTENT -->
     <main class="main-content">
 
-        <!-- Video -->
-        <section id="video" class="section">
+        <div class="home-hero">
+            <a class="home-hero-link" href="equipment.html" aria-label="View gallery">
+                <img src="../assets/images/IMG_8222.webp" alt="ArTzi Rehearsal Studios" loading="eager">
+                <div class="home-hero-overlay">
+                    <span class="home-hero-tag">Gallery →</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="home-pair">
+            <a class="home-pair-photo" href="equipment.html" tabindex="-1">
+                <img src="../assets/images/IMG_8230.webp" alt="" loading="lazy">
+            </a>
+            <a class="home-pair-photo" href="equipment.html" tabindex="-1">
+                <img src="../assets/images/IMG_8233.webp" alt="" loading="lazy">
+            </a>
+        </div>
+
+        <section class="home-info">
+            <div class="home-inner">
+
+                <div class="home-col">
+                    <span class="home-col-label">Studio</span>
+                    <ul class="home-bullets">
+                        <li><strong>Acoustics</strong> tuned for clarity and consistency.</li>
+                        <li><strong>Ready backline</strong> — drums, amps &amp; PA.</li>
+                        <li><strong>Recording / Mix / Mastering</strong> at rehearsal level.</li>
+                        <li><strong>Comfort</strong> and easy access for bands.</li>
+                    </ul>
+                </div>
+
+                <div class="home-col">
+                    <span class="home-col-label">Pricing</span>
+                    <p class="home-col-text">Hourly, 5-session packs and monthly plans. Message us for availability.</p>
+                    <a class="btn primary" href="services.html">See packages</a>
+                </div>
+
+                <div class="home-col">
+                    <span class="home-col-label">Location</span>
+                    <p class="home-col-text">Taxiarchon 36, Moschato. Easy access and a smooth load-in for bands with gear.</p>
+                    <a class="btn ghost" href="contact.html">Map &amp; contact</a>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="home-cta-bar">
+            <div class="home-inner home-cta-inner">
+                <div>
+                    <p class="home-cta-title">Book a slot</p>
+                    <p class="home-cta-sub">Message us for availability or a booking.</p>
+                </div>
+                <a class="btn primary" href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <section class="section">
             <div class="container">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArTzi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
@@ -73,126 +119,15 @@ document.addEventListener('click',function(e){
             </div>
         </section>
 
-        <!-- Hero spacer (fixed background is the hero) -->
-        <section class="section section-photo-bg section-bg-home home-hero-spacer" aria-label="Studio image">
-            <div class="section-photo-bg-inner">
-                <div class="container"></div>
-            </div>
-        </section>
-
-        <!-- Home modules -->
-        <section id="home-modules" class="section home-modules">
-            <div class="container">
-                <div class="home-board home-board--gallery">
-                    <div class="home-gallery-viewport" aria-label="Gallery preview">
-                        <div class="home-gallery-track">
-                            <a class="home-thumb" href="equipment.html">
-                                <img src="../assets/images/IMG_8230.webp" alt="ArTzi preview 1" loading="lazy">
-                            </a>
-                            <a class="home-thumb" href="equipment.html">
-                                <img src="../assets/images/IMG_8222.webp" alt="ArTzi preview 2" loading="lazy">
-                            </a>
-                            <a class="home-thumb" href="equipment.html">
-                                <img src="../assets/images/IMG_8233.webp" alt="ArTzi preview 3" loading="lazy">
-                            </a>
-                            <!-- duplicate for seamless loop -->
-                            <a class="home-thumb" href="equipment.html" aria-hidden="true" tabindex="-1">
-                                <img src="../assets/images/IMG_8230.webp" alt="" loading="lazy">
-                            </a>
-                            <a class="home-thumb" href="equipment.html" aria-hidden="true" tabindex="-1">
-                                <img src="../assets/images/IMG_8222.webp" alt="" loading="lazy">
-                            </a>
-                            <a class="home-thumb" href="equipment.html" aria-hidden="true" tabindex="-1">
-                                <img src="../assets/images/IMG_8233.webp" alt="" loading="lazy">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="home-board home-board--content">
-                    <div class="home-split">
-                        <div class="home-highlights" aria-label="Highlights">
-                            <div class="home-highlight-card">
-                                <h3 class="home-section-title">Built for rehearsal</h3>
-                                <ul class="home-bullets">
-                                    <li><strong>Acoustics</strong> tuned for clarity and consistency.</li>
-                                    <li><strong>Ready backline</strong> (drums, amps, PA).</li>
-                                    <li><strong>Recording / Mix / Mastering</strong> at rehearsal level.</li>
-                                    <li><strong>Comfort</strong> and easy access for bands.</li>
-                                </ul>
-                            </div>
-                            <div class="map-embed map-embed--square map-embed--fill" aria-label="Map">
-                                <iframe
-                                    src="https://www.google.com/maps?q=Taxiarchon%2036%2C%20Moschato%20183%2045%2C%20Greece&output=embed"
-                                    loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    title="Google Maps - Taxiarchon 36"
-                                ></iframe>
-                            </div>
-                        </div>
-
-                        <div class="home-teasers" aria-label="Teasers">
-                            <div class="home-teaser">
-                                <div class="home-teaser-body">
-                                    <h3 class="home-section-title">Quick start</h3>
-                                    <p class="home-teaser-text">Book a rehearsal and explore our packages. Message us with your preferred time and lineup and we’ll suggest the best slot.</p>
-                                </div>
-                                <a class="btn primary home-teaser-btn" href="services.html">See packages</a>
-                            </div>
-
-                            <div class="home-teaser">
-                                <div class="home-teaser-body">
-                                    <h3 class="home-section-title">Location</h3>
-                                    <p class="home-teaser-text">Taxiarchon 36, Moschato. Easy access and a smooth load-in for bands with gear.</p>
-                                </div>
-                                <a class="btn ghost home-teaser-btn" href="contact.html">Map &amp; contact</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="home-board home-board--quicklinks">
-                    <div class="home-quicklinks" aria-label="Quick links">
-                        <a class="home-mini-card" href="facility.html">
-                            <span class="home-mini-title">Studios</span>
-                            <span class="home-mini-desc">See the rooms and equipment.</span>
-                            <span class="home-mini-cta">Explore →</span>
-                        </a>
-                        <a class="home-mini-card" href="services.html">
-                            <span class="home-mini-title">Pricing</span>
-                            <span class="home-mini-desc">Packages and ongoing plans.</span>
-                            <span class="home-mini-cta">See pricing →</span>
-                        </a>
-                        <a class="home-mini-card" href="equipment.html">
-                            <span class="home-mini-title">Gallery</span>
-                            <span class="home-mini-desc">A quick feel for the space.</span>
-                            <span class="home-mini-cta">View photos →</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="home-board home-board--cta">
-                    <div class="home-cta" aria-label="CTA">
-                        <div>
-                            <h3 class="home-cta-title">Book a slot</h3>
-                            <p class="home-cta-text">Message us for availability or a booking.</p>
-                        </div>
-                        <a class="btn primary" href="contact.html">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- BOTTOM FOOTER BAR -->
     <footer class="bottom-bar">
         <div class="container">
-            <span>© <span id="year-en">2026</span> ArTzi Rehearsal Studios</span>
+            <span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span>
         </div>
     </footer>
 
-    <script src="../assets/js/main.js?v=4.0"></script>
+    <script src="../assets/js/main.js?v=4.9"></script>
 
 </body>
 </html>

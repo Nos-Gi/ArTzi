@@ -1,6 +1,6 @@
 /* ===== FONTS ===== */
 /* Primary: loaded via <link> in HTML. Fallback if that fails: */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
 
 /* ===== DESIGN TOKENS ===== */
 :root {
@@ -25,7 +25,7 @@
     /* Layout */
     --page-gutter: 20px;
     --font-heading: 'Syne', sans-serif;
-    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
     --transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -164,10 +164,7 @@ ul {
     padding: 0 var(--page-gutter);
 }
 
-/* Home: expand content boards on large screens */
-body.home-fixed #home-modules .container {
-    max-width: clamp(1120px, 92vw, 1480px);
-}
+/* Home uses .hg-wrap, not .container — no override needed */
 
 .top-bar .container {
     max-width: 100%;
@@ -446,7 +443,7 @@ html.spa-fade-out .pricing-fixed-bg {
     letter-spacing: 0.06em;
     color: var(--color-text);
     transition: color var(--transition-smooth);
-    /* Keep readable without “outlined/bordered” look */
+    /* Keep readable without "outlined/bordered" look */
     text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
@@ -780,20 +777,18 @@ body.pricing-fixed {
     position: fixed;
     inset: 0;
     z-index: 0;
-    background-image: url('../images/IMG_8227.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Avoid seams on some GPUs: don't use CSS filter on fixed backgrounds */
-    filter: none;
+    background: #16161d;
     transform: translateZ(0);
 }
 
-.home-fixed-bg::after {
+.home-fixed-bg::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(1100px 760px at 35% 28%, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.62));
+    background-image: url('../images/IMG_8227.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.48;
 }
 
 body.home-fixed .main-content {
@@ -837,290 +832,168 @@ body.home-fixed .section-photo-bg h2::after {
     width: clamp(84px, 22%, 160px);
 }
 
-/* ===== HOME MODULES (minimal structured fluff) ===== */
-.home-modules {
-    padding-top: clamp(32px, 6vw, 64px);
-}
+/* ===== HOME ===== */
 
-.home-board {
-    border-radius: 24px;
-    background: linear-gradient(180deg, rgba(56, 56, 62, 0.90), rgba(56, 56, 62, 0.78));
-    border: 1px solid rgba(0, 0, 0, 0.28);
-    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.30);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    padding: clamp(14px, 2.2vw, 22px);
-}
-
-.home-hero-spacer {
-    /* Keep the fixed background “breathing”, but avoid big dead space */
-    min-height: clamp(140px, 18vh, 260px);
-}
-
-/* Home: tighter rhythm between video and modules */
-body.home-fixed #video.section {
-    padding-bottom: clamp(18px, 3vw, 28px);
-}
-
-body.home-fixed .home-modules {
-    padding-top: clamp(18px, 3vw, 34px);
-}
-
-/* We no longer need a large “hero spacer” now that video is first */
-body.home-fixed .home-hero-spacer {
-    /* Kill all spacing from the generic .section padding */
-    display: none;
-    min-height: 0;
-    padding: 0 !important;
-}
-
-.home-board + .home-board {
-    margin-top: clamp(10px, 2.2vw, 18px);
-}
-
-.home-quicklinks {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-}
-
-/* Home: make boards align and fill consistently */
-.home-board {
+/* Hero: full-bleed photo, flush to header */
+.home-hero {
     width: 100%;
+    overflow: hidden;
+    line-height: 0;
 }
 
-.home-mini-card {
+.home-hero-link {
     display: block;
-    text-decoration: none;
-    padding: 14px 14px 12px;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    transition: transform var(--transition-smooth), border-color var(--transition-smooth), background var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
 }
 
-.home-mini-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(0, 0, 0, 0.30);
-    background: rgba(126, 180, 212, 0.10);
-}
-
-.home-mini-title {
+.home-hero-link img {
+    width: 100%;
+    height: clamp(320px, 54vh, 640px);
+    object-fit: cover;
     display: block;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--color-text);
-    margin-bottom: 6px;
+    transition: transform 0.6s ease;
 }
 
-.home-mini-desc {
-    display: block;
-    color: rgba(242, 240, 236, 0.88);
-    font-size: 0.92rem;
-    line-height: 1.55;
+.home-hero-link:hover img { transform: scale(1.02); }
+
+.home-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 20px 28px;
+    pointer-events: none;
 }
 
-.home-mini-cta {
-    display: inline-block;
-    margin-top: 10px;
-    color: var(--color-accent);
+.home-hero-tag {
+    font-size: 0.75rem;
     font-weight: 600;
-    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
 }
 
-.home-split {
+/* Photo pair strip */
+.home-pair {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
-    gap: 12px;
-    margin-top: 16px;
-    /* Keep both columns same height on wide screens */
-    align-items: stretch;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    line-height: 0;
 }
 
-.home-section-title {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
+.home-pair-photo {
+    display: block;
+    overflow: hidden;
+}
+
+.home-pair-photo img {
+    width: 100%;
+    height: clamp(160px, 28vh, 340px);
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.home-pair-photo:hover img { transform: scale(1.03); }
+
+/* Info section: 3 editorial columns */
+.home-info {
+    background: #1e1e27;
+    padding: clamp(48px, 7vw, 96px) 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.home-inner {
+    padding: 0 clamp(24px, 5vw, 80px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 5vw, 72px);
+}
+
+.home-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-col-label {
+    display: block;
+    font-size: 0.68rem;
     font-weight: 700;
-    color: var(--color-text);
-    margin-bottom: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.home-col-text {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: 24px;
 }
 
 .home-bullets {
     list-style: none;
     padding: 0;
     margin: 0;
-    color: rgba(242, 240, 236, 0.88);
+    color: var(--color-text-muted);
     font-size: 0.95rem;
 }
 
 .home-bullets li {
-    padding-left: 1.25rem;
+    padding-left: 1.2rem;
     position: relative;
-    margin-bottom: 8px;
-    line-height: 1.55;
+    margin-bottom: 10px;
+    line-height: 1.65;
 }
 
 .home-bullets li::before {
-    content: "—";
+    content: “—“;
     position: absolute;
     left: 0;
     color: var(--color-accent);
 }
 
-.home-highlights {
+/* CTA strip */
+.home-cta-bar {
+    background: #16161d;
+    padding: clamp(24px, 3.5vw, 44px) 0;
+}
+
+.home-cta-inner {
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.home-highlight-card {
-    padding: 14px;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(0, 0, 0, 0.18);
+.home-cta-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 4px;
 }
 
-.home-highlight-card .home-section-title {
-    margin-bottom: 10px;
-}
-
-.home-highlight-card .home-bullets {
+.home-cta-sub {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
     margin: 0;
 }
 
-.home-highlights .map-embed {
-    margin-top: 14px;
-}
-
-.home-highlights .map-embed--square.map-embed--fill {
-    width: 100%;
-    max-width: 100%;
-}
-
-/* On large screens, let the left column “fill” by growing the map and slightly scaling text */
-@media (min-width: 1100px) {
-    .home-bullets {
-        font-size: 1rem;
-    }
-
-    .home-bullets li {
-        margin-bottom: 10px;
-    }
-
-    .home-highlights .map-embed {
-        flex: 1;
-        min-height: 320px;
-    }
-
-    .home-highlights .map-embed--square {
-        aspect-ratio: 4 / 3;
-        width: 100%;
-    }
-}
-
-.home-teasers {
-    /* Flex avoids odd stretching gaps on some deployments */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 12px;
-    height: 100%;
-}
-
-.home-teaser {
-    padding: 14px;
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    /* Grow cards to fill column so no dead space */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    text-align: left;
-}
-
-.home-teaser-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* top-align text block */
-    align-items: flex-start; /* keep left alignment */
-}
-
-.home-teaser-text {
-    color: rgba(242, 240, 236, 0.88);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    margin-bottom: 12px;
-}
-
-.home-teaser-btn {
-    padding: 10px 16px;
-    margin-top: 12px;
-    align-self: center; /* centered horizontally at bottom */
-}
-
-/* Home gallery preview: hover-only slow carousel */
-.home-gallery-viewport {
-    margin-top: 12px;
-    overflow: hidden;
-    border-radius: 18px;
-    background: rgba(0, 0, 0, 0.22);
-}
-
-.home-gallery-track {
-    display: flex;
-    gap: 12px;
-    width: max-content;
-    padding: 0;
-    transform: translateX(0);
-    /* Slightly faster scroll (about 30% faster than before) */
-    animation: homeGalleryScroll 12s linear infinite alternate;
-    animation-play-state: paused;
-    will-change: transform;
-}
-
-/* Only animate on hover-capable devices */
-@media (hover: hover) and (pointer: fine) {
-    .home-board--gallery:hover .home-gallery-track {
-        animation-play-state: running;
-    }
-}
-
-@keyframes homeGalleryScroll {
-    from { transform: translateX(0); }
-    /* Slide far enough to feel like motion but never past the last image,
-       so we don't reveal empty space on very wide screens. */
-    to { transform: translateX(-40%); }
-}
-
-.home-thumb {
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-    display: block;
-    text-decoration: none;
-    /* Use percentages so there are always enough cards to cover the viewport,
-       even on ultra-wide screens. */
-    flex: 0 0 25%;
-    max-width: 360px;
-}
-
-.home-thumb img {
-    width: 100%;
-    height: 180px !important;
-    object-fit: cover !important;
-}
-
-/* Google Maps embed (classic square) */
+/* Map embed (contact & other pages) */
 .map-embed {
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.18);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     background: rgba(0, 0, 0, 0.10);
 }
 
@@ -1142,53 +1015,10 @@ body.home-fixed .home-hero-spacer {
     max-width: 100%;
 }
 
-.home-cta {
-    margin-top: 12px;
-    padding: 14px;
-    border-radius: 16px;
-    background: linear-gradient(180deg, rgba(126, 180, 212, 0.16), rgba(0, 0, 0, 0.10));
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-}
-
-.home-cta-title {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    margin-bottom: 4px;
-    color: var(--color-text);
-}
-
-.home-cta-text {
-    color: rgba(242, 240, 236, 0.88);
-    font-size: 0.95rem;
-    margin: 0;
-}
-
-@media (max-width: 960px) {
-    .home-quicklinks {
-        grid-template-columns: 1fr;
-    }
-    .home-split {
-        grid-template-columns: 1fr;
-    }
-    .home-gallery-track {
-        animation: none;
-        transform: none;
-    }
-    .home-thumb {
-        flex-basis: 260px;
-        max-width: none;
-    }
-    .home-thumb img {
-        height: 220px;
-    }
-    .home-cta {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+@media (max-width: 720px) {
+    .home-inner { grid-template-columns: 1fr; gap: 40px; }
+    .home-cta-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .home-pair { grid-template-columns: 1fr; }
 }
 
 .pricing-fixed-bg::after {
@@ -1480,6 +1310,10 @@ body.pricing-fixed .card:hover {
     transform: translateY(0);
 }
 
+.gallery-item:hover img {
+    transform: scale(1.04);
+}
+
 /* Fallback when JS is disabled or main script fails: always show gallery images */
 html.no-js .gallery-item {
     opacity: 1;
@@ -1496,6 +1330,7 @@ html.no-js .gallery-item {
     object-fit: contain !important;
     max-height: 480px;
     image-rendering: auto;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
@@ -1849,4 +1684,54 @@ html.no-js .gallery-item {
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
     }
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-overlay img {
+    max-width: 92vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
+    display: block;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+}
+
+.gallery-item {
+    cursor: zoom-in;
 }
