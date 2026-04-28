@@ -16,7 +16,7 @@ document.addEventListener('click',function(e){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css?v=5.0">
+    <link rel="stylesheet" href="../assets/css/main.css?v=5.1">
 </head>
 <body>
     <div id="page-loader" class="page-loader" aria-hidden="true"><img src="../assets/images/RG_LOGO.webp" alt=""></div>
@@ -97,6 +97,111 @@ document.addEventListener('click',function(e){
             </div>
         </section>
 
+        <section class="equip-section">
+            <div class="container">
+                <div class="equip-filters">
+                    <button class="filter-pill active" data-filter="all">All</button>
+                    <button class="filter-pill" data-filter="drums">Drums</button>
+                    <button class="filter-pill" data-filter="guitars">Guitars</button>
+                    <button class="filter-pill" data-filter="amps">Amps</button>
+                    <button class="filter-pill" data-filter="pa">PA &amp; Mics</button>
+                    <button class="filter-pill" data-filter="console">Consoles</button>
+                </div>
+                <div class="equip-grid">
+                    <div class="equip-card" data-category="drums">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8212.webp" alt="Drums" loading="lazy"></div>
+                        <span class="equip-card-cat">Drums</span>
+                        <h3 class="equip-card-name">Pearl Export Series — 5-piece</h3>
+                        <ul class="equip-card-specs">
+                            <li>22" kick, 10", 12", 16" toms</li>
+                            <li>Pearl Free Floating 14" snare</li>
+                            <li>DW 5000 bass pedal</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="drums">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8215.webp" alt="Cymbals" loading="lazy"></div>
+                        <span class="equip-card-cat">Drums</span>
+                        <h3 class="equip-card-name">Zildjian A Series Cymbals</h3>
+                        <ul class="equip-card-specs">
+                            <li>14" A New Beat hi-hat</li>
+                            <li>16" &amp; 18" crashes</li>
+                            <li>20" Sweet ride</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="guitars">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8217.webp" alt="Guitars" loading="lazy"></div>
+                        <span class="equip-card-cat">Guitars</span>
+                        <h3 class="equip-card-name">Fender Stratocaster American</h3>
+                        <ul class="equip-card-specs">
+                            <li>Alder body, maple neck</li>
+                            <li>3 single-coil pickups</li>
+                            <li>Tremolo bridge</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="guitars">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8226.webp" alt="Guitars" loading="lazy"></div>
+                        <span class="equip-card-cat">Guitars</span>
+                        <h3 class="equip-card-name">Gibson Les Paul Standard</h3>
+                        <ul class="equip-card-specs">
+                            <li>Mahogany body, maple top</li>
+                            <li>Burstbucker Pro humbuckers</li>
+                            <li>Tune-o-matic bridge</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="amps">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8214.webp" alt="Amp" loading="lazy"></div>
+                        <span class="equip-card-cat">Amps</span>
+                        <h3 class="equip-card-name">Marshall JCM 800 100W</h3>
+                        <ul class="equip-card-specs">
+                            <li>100W all-tube head</li>
+                            <li>Marshall 1960A 4x12 cabinet</li>
+                            <li>Plexi-style preamp</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="amps">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8224.webp" alt="Bass amp" loading="lazy"></div>
+                        <span class="equip-card-cat">Amps</span>
+                        <h3 class="equip-card-name">Ampeg SVT-CL Bass Amp</h3>
+                        <ul class="equip-card-specs">
+                            <li>300W all-tube bass head</li>
+                            <li>Ampeg 8x10 cabinet</li>
+                            <li>Classic SVT tone stack</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="pa">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8223.webp" alt="PA" loading="lazy"></div>
+                        <span class="equip-card-cat">PA &amp; Mics</span>
+                        <h3 class="equip-card-name">Yamaha DXR15 PA System</h3>
+                        <ul class="equip-card-specs">
+                            <li>2x DXR15 active tops</li>
+                            <li>1x DXS15 subwoofer</li>
+                            <li>Yamaha DXR12 monitors</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="pa">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8225.webp" alt="Microphones" loading="lazy"></div>
+                        <span class="equip-card-cat">PA &amp; Mics</span>
+                        <h3 class="equip-card-name">Shure Microphone Collection</h3>
+                        <ul class="equip-card-specs">
+                            <li>4x SM58 vocal mics</li>
+                            <li>3x SM57 instrument mics</li>
+                            <li>Beta 52A kick drum mic</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="console">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8220.webp" alt="Console" loading="lazy"></div>
+                        <span class="equip-card-cat">Consoles</span>
+                        <h3 class="equip-card-name">Midas M32 Live</h3>
+                        <ul class="equip-card-specs">
+                            <li>32-channel digital console</li>
+                            <li>Live recording in rehearsal room</li>
+                            <li>32 Midas PRO preamps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="home-cta-bar">
             <div class="home-inner home-cta-inner">
                 <div>
@@ -110,6 +215,6 @@ document.addEventListener('click',function(e){
     </main>
 
     <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
-    <script src="../assets/js/main.js?v=5.0"></script>
+    <script src="../assets/js/main.js?v=5.1"></script>
 </body>
 </html>
