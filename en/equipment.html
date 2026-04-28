@@ -12,7 +12,7 @@ document.addEventListener('click',function(e){var t=e.target;while(t&&t!==docume
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css?v=5.1">
+    <link rel="stylesheet" href="../assets/css/main.css?v=5.2">
 </head>
 <body>
     <div id="page-loader" class="page-loader" aria-hidden="true"><img src="../assets/images/RG_LOGO.webp" alt=""></div>
@@ -20,26 +20,21 @@ document.addEventListener('click',function(e){var t=e.target;while(t&&t!==docume
     <header class="top-bar">
         <div class="container top-bar-inner">
             <a href="index.html" class="brand"><span class="brand-title">ArTzi</span><span class="brand-subtitle">Rehearsal Studios</span></a>
-            <nav class="main-nav"><ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="facility.html">Studios</a></li>
-                <li><a href="services.html">Pricing</a></li>
-                <li><a href="equipment.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul></nav>
+            <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="facility.html">Studios</a></li><li><a href="services.html">Pricing</a></li><li><a href="equipment.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
             <div class="lang-switch"><a href="../equipment.html">GR</a> | <span>EN</span></div>
         </div>
     </header>
     <main class="main-content">
-        <section class="section section-photo-bg section-bg-1">
-            <div class="section-photo-bg-inner">
-                <div class="container">
-                    <h1>Gallery</h1>
-                    <p>A glimpse of the space at ArTzi. Click any photo to enlarge.</p>
+        <div class="home-hero">
+            <img src="../assets/images/IMG_8237.webp" alt="Gallery" loading="eager">
+            <div class="home-hero-overlay">
+                <span class="home-hero-eyebrow">Moschato · Taxiarchon 36</span>
+                <h1 class="home-hero-title" style="font-size:clamp(3.5rem,10vw,8rem)">Gallery</h1>
+                <div class="home-hero-meta">
+                    <span class="home-hero-sub">A glimpse of the space. Click any photo to enlarge.</span>
                 </div>
             </div>
-        </section>
+        </div>
         <section class="gallery-section">
             <div class="container">
                 <div class="gallery-scroll">
@@ -58,6 +53,6 @@ document.addEventListener('click',function(e){var t=e.target;while(t&&t!==docume
         </section>
     </main>
     <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
-    <script src="../assets/js/main.js?v=5.1"></script>
+    <script src="../assets/js/main.js?v=5.2"></script>
 </body>
 </html>

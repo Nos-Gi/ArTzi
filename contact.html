@@ -14,9 +14,9 @@ document.addEventListener('click',function(e){
     <meta name="description" content="Επικοινώνησε με το ArTzi Rehearsal Studios για κρατήσεις και διαθεσιμότητα.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="assets/css/main.css?v=5.1">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap">
+    <link rel="stylesheet" href="assets/css/main.css?v=5.2">
 </head>
 <body>
     <div id="page-loader" class="page-loader" aria-hidden="true"><img src="assets/images/RG_LOGO.webp" alt=""></div>
@@ -39,11 +39,11 @@ document.addEventListener('click',function(e){
 
     <main class="main-content">
 
-        <div class="page-hero">
-            <div class="page-hero-inner">
-                <span class="page-hero-label">Επικοινωνία</span>
-                <h1 class="page-hero-title">Κλείσε ώρα</h1>
-                <p class="page-hero-sub">Στείλε μας μήνυμα για διαθεσιμότητα ή κράτηση. Απαντάμε γρήγορα.</p>
+        <div class="home-hero">
+            <img src="assets/images/IMG_8229.webp" alt="ArTzi Rehearsal Studios" loading="eager">
+            <div class="home-hero-overlay">
+                <span class="home-hero-eyebrow">Ταξιαρχών 36 · Μοσχάτο</span>
+                <h1 class="home-hero-title" style="font-size:clamp(3rem,9vw,7rem)">Κλείσε ώρα</h1>
             </div>
         </div>
 
@@ -51,25 +51,9 @@ document.addEventListener('click',function(e){
             <div class="page-inner">
                 <div class="page-2col">
 
+                    <!-- Form — wider left column -->
                     <div>
-                        <span class="p-label">Στοιχεία επικοινωνίας</span>
-                        <ul class="contact-details">
-                            <li><strong>Τηλέφωνο:</strong> +30 XXX XXX XXXX</li>
-                            <li><strong>Email:</strong> <a href="mailto:info@artzi-studio.gr">info@artzi-studio.gr</a></li>
-                            <li><strong>Διεύθυνση:</strong> Ταξιαρχών 36, Μοσχάτο 183 45</li>
-                        </ul>
-                        <div class="social-links">
-                            <a href="#" aria-label="Instagram">Instagram</a>
-                            <a href="#" aria-label="Facebook">Facebook</a>
-                            <a href="#" aria-label="YouTube">YouTube</a>
-                        </div>
-                        <div class="contact-map" aria-label="Χάρτης">
-                            <iframe src="https://www.google.com/maps?q=Taxiarchon%2036%2C%20Moschato%20183%2045%2C%20Greece&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps - Taxiarchon 36"></iframe>
-                        </div>
-                    </div>
-
-                    <div>
-                        <span class="p-label">Φόρμα επικοινωνίας</span>
+                        <span class="p-label">Στείλε μήνυμα</span>
                         <form class="contact-form" id="contact-form-gr" method="POST" novalidate>
                             <input type="hidden" name="_to" value="vasilisginos@gmail.com">
                             <input type="hidden" name="_subject" value="New Contact Form Message from ArTzi Website">
@@ -84,20 +68,40 @@ document.addEventListener('click',function(e){
                             </div>
                             <div class="form-row">
                                 <label for="message">Μήνυμα</label>
-                                <textarea id="message" name="message" required rows="5" placeholder="Πες μας τι χρειάζεσαι"></textarea>
+                                <textarea id="message" name="message" required rows="6" placeholder="Πες μας τι χρειάζεσαι — μέρα, ώρα, πλήθος ατόμων"></textarea>
                             </div>
                             <button type="submit" class="btn primary" id="submit-btn-gr">Αποστολή</button>
                             <p class="form-note" id="form-message"></p>
                         </form>
                     </div>
 
+                    <!-- Info — narrower right column -->
+                    <div>
+                        <span class="p-label">Στοιχεία επικοινωνίας</span>
+                        <ul class="contact-details">
+                            <li><strong>Τηλέφωνο:</strong> +30 XXX XXX XXXX</li>
+                            <li><strong>Email:</strong> <a href="mailto:info@artzi-studio.gr">info@artzi-studio.gr</a></li>
+                            <li><strong>Διεύθυνση:</strong> Ταξιαρχών 36<br>Μοσχάτο 183 45</li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram">Instagram</a>
+                            <a href="#" aria-label="Facebook">Facebook</a>
+                            <a href="#" aria-label="YouTube">YouTube</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
+        <!-- Full-width map -->
+        <div class="contact-map-full" aria-label="Χάρτης">
+            <iframe src="https://www.google.com/maps?q=Taxiarchon%2036%2C%20Moschato%20183%2045%2C%20Greece&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps - Taxiarchon 36"></iframe>
+        </div>
+
     </main>
 
     <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
-    <script src="assets/js/main.js?v=5.1"></script>
+    <script src="assets/js/main.js?v=5.2"></script>
 </body>
 </html>
