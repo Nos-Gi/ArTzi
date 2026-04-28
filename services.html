@@ -14,101 +14,87 @@ document.addEventListener('click',function(e){
     <meta name="description" content="Τιμοκατάλογος προβών στο ArTzi Rehearsal Studios.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="assets/css/main.css?v=4.9">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap">
+    <link rel="stylesheet" href="assets/css/main.css?v=5.0">
 </head>
-<body class="pricing-fixed">
-
-    <div id="page-loader" class="page-loader" aria-hidden="true">
-        <img src="assets/images/RG_LOGO.webp" alt="">
-    </div>
-    <script>
-(function(){
-  if(document.documentElement.classList.contains('skip-loader'))return;
-  function hideLoader(){
-    var el=document.getElementById('page-loader');
-    if(!el)return;
-    el.classList.add('page-loader-fade-out');
-    setTimeout(function(){el.remove();},500);
-  }
-  setTimeout(hideLoader,5000);
-})();
-    </script>
+<body>
+    <div id="page-loader" class="page-loader" aria-hidden="true"><img src="assets/images/RG_LOGO.webp" alt=""></div>
+    <script>(function(){if(document.documentElement.classList.contains('skip-loader'))return;function hideLoader(){var el=document.getElementById('page-loader');if(!el)return;el.classList.add('page-loader-fade-out');setTimeout(function(){el.remove();},500);}setTimeout(hideLoader,5000);})();</script>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
-            <a href="index.html" class="brand" aria-label="ArTzi - Αρχική">
-                <span class="brand-title">ArTzi</span>
-                <span class="brand-subtitle">Rehearsal Studios</span>
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Αρχική</a></li>
-                    <li><a href="about.html">Σχετικά με εμάς</a></li>
-                    <li><a href="facility.html">Χώρος</a></li>
-                    <li><a href="services.html">Υπηρεσίες</a></li>
-                    <li><a href="equipment.html">Gallery</a></li>
-                    <li><a href="contact.html">Επικοινωνείστε μαζί μας</a></li>
-                </ul>
-            </nav>
-            <div class="lang-switch">
-                <span>GR</span> | <a href="en/services.html">EN</a>
-            </div>
+            <a href="index.html" class="brand" aria-label="ArTzi - Αρχική"><span class="brand-title">ArTzi</span><span class="brand-subtitle">Rehearsal Studios</span></a>
+            <nav class="main-nav"><ul>
+                <li><a href="index.html">Αρχική</a></li>
+                <li><a href="about.html">Σχετικά με εμάς</a></li>
+                <li><a href="facility.html">Χώρος</a></li>
+                <li><a href="services.html">Υπηρεσίες</a></li>
+                <li><a href="equipment.html">Gallery</a></li>
+                <li><a href="contact.html">Επικοινωνείστε μαζί μας</a></li>
+            </ul></nav>
+            <div class="lang-switch"><span>GR</span> | <a href="en/services.html">EN</a></div>
         </div>
     </header>
 
-    <div class="pricing-fixed-bg" aria-hidden="true"></div>
+    <main class="main-content">
 
-    <main class="main-content pricing-fixed-main">
-        <section class="pricing-fixed-shell" aria-label="Τιμές">
-            <div class="pricing-fixed-spacer" aria-hidden="true"></div>
+        <div class="home-hero">
+            <img src="assets/images/IMG_8230.webp" alt="ArTzi Rehearsal Studios" loading="eager">
+            <div class="home-hero-overlay">
+                <span class="home-hero-eyebrow">Απλές τιμές · Χωρίς κρυφές χρεώσεις</span>
+                <h1 class="home-hero-title" style="font-size:clamp(3.5rem,10vw,8rem)">Τιμές</h1>
+            </div>
+        </div>
 
-            <aside class="pricing-menu" aria-label="Μενού τιμών">
-                <header class="pricing-menu-header">
-                    <h1>Τιμές</h1>
-                    <p>Απλές, ξεκάθαρες τιμές χωρίς κρυφές χρεώσεις.</p>
-                    <p class="pricing-menu-note">Οι τιμές είναι ενδεικτικές – μπορούμε να τις προσαρμόσουμε ανάλογα με τις ανάγκες σου.</p>
-                </header>
+        <section class="page-section">
+            <div class="page-inner">
+                <div class="page-3col">
 
-                <div class="pricing-grid">
-                    <article class="card pricing-card">
-                        <h3>Ώρα πρόβας</h3>
-                        <p class="price">€X / ώρα</p>
-                        <ul>
+                    <div>
+                        <span class="p-label">Ωριαία</span>
+                        <p class="p-price">&euro;X / ώρα</p>
+                        <ul class="p-bullets">
                             <li>Εξοπλισμός συμπεριλαμβάνεται</li>
                             <li>Ελάχιστη διάρκεια 2 ώρες</li>
                         </ul>
-                    </article>
+                    </div>
 
-                    <article class="card pricing-card">
-                        <h3>Πακέτο 5 προβών</h3>
-                        <p class="price">€X / πακέτο</p>
-                        <ul>
+                    <div>
+                        <span class="p-label">Πακέτο 5 προβών</span>
+                        <p class="p-price">&euro;X / πακέτο</p>
+                        <ul class="p-bullets">
                             <li>Προπληρωμή με καλύτερη τιμή</li>
                             <li>Ευέλικτη χρήση εντός 2 μηνών</li>
                         </ul>
-                    </article>
+                    </div>
 
-                    <article class="card pricing-card">
-                        <h3>Μηνιαία συνεργασία</h3>
-                        <p class="price">Κατόπιν συνεννόησης</p>
-                        <ul>
+                    <div>
+                        <span class="p-label">Μηνιαία συνεργασία</span>
+                        <p class="p-price">Κατόπιν<br>συνεννόησης</p>
+                        <ul class="p-bullets">
                             <li>Σταθερές ημέρες &amp; ώρες</li>
                             <li>Ιδανικό για bands με σταθερό πρόγραμμα</li>
                         </ul>
-                    </article>
+                    </div>
+
                 </div>
-            </aside>
+            </div>
         </section>
+
+        <div class="home-cta-bar">
+            <div class="home-inner home-cta-inner">
+                <div>
+                    <p class="home-cta-title">Κλείσε ώρα</p>
+                    <p class="home-cta-sub">Στείλε μήνυμα για διαθεσιμότητα ή κράτηση.</p>
+                </div>
+                <a class="btn primary" href="contact.html">Επικοινωνία</a>
+            </div>
+        </div>
+
     </main>
 
-    <footer class="bottom-bar">
-        <div class="container">
-            <span>© <span id="year">2026</span> ArTzi Rehearsal Studios</span>
-        </div>
-    </footer>
-
-    <script src="assets/js/main.js?v=4.9"></script>
+    <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
+    <script src="assets/js/main.js?v=5.0"></script>
 </body>
 </html>

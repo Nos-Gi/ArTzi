@@ -5,118 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
 if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}
-document.addEventListener('click',function(e){
-  var t=e.target;
-  while(t&&t!==document.body){if(t.tagName==='A'&&t.href){try{if(window.location.origin===new URL(t.href).origin&&t.target!=='_blank')sessionStorage.setItem('internalNav','1');}catch(err){}return;}t=t.parentNode;}
-},true);
+document.addEventListener('click',function(e){var t=e.target;while(t&&t!==document.body){if(t.tagName==='A'&&t.href){try{if(window.location.origin===new URL(t.href).origin&&t.target!=='_blank')sessionStorage.setItem('internalNav','1');}catch(err){}return;}t=t.parentNode;}},true);
     </script>
     <title>Gallery | ArTzi Rehearsal Studios</title>
-    <meta name="description" content="Gallery από τους χώρους του ArTzi Rehearsal Studios.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="assets/css/main.css?v=4.9">
+    <link rel="stylesheet" href="assets/css/main.css?v=5.0">
 </head>
 <body>
-
-    <div id="page-loader" class="page-loader" aria-hidden="true">
-        <img src="assets/images/RG_LOGO.webp" alt="">
-    </div>
-    <script>
-(function(){
-  if(document.documentElement.classList.contains('skip-loader'))return;
-  function hideLoader(){
-    var el=document.getElementById('page-loader');
-    if(!el)return;
-    el.classList.add('page-loader-fade-out');
-    setTimeout(function(){el.remove();},500);
-  }
-  setTimeout(hideLoader,5000);
-})();
-    </script>
-
+    <div id="page-loader" class="page-loader" aria-hidden="true"><img src="assets/images/RG_LOGO.webp" alt=""></div>
+    <script>(function(){if(document.documentElement.classList.contains('skip-loader'))return;function hideLoader(){var el=document.getElementById('page-loader');if(!el)return;el.classList.add('page-loader-fade-out');setTimeout(function(){el.remove();},500);}setTimeout(hideLoader,5000);})();</script>
     <header class="top-bar">
         <div class="container top-bar-inner">
-            <a href="index.html" class="brand" aria-label="ArTzi - Αρχική">
-                <span class="brand-title">ArTzi</span>
-                <span class="brand-subtitle">Rehearsal Studios</span>
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Αρχική</a></li>
-                    <li><a href="about.html">Σχετικά με εμάς</a></li>
-                    <li><a href="facility.html">Χώρος</a></li>
-                    <li><a href="services.html">Υπηρεσίες</a></li>
-                    <li><a href="equipment.html">Gallery</a></li>
-                    <li><a href="contact.html">Επικοινωνείστε μαζί μας</a></li>
-                </ul>
-            </nav>
-            <div class="lang-switch">
-                <span>GR</span> | <a href="en/equipment.html">EN</a>
-            </div>
+            <a href="index.html" class="brand"><span class="brand-title">ArTzi</span><span class="brand-subtitle">Rehearsal Studios</span></a>
+            <nav class="main-nav"><ul>
+                <li><a href="index.html">Αρχική</a></li>
+                <li><a href="about.html">Σχετικά με εμάς</a></li>
+                <li><a href="facility.html">Χώρος</a></li>
+                <li><a href="services.html">Υπηρεσίες</a></li>
+                <li><a href="equipment.html">Gallery</a></li>
+                <li><a href="contact.html">Επικοινωνείστε μαζί μας</a></li>
+            </ul></nav>
+            <div class="lang-switch"><span>GR</span> | <a href="en/equipment.html">EN</a></div>
         </div>
     </header>
-
     <main class="main-content">
         <section class="section section-photo-bg section-bg-1" aria-label="Εικόνα χώρου">
             <div class="section-photo-bg-inner">
                 <div class="container">
-                    <h1>Gallery</h1>
-                    <p>Μια μικρή εικόνα από το πώς είναι να παίζεις στο ArTzi.</p>
+                    <h1>Εξοπλισμός</h1>
+                    <p>Κλίκ σε κάθε φωτογραφία για μεγέθυνση.</p>
                 </div>
             </div>
         </section>
-        <section class="section section-alt">
+
+        <section class="equip-section">
             <div class="container">
-                <p class="section-intro">Αντικατάστησε τις φωτογραφίες και το βίντεο με δικό σου υλικό.</p>
-                
-                <div class="gallery-scroll">
-                    <div class="gallery-item" data-image="assets/images/IMG_8212.webp">
-                        <img src="assets/images/IMG_8212.webp" alt="Χώρος πρόβας ArTzi" loading="eager">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8215.webp">
-                        <img src="assets/images/IMG_8215.webp" alt="Εξοπλισμός στούντιο" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8220.webp">
-                        <img src="assets/images/IMG_8220.webp" alt="Χώρος πρόβας με συγκρότημα" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8225.webp">
-                        <img src="assets/images/IMG_8225.webp" alt="Λεπτομέρεια εξοπλισμού" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8230.webp">
-                        <img src="assets/images/IMG_8230.webp" alt="Χώρος ArTzi Rehearsal Studios" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8213.webp">
-                        <img src="assets/images/IMG_8213.webp" alt="Στούντιο ArTzi" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8216.webp">
-                        <img src="assets/images/IMG_8216.webp" alt="Χώρος ηχογράφησης" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8222.webp">
-                        <img src="assets/images/IMG_8222.webp" alt="Πρόβα συγκροτήματος" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8228.webp">
-                        <img src="assets/images/IMG_8228.webp" alt="Εξοπλισμός ArTzi" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="assets/images/IMG_8233.webp">
-                        <img src="assets/images/IMG_8233.webp" alt="Χώρος ArTzi Rehearsal Studios" loading="lazy">
-                    </div>
+                <div class="equip-filters">
+                    <button class="filter-pill active" data-filter="all">Όλα</button>
+                    <button class="filter-pill" data-filter="drums">Drums</button>
+                    <button class="filter-pill" data-filter="guitars">Κιθάρες</button>
+                    <button class="filter-pill" data-filter="amps">Ενισχυτές</button>
+                    <button class="filter-pill" data-filter="pa">PA &amp; Μικρόφωνα</button>
+                    <button class="filter-pill" data-filter="console">Κονσόλες</button>
                 </div>
-                
-                <div class="video-wrapper gallery-scroll-visible">
-                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArTzi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
+                <div class="equip-grid">
+                    <div class="equip-card" data-category="drums">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8212.webp" alt="Drums" loading="eager"></div>
+                        <span class="equip-card-cat">Drums</span>
+                        <h3 class="equip-card-name">Pearl Export Series — 5 κομμάτια</h3>
+                        <ul class="equip-card-specs">
+                            <li>22" kick, 10", 12", 16" toms</li>
+                            <li>Snare Pearl Free Floating 14"</li>
+                            <li>DW 5000 bass pedal</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="drums">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8215.webp" alt="Cymbals" loading="lazy"></div>
+                        <span class="equip-card-cat">Drums</span>
+                        <h3 class="equip-card-name">Zildjian A Series Cymbals</h3>
+                        <ul class="equip-card-specs">
+                            <li>Hi-hat 14" A New Beat</li>
+                            <li>Crash 16" &amp; 18"</li>
+                            <li>Ride 20" Sweet</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="guitars">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8213.webp" alt="Κιθάρες" loading="lazy"></div>
+                        <span class="equip-card-cat">Κιθάρες</span>
+                        <h3 class="equip-card-name">Fender Stratocaster American</h3>
+                        <ul class="equip-card-specs">
+                            <li>Alder body, maple neck</li>
+                            <li>3 single-coil pickups</li>
+                            <li>Tremolo bridge</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="guitars">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8217.webp" alt="Κιθάρες" loading="lazy"></div>
+                        <span class="equip-card-cat">Κιθάρες</span>
+                        <h3 class="equip-card-name">Gibson Les Paul Standard</h3>
+                        <ul class="equip-card-specs">
+                            <li>Mahogany body, maple top</li>
+                            <li>Burstbucker Pro humbuckers</li>
+                            <li>Tune-o-matic bridge</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="amps">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8214.webp" alt="Ενισχυτής" loading="lazy"></div>
+                        <span class="equip-card-cat">Ενισχυτές</span>
+                        <h3 class="equip-card-name">Marshall JCM 800 100W</h3>
+                        <ul class="equip-card-specs">
+                            <li>100W all-tube head</li>
+                            <li>Marshall 1960A 4x12 cabinet</li>
+                            <li>Plexi-style preamp</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="amps">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8224.webp" alt="Ενισχυτής μπάσου" loading="lazy"></div>
+                        <span class="equip-card-cat">Ενισχυτές</span>
+                        <h3 class="equip-card-name">Ampeg SVT-CL Bass Amp</h3>
+                        <ul class="equip-card-specs">
+                            <li>300W all-tube bass head</li>
+                            <li>Ampeg 8x10 cabinet</li>
+                            <li>Classic SVT tone stack</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="pa">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8223.webp" alt="PA" loading="lazy"></div>
+                        <span class="equip-card-cat">PA &amp; Μικρόφωνα</span>
+                        <h3 class="equip-card-name">Yamaha DXR15 PA System</h3>
+                        <ul class="equip-card-specs">
+                            <li>2x DXR15 active tops</li>
+                            <li>1x DXS15 subwoofer</li>
+                            <li>Yamaha DXR12 monitors</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="pa">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8225.webp" alt="Μικρόφωνα" loading="lazy"></div>
+                        <span class="equip-card-cat">PA &amp; Μικρόφωνα</span>
+                        <h3 class="equip-card-name">Shure Microphone Collection</h3>
+                        <ul class="equip-card-specs">
+                            <li>4x SM58 vocal mics</li>
+                            <li>3x SM57 instrument mics</li>
+                            <li>Beta 52A kick drum mic</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="console">
+                        <div class="equip-card-img"><img src="assets/images/IMG_8220.webp" alt="Κονσόλα" loading="lazy"></div>
+                        <span class="equip-card-cat">Κονσόλες</span>
+                        <h3 class="equip-card-name">Midas M32 Live</h3>
+                        <ul class="equip-card-specs">
+                            <li>32-channel digital console</li>
+                            <li>Recording στον χώρο πρόβας</li>
+                            <li>32 Midas PRO preamps</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <footer class="bottom-bar">
-        <div class="container">
-            <span>© <span id="year">2026</span> ArTzi Rehearsal Studios</span>
-        </div>
-    </footer>
-
-    <script src="assets/js/main.js?v=4.9"></script>
+    <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
+    <script src="assets/js/main.js?v=5.0"></script>
 </body>
 </html>

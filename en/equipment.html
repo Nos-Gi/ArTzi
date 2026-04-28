@@ -5,118 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
 if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}
-document.addEventListener('click',function(e){
-  var t=e.target;
-  while(t&&t!==document.body){if(t.tagName==='A'&&t.href){try{if(window.location.origin===new URL(t.href).origin&&t.target!=='_blank')sessionStorage.setItem('internalNav','1');}catch(err){}return;}t=t.parentNode;}
-},true);
+document.addEventListener('click',function(e){var t=e.target;while(t&&t!==document.body){if(t.tagName==='A'&&t.href){try{if(window.location.origin===new URL(t.href).origin&&t.target!=='_blank')sessionStorage.setItem('internalNav','1');}catch(err){}return;}t=t.parentNode;}},true);
     </script>
     <title>Gallery | ArTzi Rehearsal Studios</title>
-    <meta name="description" content="Gallery of ArTzi Rehearsal Studios.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css?v=4.9">
+    <link rel="stylesheet" href="../assets/css/main.css?v=5.0">
 </head>
 <body>
-
-    <div id="page-loader" class="page-loader" aria-hidden="true">
-        <img src="../assets/images/RG_LOGO.webp" alt="">
-    </div>
-    <script>
-(function(){
-  if(document.documentElement.classList.contains('skip-loader'))return;
-  function hideLoader(){
-    var el=document.getElementById('page-loader');
-    if(!el)return;
-    el.classList.add('page-loader-fade-out');
-    setTimeout(function(){el.remove();},500);
-  }
-  setTimeout(hideLoader,5000);
-})();
-    </script>
-
+    <div id="page-loader" class="page-loader" aria-hidden="true"><img src="../assets/images/RG_LOGO.webp" alt=""></div>
+    <script>(function(){if(document.documentElement.classList.contains('skip-loader'))return;function hideLoader(){var el=document.getElementById('page-loader');if(!el)return;el.classList.add('page-loader-fade-out');setTimeout(function(){el.remove();},500);}setTimeout(hideLoader,5000);})();</script>
     <header class="top-bar">
         <div class="container top-bar-inner">
-            <a href="index.html" class="brand" aria-label="ArTzi - Home">
-                <span class="brand-title">ArTzi</span>
-                <span class="brand-subtitle">Rehearsal Studios</span>
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="facility.html">Studios</a></li>
-                    <li><a href="services.html">Pricing</a></li>
-                    <li><a href="equipment.html">Gallery</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="lang-switch">
-                <a href="../equipment.html">GR</a> | <span>EN</span>
-            </div>
+            <a href="index.html" class="brand"><span class="brand-title">ArTzi</span><span class="brand-subtitle">Rehearsal Studios</span></a>
+            <nav class="main-nav"><ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="facility.html">Studios</a></li>
+                <li><a href="services.html">Pricing</a></li>
+                <li><a href="equipment.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul></nav>
+            <div class="lang-switch"><a href="../equipment.html">GR</a> | <span>EN</span></div>
         </div>
     </header>
-
     <main class="main-content">
         <section class="section section-photo-bg section-bg-1" aria-label="Studio image">
             <div class="section-photo-bg-inner">
                 <div class="container">
-                    <h1>Gallery</h1>
-                    <p>A glimpse of what it’s like to play at ArTzi.</p>
+                    <h1>Equipment</h1>
+                    <p>Click any photo to enlarge.</p>
                 </div>
             </div>
         </section>
-        <section class="section section-alt">
+
+        <section class="equip-section">
             <div class="container">
-                <p class="section-intro">A quick look at what it feels like to play at ArTzi. Replace the photos and video below with your own material.</p>
-                
-                <div class="gallery-scroll">
-                    <div class="gallery-item" data-image="../assets/images/IMG_8212.webp">
-                        <img src="../assets/images/IMG_8212.webp" alt="ArTzi rehearsal space" loading="eager">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8215.webp">
-                        <img src="../assets/images/IMG_8215.webp" alt="Studio equipment" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8220.webp">
-                        <img src="../assets/images/IMG_8220.webp" alt="Band rehearsal space" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8225.webp">
-                        <img src="../assets/images/IMG_8225.webp" alt="Equipment detail" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8230.webp">
-                        <img src="../assets/images/IMG_8230.webp" alt="ArTzi Rehearsal Studios" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8213.webp">
-                        <img src="../assets/images/IMG_8213.webp" alt="ArTzi studio" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8216.webp">
-                        <img src="../assets/images/IMG_8216.webp" alt="Recording space" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8222.webp">
-                        <img src="../assets/images/IMG_8222.webp" alt="Band rehearsal" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8228.webp">
-                        <img src="../assets/images/IMG_8228.webp" alt="ArTzi equipment" loading="lazy">
-                    </div>
-                    <div class="gallery-item" data-image="../assets/images/IMG_8233.webp">
-                        <img src="../assets/images/IMG_8233.webp" alt="ArTzi Rehearsal Studios" loading="lazy">
-                    </div>
+                <div class="equip-filters">
+                    <button class="filter-pill active" data-filter="all">All</button>
+                    <button class="filter-pill" data-filter="drums">Drums</button>
+                    <button class="filter-pill" data-filter="guitars">Guitars</button>
+                    <button class="filter-pill" data-filter="amps">Amps</button>
+                    <button class="filter-pill" data-filter="pa">PA &amp; Mics</button>
+                    <button class="filter-pill" data-filter="console">Consoles</button>
                 </div>
-                
-                <div class="video-wrapper gallery-scroll-visible">
-                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArTzi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
+                <div class="equip-grid">
+                    <div class="equip-card" data-category="drums">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8212.webp" alt="Drums" loading="eager"></div>
+                        <span class="equip-card-cat">Drums</span>
+                        <h3 class="equip-card-name">Pearl Export Series — 5-piece</h3>
+                        <ul class="equip-card-specs">
+                            <li>22" kick, 10", 12", 16" toms</li>
+                            <li>Pearl Free Floating 14" snare</li>
+                            <li>DW 5000 bass pedal</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="drums">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8215.webp" alt="Cymbals" loading="lazy"></div>
+                        <span class="equip-card-cat">Drums</span>
+                        <h3 class="equip-card-name">Zildjian A Series Cymbals</h3>
+                        <ul class="equip-card-specs">
+                            <li>14" A New Beat hi-hat</li>
+                            <li>16" &amp; 18" crashes</li>
+                            <li>20" Sweet ride</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="guitars">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8213.webp" alt="Guitars" loading="lazy"></div>
+                        <span class="equip-card-cat">Guitars</span>
+                        <h3 class="equip-card-name">Fender Stratocaster American</h3>
+                        <ul class="equip-card-specs">
+                            <li>Alder body, maple neck</li>
+                            <li>3 single-coil pickups</li>
+                            <li>Tremolo bridge</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="guitars">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8217.webp" alt="Guitars" loading="lazy"></div>
+                        <span class="equip-card-cat">Guitars</span>
+                        <h3 class="equip-card-name">Gibson Les Paul Standard</h3>
+                        <ul class="equip-card-specs">
+                            <li>Mahogany body, maple top</li>
+                            <li>Burstbucker Pro humbuckers</li>
+                            <li>Tune-o-matic bridge</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="amps">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8214.webp" alt="Amp" loading="lazy"></div>
+                        <span class="equip-card-cat">Amps</span>
+                        <h3 class="equip-card-name">Marshall JCM 800 100W</h3>
+                        <ul class="equip-card-specs">
+                            <li>100W all-tube head</li>
+                            <li>Marshall 1960A 4x12 cabinet</li>
+                            <li>Plexi-style preamp</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="amps">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8224.webp" alt="Bass amp" loading="lazy"></div>
+                        <span class="equip-card-cat">Amps</span>
+                        <h3 class="equip-card-name">Ampeg SVT-CL Bass Amp</h3>
+                        <ul class="equip-card-specs">
+                            <li>300W all-tube bass head</li>
+                            <li>Ampeg 8x10 cabinet</li>
+                            <li>Classic SVT tone stack</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="pa">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8223.webp" alt="PA" loading="lazy"></div>
+                        <span class="equip-card-cat">PA &amp; Mics</span>
+                        <h3 class="equip-card-name">Yamaha DXR15 PA System</h3>
+                        <ul class="equip-card-specs">
+                            <li>2x DXR15 active tops</li>
+                            <li>1x DXS15 subwoofer</li>
+                            <li>Yamaha DXR12 monitors</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="pa">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8225.webp" alt="Microphones" loading="lazy"></div>
+                        <span class="equip-card-cat">PA &amp; Mics</span>
+                        <h3 class="equip-card-name">Shure Microphone Collection</h3>
+                        <ul class="equip-card-specs">
+                            <li>4x SM58 vocal mics</li>
+                            <li>3x SM57 instrument mics</li>
+                            <li>Beta 52A kick drum mic</li>
+                        </ul>
+                    </div>
+                    <div class="equip-card" data-category="console">
+                        <div class="equip-card-img"><img src="../assets/images/IMG_8220.webp" alt="Console" loading="lazy"></div>
+                        <span class="equip-card-cat">Consoles</span>
+                        <h3 class="equip-card-name">Midas M32 Live</h3>
+                        <ul class="equip-card-specs">
+                            <li>32-channel digital console</li>
+                            <li>Live recording in rehearsal room</li>
+                            <li>32 Midas PRO preamps</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <footer class="bottom-bar">
-        <div class="container">
-            <span>© <span id="year-en">2026</span> ArTzi Rehearsal Studios</span>
-        </div>
-    </footer>
-
-    <script src="../assets/js/main.js?v=4.9"></script>
+    <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
+    <script src="../assets/js/main.js?v=5.0"></script>
 </body>
 </html>

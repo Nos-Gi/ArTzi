@@ -16,104 +16,88 @@ document.addEventListener('click',function(e){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="assets/css/main.css?v=4.9">
+    <link rel="stylesheet" href="assets/css/main.css?v=5.0">
 </head>
 <body>
-
-    <div id="page-loader" class="page-loader" aria-hidden="true">
-        <img src="assets/images/RG_LOGO.webp" alt="">
-    </div>
-    <script>
-(function(){
-  if(document.documentElement.classList.contains('skip-loader'))return;
-  function hideLoader(){
-    var el=document.getElementById('page-loader');
-    if(!el)return;
-    el.classList.add('page-loader-fade-out');
-    setTimeout(function(){el.remove();},500);
-  }
-  setTimeout(hideLoader,5000);
-})();
-    </script>
+    <div id="page-loader" class="page-loader" aria-hidden="true"><img src="assets/images/RG_LOGO.webp" alt=""></div>
+    <script>(function(){if(document.documentElement.classList.contains('skip-loader'))return;function hideLoader(){var el=document.getElementById('page-loader');if(!el)return;el.classList.add('page-loader-fade-out');setTimeout(function(){el.remove();},500);}setTimeout(hideLoader,5000);})();</script>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
-            <a href="index.html" class="brand" aria-label="ArTzi - Αρχική">
-                <span class="brand-title">ArTzi</span>
-                <span class="brand-subtitle">Rehearsal Studios</span>
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Αρχική</a></li>
-                    <li><a href="about.html">Σχετικά με εμάς</a></li>
-                    <li><a href="facility.html">Χώρος</a></li>
-                    <li><a href="services.html">Υπηρεσίες</a></li>
-                    <li><a href="equipment.html">Gallery</a></li>
-                    <li><a href="contact.html">Επικοινωνείστε μαζί μας</a></li>
-                </ul>
-            </nav>
-            <div class="lang-switch">
-                <span>GR</span> | <a href="en/contact.html">EN</a>
-            </div>
+            <a href="index.html" class="brand" aria-label="ArTzi - Αρχική"><span class="brand-title">ArTzi</span><span class="brand-subtitle">Rehearsal Studios</span></a>
+            <nav class="main-nav"><ul>
+                <li><a href="index.html">Αρχική</a></li>
+                <li><a href="about.html">Σχετικά με εμάς</a></li>
+                <li><a href="facility.html">Χώρος</a></li>
+                <li><a href="services.html">Υπηρεσίες</a></li>
+                <li><a href="equipment.html">Gallery</a></li>
+                <li><a href="contact.html">Επικοινωνείστε μαζί μας</a></li>
+            </ul></nav>
+            <div class="lang-switch"><span>GR</span> | <a href="en/contact.html">EN</a></div>
         </div>
     </header>
 
     <main class="main-content">
-        <section class="section section-alt">
-            <div class="container two-column">
-                <div>
-                    <h1>Επικοινώνησε μαζί μας</h1>
-                    <p>Στείλε μας μήνυμα για διαθεσιμότητα, κρατήσεις ή οποιαδήποτε απορία. Αν προτιμάς, μπορείς να καλέσεις ή να μας βρεις στα social.</p>
-                    <ul class="contact-details">
-                        <li><strong>Τηλέφωνο:</strong> +30 XXX XXX XXXX</li>
-                        <li><strong>Email:</strong> <a href="mailto:info@artzi-studio.gr">info@artzi-studio.gr</a></li>
-                        <li><strong>Διεύθυνση:</strong> Taxiarchon 36, Moschato 183 45</li>
-                    </ul>
-                    <div class="map-embed map-embed--square" aria-label="Χάρτης">
-                        <iframe
-                            src="https://www.google.com/maps?q=Taxiarchon%2036%2C%20Moschato%20183%2045%2C%20Greece&output=embed"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Google Maps - Taxiarchon 36"
-                        ></iframe>
+
+        <div class="page-hero">
+            <div class="page-hero-inner">
+                <span class="page-hero-label">Επικοινωνία</span>
+                <h1 class="page-hero-title">Κλείσε ώρα</h1>
+                <p class="page-hero-sub">Στείλε μας μήνυμα για διαθεσιμότητα ή κράτηση. Απαντάμε γρήγορα.</p>
+            </div>
+        </div>
+
+        <section class="page-section">
+            <div class="page-inner">
+                <div class="page-2col">
+
+                    <div>
+                        <span class="p-label">Στοιχεία επικοινωνίας</span>
+                        <ul class="contact-details">
+                            <li><strong>Τηλέφωνο:</strong> +30 XXX XXX XXXX</li>
+                            <li><strong>Email:</strong> <a href="mailto:info@artzi-studio.gr">info@artzi-studio.gr</a></li>
+                            <li><strong>Διεύθυνση:</strong> Ταξιαρχών 36, Μοσχάτο 183 45</li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram">Instagram</a>
+                            <a href="#" aria-label="Facebook">Facebook</a>
+                            <a href="#" aria-label="YouTube">YouTube</a>
+                        </div>
+                        <div class="contact-map" aria-label="Χάρτης">
+                            <iframe src="https://www.google.com/maps?q=Taxiarchon%2036%2C%20Moschato%20183%2045%2C%20Greece&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps - Taxiarchon 36"></iframe>
+                        </div>
                     </div>
-                    <div class="social-links">
-                        <a href="#" aria-label="Instagram">Instagram</a>
-                        <a href="#" aria-label="Facebook">Facebook</a>
-                        <a href="#" aria-label="YouTube">YouTube</a>
+
+                    <div>
+                        <span class="p-label">Φόρμα επικοινωνίας</span>
+                        <form class="contact-form" id="contact-form-gr" method="POST" novalidate>
+                            <input type="hidden" name="_to" value="vasilisginos@gmail.com">
+                            <input type="hidden" name="_subject" value="New Contact Form Message from ArTzi Website">
+                            <input type="hidden" name="_replyto" value="">
+                            <div class="form-row">
+                                <label for="name">Όνομα</label>
+                                <input type="text" id="name" name="name" required placeholder="Το όνομά σου">
+                            </div>
+                            <div class="form-row">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="name@example.com">
+                            </div>
+                            <div class="form-row">
+                                <label for="message">Μήνυμα</label>
+                                <textarea id="message" name="message" required rows="5" placeholder="Πες μας τι χρειάζεσαι"></textarea>
+                            </div>
+                            <button type="submit" class="btn primary" id="submit-btn-gr">Αποστολή</button>
+                            <p class="form-note" id="form-message"></p>
+                        </form>
                     </div>
-                </div>
-                <div>
-                    <form class="contact-form" id="contact-form-gr" method="POST" novalidate>
-                        <input type="hidden" name="_to" value="vasilisginos@gmail.com">
-                        <input type="hidden" name="_subject" value="New Contact Form Message from ArTzi Website">
-                        <input type="hidden" name="_replyto" value="">
-                        <div class="form-row">
-                            <label for="name">Όνομα</label>
-                            <input type="text" id="name" name="name" required placeholder="Το όνομά σου">
-                        </div>
-                        <div class="form-row">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="name@example.com">
-                        </div>
-                        <div class="form-row">
-                            <label for="message">Μήνυμα</label>
-                            <textarea id="message" name="message" required rows="4" placeholder="Πες μας τι χρειάζεσαι"></textarea>
-                        </div>
-                        <button type="submit" class="btn primary" id="submit-btn-gr">Αποστολή</button>
-                        <p class="form-note" id="form-message"></p>
-                    </form>
+
                 </div>
             </div>
         </section>
+
     </main>
 
-    <footer class="bottom-bar">
-        <div class="container">
-            <span>© <span id="year">2026</span> ArTzi Rehearsal Studios</span>
-        </div>
-    </footer>
-
-    <script src="assets/js/main.js?v=4.9"></script>
+    <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
+    <script src="assets/js/main.js?v=5.0"></script>
 </body>
 </html>

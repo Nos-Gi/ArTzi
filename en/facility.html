@@ -11,103 +11,105 @@ document.addEventListener('click',function(e){
 },true);
     </script>
     <title>Studios | ArTzi Rehearsal Studios</title>
-    <meta name="description" content="Studios and equipment at ArTzi Rehearsal Studios.">
+    <meta name="description" content="Studio spaces and equipment at ArTzi Rehearsal Studios.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css?v=4.9">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap">
+    <link rel="stylesheet" href="../assets/css/main.css?v=5.0">
 </head>
 <body>
-
-    <div id="page-loader" class="page-loader" aria-hidden="true">
-        <img src="../assets/images/RG_LOGO.webp" alt="">
-    </div>
-    <script>
-(function(){
-  if(document.documentElement.classList.contains('skip-loader'))return;
-  function hideLoader(){
-    var el=document.getElementById('page-loader');
-    if(!el)return;
-    el.classList.add('page-loader-fade-out');
-    setTimeout(function(){el.remove();},500);
-  }
-  setTimeout(hideLoader,5000);
-})();
-    </script>
+    <div id="page-loader" class="page-loader" aria-hidden="true"><img src="../assets/images/RG_LOGO.webp" alt=""></div>
+    <script>(function(){if(document.documentElement.classList.contains('skip-loader'))return;function hideLoader(){var el=document.getElementById('page-loader');if(!el)return;el.classList.add('page-loader-fade-out');setTimeout(function(){el.remove();},500);}setTimeout(hideLoader,5000);})();</script>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
-            <a href="index.html" class="brand" aria-label="ArTzi - Home">
-                <span class="brand-title">ArTzi</span>
-                <span class="brand-subtitle">Rehearsal Studios</span>
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="facility.html">Studios</a></li>
-                    <li><a href="services.html">Pricing</a></li>
-                    <li><a href="equipment.html">Gallery</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="lang-switch">
-                <a href="../facility.html">GR</a> | <span>EN</span>
-            </div>
+            <a href="index.html" class="brand" aria-label="ArTzi - Home"><span class="brand-title">ArTzi</span><span class="brand-subtitle">Rehearsal Studios</span></a>
+            <nav class="main-nav"><ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="facility.html">Studios</a></li>
+                <li><a href="services.html">Pricing</a></li>
+                <li><a href="equipment.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul></nav>
+            <div class="lang-switch"><a href="../facility.html">GR</a> | <span>EN</span></div>
         </div>
     </header>
 
     <main class="main-content">
-        <section class="section section-photo-bg section-bg-2" aria-label="Studio image">
-            <div class="section-photo-bg-inner">
-                <div class="container">
-                    <h1>Studios &amp; Equipment</h1>
-                    <p>Professional gear and comfortable spaces for rehearsal.</p>
-                </div>
+
+        <div class="home-hero">
+            <img src="../assets/images/IMG_8220.webp" alt="ArTzi Studio" loading="eager">
+            <div class="home-hero-overlay">
+                <span class="home-hero-eyebrow">Taxiarchon 36 · Moschato</span>
+                <h1 class="home-hero-title" style="font-size:clamp(2.8rem,8vw,6rem)">Studios &amp;<br>Equipment</h1>
             </div>
-        </section>
-        <section class="section section-alt">
-            <div class="container">
-                <div class="studio-grid">
-                    <article class="card">
-                        <h3>Studio A</h3>
-                        <p>Medium-sized room ideal for a full band with drums. Balanced sound and a comfortable layout.</p>
-                        <ul>
-                            <li>5‑piece drum kit</li>
+        </div>
+
+        <section class="page-section">
+            <div class="page-inner">
+                <div class="facility-grid">
+
+                    <div class="facility-card">
+                        <div class="facility-card-img">
+                            <img src="../assets/images/IMG_8222.webp" alt="Studio A" loading="lazy">
+                        </div>
+                        <span class="p-label">Studio A</span>
+                        <p class="p-title">Full band setup</p>
+                        <p class="p-text">Medium-sized room ideal for a full band with drums. Balanced acoustics and a comfortable layout.</p>
+                        <ul class="p-bullets">
+                            <li>5-piece drum kit</li>
                             <li>Guitar &amp; bass amplifiers</li>
                             <li>PA with microphones</li>
                         </ul>
-                    </article>
-                    <article class="card">
-                        <h3>Studio B</h3>
-                        <p>More compact room for smaller groups, vocal rehearsals or pre-production.</p>
-                        <ul>
+                    </div>
+
+                    <div class="facility-card">
+                        <div class="facility-card-img">
+                            <img src="../assets/images/IMG_8213.webp" alt="Studio B" loading="lazy">
+                        </div>
+                        <span class="p-label">Studio B</span>
+                        <p class="p-title">Compact &amp; flexible</p>
+                        <p class="p-text">More compact room for smaller groups, vocal rehearsals or pre-production.</p>
+                        <ul class="p-bullets">
                             <li>Full-range monitor system</li>
                             <li>Line in for laptop / interface</li>
                             <li>Small lounge area</li>
                         </ul>
-                    </article>
-                    <article class="card">
-                        <h3>Extras</h3>
-                        <p>Everything you need to feel comfortable during your rehearsal.</p>
-                        <ul>
-                            <li>Wi‑Fi &amp; power outlets</li>
+                    </div>
+
+                    <div class="facility-card">
+                        <div class="facility-card-img">
+                            <img src="../assets/images/IMG_8216.webp" alt="Extras" loading="lazy">
+                        </div>
+                        <span class="p-label">Extras</span>
+                        <p class="p-title">Everything you need</p>
+                        <p class="p-text">Everything to stay comfortable during your rehearsal.</p>
+                        <ul class="p-bullets">
+                            <li>Wi-Fi &amp; power outlets</li>
                             <li>Coffee / water</li>
                             <li>Waiting area</li>
                         </ul>
-                    </article>
+                    </div>
+
                 </div>
             </div>
         </section>
+
+        <div class="home-cta-bar">
+            <div class="home-inner home-cta-inner">
+                <div>
+                    <p class="home-cta-title">Book a slot</p>
+                    <p class="home-cta-sub">Message us for availability or a booking.</p>
+                </div>
+                <a class="btn primary" href="contact.html">Contact</a>
+            </div>
+        </div>
+
     </main>
 
-    <footer class="bottom-bar">
-        <div class="container">
-            <span>© <span id="year-en">2026</span> ArTzi Rehearsal Studios</span>
-        </div>
-    </footer>
-
-    <script src="../assets/js/main.js?v=4.9"></script>
+    <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
+    <script src="../assets/js/main.js?v=5.0"></script>
 </body>
 </html>
