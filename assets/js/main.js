@@ -316,9 +316,7 @@
             }, 300); // Wait for fade out animation
         }, 5000);
     }
-    
-    }
-    
+
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
