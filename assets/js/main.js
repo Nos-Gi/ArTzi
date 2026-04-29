@@ -133,6 +133,7 @@
 
     function init() {
         document.documentElement.classList.remove('no-js');
+        var yr = document.querySelectorAll('#year'); yr.forEach(function(el){ el.textContent = new Date().getFullYear(); });
         if (document.documentElement.classList.contains('skip-loader')) {
             var loader = document.getElementById('page-loader');
             if (loader) loader.remove();
@@ -184,7 +185,6 @@
     async function handleFormSubmit(form) {
         var submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
         if (!submitBtn) {
-            console.error('Submit button not found');
             return;
         }
         
@@ -197,7 +197,6 @@
         const messageInput = form.querySelector('textarea[name="message"]');
         
         if (!nameInput || !emailInput || !messageInput) {
-            console.error('Form inputs not found');
             showNotification(
                 isGreek ? 'Σφάλμα φόρμας.' : 'Form error.',
                 'error'
@@ -209,7 +208,6 @@
         const email = emailInput.value.trim();
         const message = messageInput.value.trim();
         
-        console.log('Form values:', { name, email, message: message.substring(0, 20) + '...' });
         
         // Client-side validation
         if (!name || !email || !message) {
@@ -245,7 +243,6 @@
             // Prepare form data
             const formData = new FormData(form);
             
-            console.log('Submitting to Formspree:', formspreeUrl);
             
             // Submit via fetch (AJAX)
             const response = await fetch(formspreeUrl, {
@@ -256,11 +253,9 @@
                 }
             });
             
-            console.log('Response received:', response.status, response.statusText);
             
             if (response.ok) {
                 // Success
-                console.log('Form submitted successfully!');
                 showNotification(
                     isGreek ? 'Η υποβολή ολοκληρώθηκε επιτυχώς!' : 'Submission succeeded!',
                     'success'
@@ -275,12 +270,10 @@
                 } catch (e) {
                     errorMsg = response.statusText || errorMsg;
                 }
-                console.error('Formspree error:', errorMsg);
                 throw new Error(errorMsg);
             }
             
         } catch (error) {
-            console.error('Form submission error:', error);
             showNotification(
                 isGreek ? 'Σφάλμα κατά την αποστολή. Παρακαλώ δοκιμάστε ξανά.' : 'Error sending message. Please try again.',
                 'error'
@@ -294,7 +287,6 @@
     
     // Notification popup function
     function showNotification(message, type = 'success') {
-        console.log('Showing notification:', message, type);
         
         // Remove any existing notifications
         const existing = document.querySelector('.form-notification');
@@ -310,12 +302,10 @@
         // Add to body
         document.body.appendChild(notification);
         
-        console.log('Notification element created and added to DOM');
         
         // Trigger animation
         setTimeout(() => {
             notification.classList.add('show');
-            console.log('Notification show class added');
         }, 10);
         
         // Remove after 5 seconds
@@ -327,22 +317,6 @@
         }, 5000);
     }
     
-    function showMessage(element, grText, enText, type) {
-        if (!element) return;
-        
-        const isGreek = document.documentElement.lang === 'el';
-        const text = isGreek ? grText : enText;
-        
-        element.textContent = text;
-        element.className = 'form-note';
-        
-        if (type === 'success') {
-            element.style.color = '#10b981';
-        } else if (type === 'error') {
-            element.style.color = '#ef4444';
-        } else {
-            element.style.color = '#6b7280';
-        }
     }
     
     function isValidEmail(email) {
