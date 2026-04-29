@@ -2192,7 +2192,55 @@ html.no-js .gallery-item {
     margin-top: 14px;
 }
 
-/* Full-width map (contact page) */
+/* ===== CONTACT PAGE ===== */
+.contact-header {
+    background: #16161d;
+    padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.contact-header-inner {
+    padding: 0 clamp(24px, 5vw, 80px);
+}
+
+.contact-heading {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin: 16px 0 20px;
+}
+
+.contact-header-sub {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Two-pane body */
+.contact-body {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    min-height: 60vh;
+}
+
+.contact-form-pane {
+    background: #1e1e27;
+    padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+.contact-info-pane {
+    background: #16161d;
+    padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Full-width map */
 .contact-map-full {
     width: 100%;
     height: clamp(280px, 38vh, 440px);
@@ -2205,6 +2253,11 @@ html.no-js .gallery-item {
     height: 100%;
     border: 0;
     display: block;
+}
+
+@media (max-width: 760px) {
+    .contact-body { grid-template-columns: 1fr; }
+    .contact-form-pane { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
 }
 
 /* Responsive */
