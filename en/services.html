@@ -16,7 +16,7 @@ document.addEventListener('click',function(e){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css?v=5.3">
+    <link rel="stylesheet" href="../assets/css/main.css?v=5.4">
 </head>
 <body>
     <div id="page-loader" class="page-loader" aria-hidden="true"><img src="../assets/images/RG_LOGO.webp" alt=""></div>
@@ -49,52 +49,48 @@ document.addEventListener('click',function(e){
 
         <section class="page-section">
             <div class="page-inner">
-                <div class="page-3col">
+                <p style="color:var(--color-text-muted);font-size:0.92rem;margin-bottom:48px;max-width:52ch">
+                    Rates are indicative — we can tailor them to your needs.
+                </p>
 
-                    <div>
-                        <span class="p-label">Hourly</span>
-                        <p class="p-price">&euro;X / hour</p>
-                        <ul class="p-bullets">
-                            <li>Full backline included</li>
-                            <li>Minimum booking 2 hours</li>
-                        </ul>
+                <div class="pricing-rows">
+
+                    <div class="pricing-row">
+                        <span class="pricing-row-num">01</span>
+                        <div class="pricing-row-body">
+                            <p class="pricing-row-name">Rehearsal hour</p>
+                            <p class="pricing-row-desc">Full backline included · Minimum booking 2 hours · No commitment</p>
+                        </div>
+                        <span class="pricing-row-price">&euro;X / hour</span>
                     </div>
 
-                    <div>
-                        <span class="p-label">5-session pack</span>
-                        <p class="p-price">&euro;X / pack</p>
-                        <ul class="p-bullets">
-                            <li>Prepaid with better rate</li>
-                            <li>Flexible use within 2 months</li>
-                        </ul>
+                    <div class="pricing-row">
+                        <span class="pricing-row-num">02</span>
+                        <div class="pricing-row-body">
+                            <p class="pricing-row-name">5-session pack</p>
+                            <p class="pricing-row-desc">Prepaid with better rate · Flexible use within 2 months</p>
+                        </div>
+                        <span class="pricing-row-price">&euro;X / pack</span>
                     </div>
 
-                    <div>
-                        <span class="p-label">Monthly plan</span>
-                        <p class="p-price">On request</p>
-                        <ul class="p-bullets">
-                            <li>Fixed days &amp; hours</li>
-                            <li>Ideal for bands with a stable schedule</li>
-                        </ul>
+                    <div class="pricing-row">
+                        <span class="pricing-row-num">03</span>
+                        <div class="pricing-row-body">
+                            <p class="pricing-row-name">Monthly plan</p>
+                            <p class="pricing-row-desc">Fixed days &amp; hours · Ideal for bands with a stable schedule</p>
+                        </div>
+                        <span class="pricing-row-price">On<br>request</span>
                     </div>
 
                 </div>
+
+                <a class="btn primary" href="contact.html" style="margin-top:48px;display:inline-flex">Book a slot</a>
             </div>
         </section>
-
-        <div class="home-cta-bar">
-            <div class="home-inner home-cta-inner">
-                <div>
-                    <p class="home-cta-title">Book a slot</p>
-                    <p class="home-cta-sub">Message us for availability or a booking.</p>
-                </div>
-                <a class="btn primary" href="contact.html">Contact</a>
-            </div>
-        </div>
 
     </main>
 
     <footer class="bottom-bar"><div class="container"><span>&copy; <span id="year">2026</span> ArTzi Rehearsal Studios</span></div></footer>
-    <script src="../assets/js/main.js?v=5.3"></script>
+    <script src="../assets/js/main.js?v=5.4"></script>
 </body>
 </html>
