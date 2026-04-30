@@ -709,7 +709,7 @@ body.home-fixed .section-photo-bg h2::after {
 .home-hero-overlay {
     position: absolute;
     inset: 0;
-    background: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 35%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1135,7 +1135,7 @@ body.home-fixed .section-photo-bg h2::after {
 .gallery-item {
     opacity: 0;
     transform: translateY(28px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1930,6 +1930,10 @@ html.no-js .gallery-item {
 .equip-card {
     display: flex;
     flex-direction: column;
+}
+
+.equip-card.reveal {
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .equip-card.hidden {
