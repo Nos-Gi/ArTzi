@@ -16,7 +16,7 @@ document.addEventListener('click',function(e){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css?v=4.9">
+    <link rel="stylesheet" href="../assets/css/main.css?v=5.7">
 </head>
 <body>
 
@@ -67,11 +67,20 @@ document.addEventListener('click',function(e){
             </div>
         </div>
 
+        <!-- Ticker -->
+        <div class="home-ticker" aria-hidden="true">
+            <div class="home-ticker-track">
+                <span>Pearl · Zildjian · Marshall · Ampeg · Midas M32 · Shure · Gibson · Fender · 45 years in music · Recording · Mix · Mastering · Moschato · &nbsp;</span>
+                <span>Pearl · Zildjian · Marshall · Ampeg · Midas M32 · Shure · Gibson · Fender · 45 years in music · Recording · Mix · Mastering · Moschato · &nbsp;</span>
+            </div>
+        </div>
+
         <section class="home-info">
             <div class="home-inner">
 
                 <div class="home-col">
-                    <span class="home-col-label">Studio</span>
+                    <span class="home-col-stat">45</span>
+                    <span class="home-col-label">Years in music</span>
                     <ul class="home-bullets">
                         <li><strong>Acoustics</strong> tuned for clarity and consistency.</li>
                         <li><strong>Ready backline</strong> — drums, amps &amp; PA.</li>
@@ -81,19 +90,28 @@ document.addEventListener('click',function(e){
                 </div>
 
                 <div class="home-col">
-                    <span class="home-col-label">Pricing</span>
-                    <p class="home-col-text">Hourly, 5-session packs and monthly plans. Message us for availability.</p>
+                    <span class="home-col-stat">2</span>
+                    <span class="home-col-label">Rehearsal rooms</span>
+                    <p class="home-col-text">Hourly, 5-session packs and monthly plans. Simple rates, no hidden fees.</p>
                     <a class="btn primary" href="services.html">See packages</a>
                 </div>
 
                 <div class="home-col">
-                    <span class="home-col-label">Location</span>
-                    <p class="home-col-text">Taxiarchon 36, Moschato. Easy access and a smooth load-in for bands with gear.</p>
+                    <span class="home-col-stat">Moschato</span>
+                    <span class="home-col-label">Taxiarchon 36</span>
+                    <p class="home-col-text">Easy access and a smooth load-in for bands with gear. Street parking available.</p>
                     <a class="btn ghost" href="contact.html">Map &amp; contact</a>
                 </div>
 
             </div>
         </section>
+
+        <!-- Photo strip -->
+        <div class="home-photos">
+            <div class="home-photo"><img src="../assets/images/IMG_8212.webp" alt="" loading="lazy"></div>
+            <div class="home-photo"><img src="../assets/images/IMG_8220.webp" alt="" loading="lazy"></div>
+            <div class="home-photo"><img src="../assets/images/IMG_8233.webp" alt="" loading="lazy"></div>
+        </div>
 
         <div class="home-cta-bar">
             <div class="home-inner home-cta-inner">
@@ -121,7 +139,7 @@ document.addEventListener('click',function(e){
         </div>
     </footer>
 
-    <script src="../assets/js/main.js?v=4.9"></script>
+    <script src="../assets/js/main.js?v=5.7"></script>
 
 </body>
 </html>

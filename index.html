@@ -16,7 +16,7 @@ document.addEventListener('click',function(e){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="assets/css/main.css?v=4.9">
+    <link rel="stylesheet" href="assets/css/main.css?v=5.7">
 </head>
 <body>
 
@@ -67,12 +67,21 @@ document.addEventListener('click',function(e){
             </div>
         </div>
 
+        <!-- Ticker -->
+        <div class="home-ticker" aria-hidden="true">
+            <div class="home-ticker-track">
+                <span>Pearl · Zildjian · Marshall · Ampeg · Midas M32 · Shure · Gibson · Fender · 45 χρόνια στη μουσική · Recording · Mix · Mastering · Μοσχάτο · &nbsp;</span>
+                <span>Pearl · Zildjian · Marshall · Ampeg · Midas M32 · Shure · Gibson · Fender · 45 χρόνια στη μουσική · Recording · Mix · Mastering · Μοσχάτο · &nbsp;</span>
+            </div>
+        </div>
+
         <!-- 3-column info -->
         <section class="home-info">
             <div class="home-inner">
 
                 <div class="home-col">
-                    <span class="home-col-label">Στούντιο</span>
+                    <span class="home-col-stat">45</span>
+                    <span class="home-col-label">Χρόνια στη μουσική</span>
                     <ul class="home-bullets">
                         <li><strong>Ακουστική</strong> μελετημένη για καθαρό, σταθερό παίξιμο.</li>
                         <li><strong>Backline</strong> έτοιμο — drums, ενισχυτές &amp; PA.</li>
@@ -82,19 +91,28 @@ document.addEventListener('click',function(e){
                 </div>
 
                 <div class="home-col">
-                    <span class="home-col-label">Τιμές</span>
-                    <p class="home-col-text">Ωριαία, πακέτα 5 προβών και μηνιαίες συνεργασίες. Στείλε μήνυμα για διαθεσιμότητα.</p>
+                    <span class="home-col-stat">2</span>
+                    <span class="home-col-label">Χώροι πρόβας</span>
+                    <p class="home-col-text">Ωριαία, πακέτα 5 προβών και μηνιαίες συνεργασίες. Απλές τιμές, χωρίς κρυφές χρεώσεις.</p>
                     <a class="btn primary" href="services.html">Δες πακέτα</a>
                 </div>
 
                 <div class="home-col">
-                    <span class="home-col-label">Τοποθεσία</span>
-                    <p class="home-col-text">Ταξιαρχών 36, Μοσχάτο. Εύκολη πρόσβαση και γρήγορη άφιξη για bands με όργανα.</p>
+                    <span class="home-col-stat">Μοσχάτο</span>
+                    <span class="home-col-label">Ταξιαρχών 36</span>
+                    <p class="home-col-text">Εύκολη πρόσβαση και γρήγορη άφιξη για bands με όργανα. Parking στον δρόμο.</p>
                     <a class="btn ghost" href="contact.html">Χάρτης &amp; επικοινωνία</a>
                 </div>
 
             </div>
         </section>
+
+        <!-- Photo strip -->
+        <div class="home-photos">
+            <div class="home-photo"><img src="assets/images/IMG_8212.webp" alt="" loading="lazy"></div>
+            <div class="home-photo"><img src="assets/images/IMG_8220.webp" alt="" loading="lazy"></div>
+            <div class="home-photo"><img src="assets/images/IMG_8233.webp" alt="" loading="lazy"></div>
+        </div>
 
         <!-- CTA strip -->
         <div class="home-cta-bar">
@@ -124,7 +142,7 @@ document.addEventListener('click',function(e){
         </div>
     </footer>
 
-    <script src="assets/js/main.js?v=4.9"></script>
+    <script src="assets/js/main.js?v=5.7"></script>
 
 </body>
 </html>
