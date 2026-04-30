@@ -1,6 +1,18 @@
-/* ===== FONTS ===== */
-/* Primary: loaded via <link> in HTML. Fallback if that fails: */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Archivo+Black&display=swap');
+/* ===== FONTS (self-hosted) ===== */
+/* latin-ext */
+@font-face { font-family: 'Archivo Black'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/HTxqL289NzCGg4MzN6KJ7eW6CYKF_i7y.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* latin */
+@font-face { font-family: 'Archivo Black'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/HTxqL289NzCGg4MzN6KJ7eW6CYyF_g.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* latin (all weights share file) */
+@font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('../fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* latin-ext */
+@font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('../fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb94C-s0.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* greek */
+@font-face { font-family: 'Syne'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('../fonts/8vIH7w4qzmVxm2NL9Hz_.woff2') format('woff2'); unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+/* latin-ext */
+@font-face { font-family: 'Syne'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('../fonts/8vIH7w4qzmVxm25L9Hz_.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* latin */
+@font-face { font-family: 'Syne'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('../fonts/8vIH7w4qzmVxm2BL9A.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
 /* ===== DESIGN TOKENS ===== */
 :root {
@@ -35,33 +47,6 @@
 }
 
 /* ===== PAGE LOADER (full-screen until load + 0.5s, then fade out) ===== */
-.page-loader {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-bg);
-    transition: opacity 0.5s ease-out;
-}
-
-.page-loader img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    image-rendering: auto;
-}
-
-.page-loader.page-loader-fade-out {
-    opacity: 0;
-    pointer-events: none;
-}
-
-html.skip-loader #page-loader {
-    display: none !important;
-}
 
 /* ===== VIEW TRANSITIONS =====
    Note: keep this block in plain CSS (no nesting) so it can't break in older browsers.
@@ -178,6 +163,51 @@ ul {
 
 .main-content.spa-fade-out {
     opacity: 0;
+}
+
+/* ===== HERO ENTRANCE ===== */
+@keyframes hero-entrance {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.home-hero-eyebrow {
+    animation: hero-entrance 0.35s ease both;
+    animation-delay: 0.05s;
+}
+
+.home-hero-title {
+    animation: hero-entrance 0.4s ease both;
+    animation-delay: 0.1s;
+}
+
+.home-hero-meta {
+    animation: hero-entrance 0.35s ease both;
+    animation-delay: 0.18s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-hero-eyebrow,
+    .home-hero-title,
+    .home-hero-meta { animation: none; }
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Don't animate if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* Fade fixed background layers during SPA nav */
@@ -679,7 +709,7 @@ body.home-fixed .section-photo-bg h2::after {
 .home-hero-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.50) 100%);
+    background: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -698,6 +728,7 @@ body.home-fixed .section-photo-bg h2::after {
     color: var(--color-accent);
     margin-bottom: 20px;
     line-height: 1;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.6);
 }
 
 .home-hero-title {
@@ -709,8 +740,8 @@ body.home-fixed .section-photo-bg h2::after {
     letter-spacing: -0.03em;
     margin-bottom: 28px;
     text-shadow:
-        0 2px 4px rgba(0,0,0,0.3),
-        0 8px 32px rgba(0,0,0,0.4);
+        0 2px 8px rgba(0,0,0,0.55),
+        0 8px 40px rgba(0,0,0,0.45);
 }
 
 /* Page-specific hero title sizes (replaces inline style) */
@@ -762,7 +793,7 @@ body.home-fixed .section-photo-bg h2::after {
 
 .home-ticker-track {
     display: flex;
-    white-space: nowrap;
+    width: max-content;
     animation: ticker-scroll 40s linear infinite;
 }
 

@@ -20,13 +20,7 @@
         initGalleryFadeIn();
         initLightbox();
         initEquipmentFilter();
-    }
-
-    function hideLoader() {
-        var el = document.getElementById('page-loader');
-        if (!el) return;
-        el.classList.add('page-loader-fade-out');
-        setTimeout(function() { el.remove(); }, 500);
+        initScrollReveal();
     }
 
     // SPA navigation: fetch page, replace main+header+title, simple fade (works everywhere)
@@ -134,25 +128,7 @@
     function init() {
         document.documentElement.classList.remove('no-js');
         var yr = document.querySelectorAll('#year'); yr.forEach(function(el){ el.textContent = new Date().getFullYear(); });
-        if (document.documentElement.classList.contains('skip-loader')) {
-            var loader = document.getElementById('page-loader');
-            if (loader) loader.remove();
-            initPageContent();
-            return;
-        }
         initPageContent();
-        var loaderDone = false;
-        function doHideLoader() {
-            if (loaderDone) return;
-            loaderDone = true;
-            hideLoader();
-        }
-        if (document.readyState === 'complete') {
-            setTimeout(doHideLoader, 400);
-        } else {
-            window.addEventListener('load', function() { setTimeout(doHideLoader, 400); });
-        }
-        setTimeout(doHideLoader, 4000);
     }
 
     function initContactForm() {
@@ -496,6 +472,45 @@
 
             toObserve.forEach((el) => observer.observe(el));
         });
+    }
+
+    function initScrollReveal() {
+        var groups = [
+            { sel: '.home-ticker',          stagger: 0   },
+            { sel: '.home-col',             stagger: 110 },
+            { sel: '.home-photo',           stagger: 130 },
+            { sel: '.home-cta-bar',         stagger: 0   },
+            { sel: '.video-wrapper',        stagger: 0   },
+            { sel: '.facility-intro',       stagger: 0   },
+            { sel: '.pricing-row',          stagger: 90  },
+            { sel: '.page-2col > *',        stagger: 120 },
+            { sel: '.equip-card',           stagger: 50  },
+            { sel: '.contact-form-pane',    stagger: 0   },
+            { sel: '.contact-info-item',    stagger: 70  },
+            { sel: '.contact-header-inner', stagger: 0   },
+        ];
+
+        var toObserve = [];
+        groups.forEach(function(g) {
+            document.querySelectorAll(g.sel).forEach(function(el, i) {
+                if (el.classList.contains('reveal')) return;
+                el.classList.add('reveal');
+                if (g.stagger) el.style.setProperty('--reveal-delay', (i * g.stagger) + 'ms');
+                toObserve.push(el);
+            });
+        });
+
+        if (!toObserve.length) return;
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px 60px 0px' });
+
+        toObserve.forEach(function(el) { observer.observe(el); });
     }
 
     function initEquipmentFilter() {
