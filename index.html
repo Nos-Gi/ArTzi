@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="el" class="no-js">
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,7 @@ document.addEventListener('click',function(e){
     <link rel="preload" href="assets/fonts/8vIH7w4qzmVxm2NL9Hz_.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
@@ -28,7 +29,7 @@ document.addEventListener('click',function(e){
             </a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Αρχική</a></li>
+                    <li><a href="index.html" aria-current="page">Αρχική</a></li>
                     <li><a href="about.html">Σχετικά με εμάς</a></li>
                     <li><a href="facility.html">Χώρος</a></li>
                     <li><a href="services.html">Υπηρεσίες</a></li>
@@ -42,7 +43,7 @@ document.addEventListener('click',function(e){
         </div>
     </header>
 
-    <main class="main-content">
+    <main class="main-content" id="main-content">
 
         <div class="home-hero">
             <img src="assets/images/IMG_8222.webp" alt="ArTzi Rehearsal Studios" loading="eager">
@@ -120,7 +121,7 @@ document.addEventListener('click',function(e){
         <section class="section">
             <div class="container">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArTzi Rehearsal Studios video" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="ArTzi Rehearsal Studios video" frameborder="0" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
         </section>

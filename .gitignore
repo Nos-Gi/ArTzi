@@ -1,0 +1,13 @@
+# Media files (raw originals — not for repo)
+*.MOV
+*.mov
+*.MP4
+*.mp4
+*.HEIC
+*.heic
+ATAJ*.JPG
+ECMJ*.MOV
+IMG_*.JPG
+IMG_*.PNG
+IMG_*.MOV
+IMG_*[1].JPG

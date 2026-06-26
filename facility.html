@@ -19,6 +19,7 @@ document.addEventListener('click',function(e){
     <link rel="preload" href="assets/fonts/8vIH7w4qzmVxm2NL9Hz_.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="top-bar">
         <div class="container top-bar-inner">
@@ -26,7 +27,7 @@ document.addEventListener('click',function(e){
             <nav class="main-nav"><ul>
                 <li><a href="index.html">Αρχική</a></li>
                 <li><a href="about.html">Σχετικά με εμάς</a></li>
-                <li><a href="facility.html">Χώρος</a></li>
+                <li><a href="facility.html" aria-current="page">Χώρος</a></li>
                 <li><a href="services.html">Υπηρεσίες</a></li>
                 <li><a href="equipment.html">Gallery</a></li>
                 <li><a href="contact.html">Επικοινωνείστε μαζί μας</a></li>
@@ -35,7 +36,7 @@ document.addEventListener('click',function(e){
         </div>
     </header>
 
-    <main class="main-content">
+    <main class="main-content" id="main-content">
 
         <div class="home-hero">
             <img src="assets/images/IMG_8220.webp" alt="ArTzi Studio" loading="eager">
