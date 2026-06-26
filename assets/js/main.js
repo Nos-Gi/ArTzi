@@ -16,7 +16,6 @@
 
     function initPageContent() {
         initPhotoScrollFade();
-        initContactForm();
         initGalleryFadeIn();
         initLightbox();
         initEquipmentFilter();
@@ -131,172 +130,6 @@
         initPageContent();
     }
 
-    function initContactForm() {
-        var submitBtnGr = document.getElementById('submit-btn-gr');
-        var submitBtnEn = document.getElementById('submit-btn-en');
-        var allButtons = document.querySelectorAll('.contact-form button');
-        var buttons = [submitBtnGr, submitBtnEn].concat(Array.prototype.slice.call(allButtons));
-        buttons.forEach(function(btn) {
-            if (!btn) return;
-            btn.onclick = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                var form = this.closest('form');
-                if (form) handleFormSubmit(form);
-                return false;
-            };
-        });
-        var contactForms = document.querySelectorAll('.contact-form');
-        contactForms.forEach(function(form) {
-            form.removeAttribute('action');
-            form.setAttribute('novalidate', 'novalidate');
-            form.onsubmit = function(e) {
-                e.preventDefault();
-                handleFormSubmit(form);
-                return false;
-            };
-        });
-    }
-
-    async function handleFormSubmit(form) {
-        var submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
-        if (!submitBtn) {
-            return;
-        }
-        
-        const originalBtnText = submitBtn.textContent;
-        const isGreek = document.documentElement.lang === 'el';
-        
-        // Validation before submission
-        const nameInput = form.querySelector('input[name="name"]');
-        const emailInput = form.querySelector('input[type="email"]');
-        const messageInput = form.querySelector('textarea[name="message"]');
-        
-        if (!nameInput || !emailInput || !messageInput) {
-            showNotification(
-                isGreek ? 'Σφάλμα φόρμας.' : 'Form error.',
-                'error'
-            );
-            return;
-        }
-        
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const message = messageInput.value.trim();
-        
-        
-        // Client-side validation
-        if (!name || !email || !message) {
-            showNotification(
-                isGreek ? 'Παρακαλώ συμπληρώστε όλα τα πεδία.' : 'Please fill in all fields.',
-                'error'
-            );
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            showNotification(
-                isGreek ? 'Παρακαλώ εισάγετε έγκυρο email.' : 'Please enter a valid email address.',
-                'error'
-            );
-            return;
-        }
-        
-        // Set reply-to field to user's email
-        const replyToInput = form.querySelector('input[name="_replyto"]');
-        if (replyToInput) {
-            replyToInput.value = email;
-        }
-        
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.textContent = isGreek ? 'Αποστολή...' : 'Sending...';
-        
-        try {
-            // Formspree endpoint
-            const formspreeUrl = 'https://formspree.io/f/mbdknbbn';
-            
-            // Prepare form data
-            const formData = new FormData(form);
-            
-            
-            // Submit via fetch (AJAX)
-            const response = await fetch(formspreeUrl, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            
-            if (response.ok) {
-                // Success
-                showNotification(
-                    isGreek ? 'Η υποβολή ολοκληρώθηκε επιτυχώς!' : 'Submission succeeded!',
-                    'success'
-                );
-                form.reset();
-            } else {
-                // Error from Formspree
-                let errorMsg = 'Submission failed';
-                try {
-                    const data = await response.json();
-                    errorMsg = data.error || errorMsg;
-                } catch (e) {
-                    errorMsg = response.statusText || errorMsg;
-                }
-                throw new Error(errorMsg);
-            }
-            
-        } catch (error) {
-            showNotification(
-                isGreek ? 'Σφάλμα κατά την αποστολή. Παρακαλώ δοκιμάστε ξανά.' : 'Error sending message. Please try again.',
-                'error'
-            );
-        } finally {
-            // Reset button state
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-        }
-    }
-    
-    // Notification popup function
-    function showNotification(message, type = 'success') {
-        
-        // Remove any existing notifications
-        const existing = document.querySelector('.form-notification');
-        if (existing) {
-            existing.remove();
-        }
-        
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `form-notification form-notification-${type}`;
-        notification.textContent = message;
-        
-        // Add to body
-        document.body.appendChild(notification);
-        
-        
-        // Trigger animation
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 10);
-        
-        // Remove after 5 seconds
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notification.remove();
-            }, 300); // Wait for fade out animation
-        }, 5000);
-    }
-
-    function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-    
     var lightboxReady = false;
 
     function initLightbox() {
@@ -485,8 +318,8 @@
             { sel: '.pricing-row',          stagger: 90  },
             { sel: '.page-2col > *',        stagger: 120 },
             { sel: '.equip-card',           stagger: 50  },
-            { sel: '.contact-form-pane',    stagger: 0   },
-            { sel: '.contact-info-item',    stagger: 70  },
+            { sel: '.social-row',           stagger: 60  },
+            { sel: '.contact-detail-col',   stagger: 80  },
             { sel: '.contact-header-inner', stagger: 0   },
         ];
 
