@@ -2286,42 +2286,6 @@ html.no-js .gallery-item {
 }
 
 /* ===== CONTACT PAGE ===== */
-.contact-header {
-    background: linear-gradient(180deg, #121218 0%, #16161d 100%);
-    padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.contact-header-inner {
-    padding: 0 clamp(24px, 5vw, 80px);
-}
-
-.contact-heading {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(3rem, 9vw, 7rem);
-    color: var(--color-text);
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    margin: 16px 0 0;
-}
-
-.contact-heading::after {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 2px;
-    background: var(--color-accent);
-    opacity: 0.75;
-    margin-top: 22px;
-    margin-bottom: 20px;
-}
-
-.contact-header-sub {
-    color: var(--color-text-muted);
-    font-size: 0.92rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
 
 /* ===== SOCIAL + MAP SPLIT ===== */
 .social-map-split {
@@ -2352,6 +2316,15 @@ html.no-js .gallery-item {
     filter: grayscale(0.4) brightness(0.75);
 }
 
+.social-list-header { margin-bottom: clamp(20px, 3vw, 32px); }
+.social-list-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--color-text);
+    margin: 8px 0 0;
+}
 .social-list {
     width: 100%;
     display: flex;
