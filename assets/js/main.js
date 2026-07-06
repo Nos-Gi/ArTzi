@@ -94,6 +94,11 @@
             .catch(function() { window.location.href = href; });
     }
 
+    function isHomepage(pathname) {
+        return pathname === '/' || pathname === '/index.html' ||
+               pathname === '/en/' || pathname === '/en/index.html';
+    }
+
     document.addEventListener('click', function(e) {
         if (!document.querySelector('main.main-content')) return;
         var a = e.target.closest('a');
@@ -102,6 +107,7 @@
             var url = new URL(a.href);
             if (window.location.origin !== url.origin) return;
             if (url.pathname === window.location.pathname && url.search === window.location.search && !url.hash) return;
+            if (isHomepage(url.pathname)) return;
             e.preventDefault();
             spaNavigate(a.href);
         } catch (err) {
