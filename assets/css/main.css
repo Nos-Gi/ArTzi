@@ -2483,6 +2483,8 @@ html.no-js .gallery-item {
     margin-top: 12px;
     text-decoration: none;
     transition: color 0.2s ease;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 a.contact-detail-value:hover { color: var(--color-accent); }
@@ -2524,6 +2526,20 @@ a.contact-detail-value:hover { color: var(--color-accent); }
 
 @media (max-width: 480px) {
     .contact-details-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .social-row {
+        gap: 10px;
+        padding: clamp(14px, 3vw, 20px) clamp(14px, 3vw, 20px);
+    }
+    .social-row-name {
+        font-size: clamp(1.2rem, 5.5vw, 1.8rem);
+    }
+    .social-row-handle,
+    .social-row-arrow {
+        display: none;
+    }
 }
 
 /* Full-width map (unused — map now in split layout) */
