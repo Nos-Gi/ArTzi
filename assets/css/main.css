@@ -2555,10 +2555,10 @@ body.home-immersive {
     width: clamp(240px, 25vw, 400px);
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    padding: clamp(28px, 5vh, 56px) clamp(24px, 3.5vw, 52px);
+    align-items: stretch;
+    padding: 0 clamp(24px, 3.5vw, 48px);
     background: #141417;
-    box-shadow: -24px 0 48px rgba(0,0,0,0.5);
+    border-left: 1px solid rgba(255,255,255,0.07);
     animation: hi-panel-in 0.65s 0.2s cubic-bezier(0.4,0,0.2,1) both;
 }
 
@@ -2573,6 +2573,8 @@ body.home-immersive {
     align-items: flex-end;
     text-decoration: none;
     gap: 4px;
+    padding: clamp(28px, 5vh, 52px) 0 clamp(20px, 3vh, 36px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
 .hi-brand-name {
@@ -2596,7 +2598,8 @@ body.home-immersive {
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    gap: clamp(4px, 1.2vh, 12px);
+    gap: clamp(8px, 1.8vh, 20px);
+    padding: clamp(20px, 3vh, 40px) 0;
     counter-reset: hi-counter;
 }
 
@@ -2628,7 +2631,7 @@ body.home-immersive {
     font-weight: 500;
     letter-spacing: 0.16em;
     color: var(--color-accent);
-    opacity: 0;
+    opacity: 0.3;
     margin-bottom: 1px;
     transition: opacity 0.25s ease;
 }
@@ -2652,7 +2655,7 @@ body.home-immersive {
 }
 
 .hi-nav-link:hover::before,
-.hi-nav-link:focus-visible::before { opacity: 0.8; }
+.hi-nav-link:focus-visible::before { opacity: 1; }
 
 .hi-nav-link:hover::after,
 .hi-nav-link:focus-visible::after { width: 100%; }
@@ -2680,6 +2683,8 @@ body.home-immersive {
     text-transform: uppercase;
     color: var(--color-text-muted);
     text-align: right;
+    padding: clamp(16px, 2.5vh, 28px) 0 clamp(28px, 5vh, 52px);
+    border-top: 1px solid rgba(255,255,255,0.07);
 }
 
 .hi-lang a {
