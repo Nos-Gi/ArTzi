@@ -87,6 +87,8 @@
                     history.pushState({ spa: true }, '', href);
                     var seg = new URL(href, window.location.origin).pathname.split('/').filter(Boolean)[0];
                     document.documentElement.lang = seg === 'en' ? 'en' : 'el';
+                } else {
+                    window.location.href = href;
                 }
             })
             .catch(function() { window.location.href = href; });
