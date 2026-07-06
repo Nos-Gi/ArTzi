@@ -313,7 +313,7 @@
                         const isLandscape = img.naturalWidth > img.naturalHeight;
                         if (isLandscape) {
                             item.classList.add('landscape');
-                            item.style.gridColumn = '1 / 4';
+                            item.style.gridColumn = '1 / -1';
                         }
                         resolve({ item, isLandscape });
                     } else {

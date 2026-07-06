@@ -1197,14 +1197,10 @@ html.no-js .gallery-item {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Landscape images: span all 3 columns and force new row */
+/* Landscape images: span all columns */
 .gallery-item.landscape {
-    grid-column: 1 / 4 !important;
     grid-row: auto;
     width: 100%;
-}
-
-.gallery-item.landscape {
     height: 500px;
     overflow: hidden;
 }
@@ -1214,7 +1210,6 @@ html.no-js .gallery-item {
     height: 100% !important;
     object-fit: cover !important;
     display: block;
-    image-rendering: auto;
 }
 
 @media (max-width: 960px) {
@@ -1223,11 +1218,7 @@ html.no-js .gallery-item {
         gap: 16px;
         margin-bottom: 60px;
     }
-    
-    .gallery-item.landscape {
-        grid-column: 1 / -1;
-    }
-    
+
     .gallery-item img {
         height: clamp(180px, 28vw, 340px);
     }
@@ -1239,11 +1230,11 @@ html.no-js .gallery-item {
         gap: 16px;
         margin-bottom: 48px;
     }
-    
+
     .gallery-item.landscape {
-        grid-column: 1;
+        height: clamp(200px, 55vw, 340px);
     }
-    
+
     .gallery-item img {
         height: clamp(160px, 50vw, 320px);
     }
