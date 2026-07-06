@@ -95,6 +95,7 @@
     }
 
     document.addEventListener('click', function(e) {
+        if (!document.querySelector('main.main-content')) return;
         var a = e.target.closest('a');
         if (!a || !a.href || a.target === '_blank') return;
         try {
