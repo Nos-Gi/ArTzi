@@ -2677,14 +2677,38 @@ body.home-immersive {
 }
 
 
+.hi-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(16px, 2.5vh, 28px) 0 clamp(28px, 5vh, 52px);
+    border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.hi-social {
+    display: flex;
+    gap: clamp(14px, 1.8vw, 22px);
+}
+
+.hi-social-link {
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.hi-social-link svg { display: block; }
+
+.hi-social-link:hover,
+.hi-social-link:focus-visible { color: var(--color-accent); outline: none; }
+
 .hi-lang {
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-text-muted);
     text-align: right;
-    padding: clamp(16px, 2.5vh, 28px) 0 clamp(28px, 5vh, 52px);
-    border-top: 1px solid rgba(255,255,255,0.07);
 }
 
 .hi-lang a {
