@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    var lightboxReady = false;
+
     function initPhotoScrollFade() {
         var sections = document.querySelectorAll('.section-photo-bg');
         if (!sections.length) return;
@@ -22,6 +24,21 @@
         initScrollReveal();
     }
 
+    // Full body swap — used when crossing homepage boundary
+    function doBodySwap(doc, href) {
+        var newTitle = doc.querySelector('title');
+        document.body.innerHTML = doc.body.innerHTML;
+        document.body.className = doc.body.className || '';
+        if (newTitle) document.title = newTitle.textContent;
+        if (href) {
+            history.pushState({ spa: true }, '', href);
+            var seg = new URL(href, window.location.origin).pathname.split('/').filter(Boolean)[0];
+            document.documentElement.lang = seg === 'en' ? 'en' : 'el';
+        }
+        lightboxReady = false;
+        init();
+    }
+
     // SPA navigation: fetch page, replace main+header+title, simple fade (works everywhere)
     function applyPage(html) {
         var main = document.querySelector('main.main-content');
@@ -32,7 +49,16 @@
         var newHeader = doc.querySelector('header.top-bar');
         var newTitle = doc.querySelector('title');
         var header = document.querySelector('header.top-bar');
-        if (!newMain) return false;
+        if (!newMain) {
+            // Target is homepage — fade out current page then body-swap
+            document.documentElement.classList.add('spa-fade-out');
+            main.classList.add('spa-fade-out');
+            setTimeout(function() {
+                document.documentElement.classList.remove('spa-fade-out');
+                doBodySwap(doc, null);
+            }, 200);
+            return true;
+        }
         var mainHtml = newMain.innerHTML;
         var headerHtml = newHeader ? newHeader.innerHTML : '';
         var titleText = newTitle ? newTitle.textContent : document.title;
@@ -94,9 +120,8 @@
             .catch(function() { window.location.href = href; });
     }
 
-    function isHomepage(pathname) {
-        return pathname === '/' || pathname === '/index.html' ||
-               pathname === '/en/' || pathname === '/en/index.html';
+    function isHomepage(p) {
+        return p === '/' || p === '/index.html' || p === '/en/' || p === '/en/index.html';
     }
 
     document.addEventListener('click', function(e) {
@@ -107,7 +132,17 @@
             var url = new URL(a.href);
             if (window.location.origin !== url.origin) return;
             if (url.pathname === window.location.pathname && url.search === window.location.search && !url.hash) return;
-            if (isHomepage(url.pathname)) return;
+            if (isHomepage(url.pathname)) {
+                e.preventDefault();
+                var c = document.createElement('div');
+                c.style.cssText = 'position:fixed;inset:0;background:#000;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s ease';
+                document.body.appendChild(c);
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() { c.style.opacity = '1'; });
+                });
+                setTimeout(function() { window.location.href = a.href; }, 320);
+                return;
+            }
             e.preventDefault();
             spaNavigate(a.href);
         } catch (err) {
@@ -133,13 +168,35 @@
         init();
     }
 
+    function initHomepageExit() {
+        if (!document.body.classList.contains('home-immersive')) return;
+        document.querySelectorAll('.hi-wrap a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var href = this.href;
+                if (!href) return;
+                try {
+                    var url = new URL(href);
+                    if (url.origin !== window.location.origin) return;
+                    if (url.pathname === window.location.pathname) return;
+                } catch(err) { return; }
+                e.preventDefault();
+                var curtain = document.createElement('div');
+                curtain.style.cssText = 'position:fixed;inset:0;background:#000;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s ease';
+                document.body.appendChild(curtain);
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() { curtain.style.opacity = '1'; });
+                });
+                setTimeout(function() { window.location.href = href; }, 320);
+            });
+        });
+    }
+
     function init() {
         document.documentElement.classList.remove('no-js');
         var yr = document.querySelectorAll('#year'); yr.forEach(function(el){ el.textContent = new Date().getFullYear(); });
         initPageContent();
+        initHomepageExit();
     }
-
-    var lightboxReady = false;
 
     function initLightbox() {
         if (lightboxReady) return;

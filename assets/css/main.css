@@ -112,6 +112,25 @@ html.vt-backward::view-transition-new(root) {
     padding: 0;
 }
 
+html { background: #000; }
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    pointer-events: none;
+    animation: curtain-lift 0.25s ease forwards;
+}
+@keyframes curtain-lift {
+    from { opacity: 1; }
+    to   { opacity: 0; visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body::before { display: none; }
+}
+
 body {
     font-family: var(--font-body);
     line-height: 1.65;
@@ -122,6 +141,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 
 img {
     max-width: 100%;
@@ -2520,6 +2540,7 @@ body.home-immersive {
     overflow: hidden;
     height: 100dvh;
     padding: 0;
+    background: #141417;
 }
 
 .hi-wrap {
@@ -2542,11 +2563,8 @@ body.home-immersive {
     object-fit: cover;
     object-position: center 35%;
     pointer-events: none;
-    animation: hi-fade 1.1s cubic-bezier(0.4,0,0.2,1) both;
 }
 
-@keyframes hi-fade    { from { opacity: 0; } to { opacity: 1; } }
-@keyframes hi-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.025); } }
 
 .hi-panel {
     position: relative;
@@ -2559,13 +2577,8 @@ body.home-immersive {
     padding: 0 clamp(24px, 3.5vw, 48px);
     background: #141417;
     border-top: 2px solid var(--color-accent);
-    animation: hi-panel-in 0.65s 0.2s cubic-bezier(0.4,0,0.2,1) both;
 }
 
-@keyframes hi-panel-in {
-    from { opacity: 0; transform: translateX(28px); }
-    to   { opacity: 1; transform: translateX(0);    }
-}
 
 .hi-brand {
     display: flex;
@@ -2664,16 +2677,6 @@ body.home-immersive {
     border-radius: 2px;
 }
 
-.hi-nav-link:nth-child(1) { animation: hi-link-in 0.5s 0.35s cubic-bezier(0.4,0,0.2,1) both; }
-.hi-nav-link:nth-child(2) { animation: hi-link-in 0.5s 0.43s cubic-bezier(0.4,0,0.2,1) both; }
-.hi-nav-link:nth-child(3) { animation: hi-link-in 0.5s 0.51s cubic-bezier(0.4,0,0.2,1) both; }
-.hi-nav-link:nth-child(4) { animation: hi-link-in 0.5s 0.59s cubic-bezier(0.4,0,0.2,1) both; }
-.hi-nav-link:nth-child(5) { animation: hi-link-in 0.5s 0.67s cubic-bezier(0.4,0,0.2,1) both; }
-
-@keyframes hi-link-in {
-    from { opacity: 0; transform: translateX(20px); }
-    to   { opacity: 1; transform: translateX(0);    }
-}
 
 .hi-lang {
     font-size: 0.72rem;
@@ -2694,10 +2697,6 @@ body.home-immersive {
 .hi-lang a:hover { color: var(--color-accent); }
 .hi-lang span { color: rgba(255,255,255,0.9); }
 
-@media (prefers-reduced-motion: reduce) {
-    .hi-bg { animation: none; }
-    .hi-panel, .hi-nav-link { animation: none; opacity: 1; transform: none; }
-}
 
 @media (max-width: 640px) {
     body.home-immersive { overflow: auto; height: auto; }
