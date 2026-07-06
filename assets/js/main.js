@@ -180,16 +180,6 @@
 
     function initHomepageExit() {
         if (!document.body.classList.contains('home-immersive')) return;
-        var entryCurtain = document.getElementById('nav-curtain') || document.getElementById('hi-curtain');
-        if (entryCurtain) {
-            entryCurtain.style.transition = 'opacity 0.3s ease';
-            requestAnimationFrame(function() {
-                requestAnimationFrame(function() {
-                    entryCurtain.style.opacity = '0';
-                    setTimeout(function() { entryCurtain.parentNode && entryCurtain.parentNode.removeChild(entryCurtain); }, 350);
-                });
-            });
-        }
         document.querySelectorAll('.hi-wrap a').forEach(function(link) {
             link.addEventListener('click', function(e) {
                 var href = this.href;
@@ -201,12 +191,22 @@
                 } catch(err) { return; }
                 e.preventDefault();
                 var curtain = document.createElement('div');
+                curtain.id = 'nav-curtain';
                 curtain.style.cssText = 'position:fixed;inset:0;background:#000;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s ease';
-                document.body.appendChild(curtain);
+                document.documentElement.appendChild(curtain);
                 requestAnimationFrame(function() {
                     requestAnimationFrame(function() { curtain.style.opacity = '1'; });
                 });
-                setTimeout(function() { window.location.href = href; }, 320);
+                setTimeout(function() {
+                    fetch(href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                        .then(function(r) { return r.text(); })
+                        .then(function(html) {
+                            var parser = new DOMParser();
+                            var doc = parser.parseFromString(html, 'text/html');
+                            doBodySwap(doc, href);
+                        })
+                        .catch(function() { window.location.href = href; });
+                }, 320);
             });
         });
     }
@@ -214,6 +214,16 @@
     function init() {
         document.documentElement.classList.remove('no-js');
         var yr = document.querySelectorAll('#year'); yr.forEach(function(el){ el.textContent = new Date().getFullYear(); });
+        var curtain = document.getElementById('nav-curtain') || document.getElementById('hi-curtain');
+        if (curtain) {
+            curtain.style.transition = 'opacity 0.3s ease';
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    curtain.style.opacity = '0';
+                    setTimeout(function() { curtain.parentNode && curtain.parentNode.removeChild(curtain); }, 350);
+                });
+            });
+        }
         initPageContent();
         initHomepageExit();
     }
