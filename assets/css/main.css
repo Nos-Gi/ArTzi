@@ -2591,14 +2591,14 @@ body.home-immersive {
 
 .hi-brand-name {
     font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(1.3rem, 2vw, 1.75rem);
+    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
     letter-spacing: -0.02em;
     line-height: 1;
     color: var(--color-text);
 }
 
 .hi-brand-sub {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--color-text-muted);
