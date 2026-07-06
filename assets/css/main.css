@@ -2537,7 +2537,6 @@ a.contact-detail-value:hover { color: var(--color-accent); }
 
 /* ===== HOMEPAGE IMMERSIVE ===== */
 body.home-immersive {
-    overflow: hidden;
     height: 100dvh;
     padding: 0;
     background: #141417;
