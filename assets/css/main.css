@@ -2747,5 +2747,5 @@ body.home-immersive {
     .hi-nav-link { text-align: left; font-size: clamp(2rem, 10vw, 2.8rem); animation: none; opacity: 1; }
     .hi-nav-link::after { right: auto; left: 0; }
     .hi-nav-link:hover { transform: translateX(7px); }
-    .hi-lang { text-align: left; }
+    .hi-bottom { width: 100%; }
 }
