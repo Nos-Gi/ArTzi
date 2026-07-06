@@ -2514,3 +2514,172 @@ a.contact-detail-value:hover { color: var(--color-accent); }
     .page-3col { grid-template-columns: 1fr; }
     .facility-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== HOMEPAGE IMMERSIVE ===== */
+body.home-immersive {
+    overflow: hidden;
+    height: 100dvh;
+    padding: 0;
+}
+
+.hi-wrap {
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.hi-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: hi-fade 0.9s ease both;
+}
+
+@keyframes hi-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.hi-panel {
+    position: relative;
+    z-index: 1;
+    margin-left: auto;
+    width: clamp(260px, 34vw, 460px);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(32px, 5vh, 60px) clamp(28px, 4vw, 60px);
+    background: linear-gradient(to left, rgba(16,16,20,0.97) 0%, rgba(16,16,20,0.9) 50%, transparent 100%);
+    animation: hi-panel-in 0.55s 0.15s ease both;
+}
+
+@keyframes hi-panel-in {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0);    }
+}
+
+.hi-brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 3px;
+}
+
+.hi-brand-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+.hi-brand-sub {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.hi-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(6px, 1.6vh, 16px);
+}
+
+.hi-nav-link {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2rem, 3.6vw, 3.2rem);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s ease, transform 0.22s ease;
+    touch-action: manipulation;
+    position: relative;
+}
+
+.hi-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.25s ease;
+}
+
+.hi-nav-link:hover,
+.hi-nav-link:focus-visible {
+    color: #fff;
+    transform: translateX(6px);
+}
+
+.hi-nav-link:hover::after,
+.hi-nav-link:focus-visible::after { width: 100%; }
+
+.hi-nav-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.hi-nav-link:nth-child(1) { animation: hi-link-in 0.45s 0.3s  ease both; }
+.hi-nav-link:nth-child(2) { animation: hi-link-in 0.45s 0.37s ease both; }
+.hi-nav-link:nth-child(3) { animation: hi-link-in 0.45s 0.44s ease both; }
+.hi-nav-link:nth-child(4) { animation: hi-link-in 0.45s 0.51s ease both; }
+.hi-nav-link:nth-child(5) { animation: hi-link-in 0.45s 0.58s ease both; }
+
+@keyframes hi-link-in {
+    from { opacity: 0; transform: translateX(14px); }
+    to   { opacity: 1; transform: translateX(0);    }
+}
+
+.hi-lang {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.hi-lang a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.hi-lang a:hover { color: var(--color-accent); }
+.hi-lang span { color: var(--color-text); }
+
+@media (prefers-reduced-motion: reduce) {
+    .hi-bg, .hi-panel, .hi-nav-link { animation: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+    body.home-immersive { overflow: auto; height: auto; }
+    .hi-wrap { flex-direction: column; height: auto; min-height: 100dvh; }
+    .hi-bg {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 56vw;
+        min-height: 220px;
+        max-height: 320px;
+        object-fit: cover;
+        animation: none;
+    }
+    .hi-panel {
+        margin-left: 0;
+        width: 100%;
+        background: var(--color-bg);
+        padding: 36px 28px 48px;
+        animation: none;
+    }
+    .hi-nav { gap: 10px; }
+    .hi-nav-link { font-size: clamp(1.9rem, 9vw, 2.6rem); animation: none; opacity: 1; }
+}
