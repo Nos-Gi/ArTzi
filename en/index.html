@@ -6,6 +6,7 @@
     <script>
 if(sessionStorage.getItem('internalNav')){document.documentElement.classList.add('skip-loader');sessionStorage.removeItem('internalNav');}
 document.addEventListener('click',function(e){var t=e.target;while(t&&t!==document.body){if(t.tagName==='A'&&t.href){try{if(window.location.origin===new URL(t.href).origin&&t.target!=='_blank')sessionStorage.setItem('internalNav','1');}catch(err){}return;}t=t.parentNode;}},true);
+(function(){var c=document.createElement('div');c.id='hi-curtain';c.style.cssText='position:fixed;inset:0;background:#000;z-index:9999;pointer-events:none;';document.documentElement.appendChild(c);})();
     </script>
     <title>ArTzi Rehearsal Studios</title>
     <meta name="description" content="ArTzi Rehearsal Studios — modern rehearsal spaces with professional equipment in Moschato.">
@@ -45,6 +46,6 @@ document.addEventListener('click',function(e){var t=e.target;while(t&&t!==docume
         </aside>
     </div>
 
-    <script src="../assets/js/main.js?v=6.0"></script>
+    <script src="../assets/js/main.js?v=6.1"></script>
 </body>
 </html>

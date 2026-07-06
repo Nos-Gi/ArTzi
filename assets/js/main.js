@@ -170,6 +170,16 @@
 
     function initHomepageExit() {
         if (!document.body.classList.contains('home-immersive')) return;
+        var entryCurtain = document.getElementById('hi-curtain');
+        if (entryCurtain) {
+            entryCurtain.style.transition = 'opacity 0.3s ease';
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    entryCurtain.style.opacity = '0';
+                    setTimeout(function() { entryCurtain.parentNode && entryCurtain.parentNode.removeChild(entryCurtain); }, 350);
+                });
+            });
+        }
         document.querySelectorAll('.hi-wrap a').forEach(function(link) {
             link.addEventListener('click', function(e) {
                 var href = this.href;
