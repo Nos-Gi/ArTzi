@@ -135,12 +135,22 @@
             if (isHomepage(url.pathname)) {
                 e.preventDefault();
                 var c = document.createElement('div');
+                c.id = 'nav-curtain';
                 c.style.cssText = 'position:fixed;inset:0;background:#000;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s ease';
-                document.body.appendChild(c);
+                document.documentElement.appendChild(c);
                 requestAnimationFrame(function() {
                     requestAnimationFrame(function() { c.style.opacity = '1'; });
                 });
-                setTimeout(function() { window.location.href = a.href; }, 320);
+                setTimeout(function() {
+                    fetch(a.href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                        .then(function(r) { return r.text(); })
+                        .then(function(html) {
+                            var parser = new DOMParser();
+                            var doc = parser.parseFromString(html, 'text/html');
+                            doBodySwap(doc, a.href);
+                        })
+                        .catch(function() { window.location.href = a.href; });
+                }, 320);
                 return;
             }
             e.preventDefault();
@@ -170,7 +180,7 @@
 
     function initHomepageExit() {
         if (!document.body.classList.contains('home-immersive')) return;
-        var entryCurtain = document.getElementById('hi-curtain');
+        var entryCurtain = document.getElementById('nav-curtain') || document.getElementById('hi-curtain');
         if (entryCurtain) {
             entryCurtain.style.transition = 'opacity 0.3s ease';
             requestAnimationFrame(function() {
