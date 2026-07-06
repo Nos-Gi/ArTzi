@@ -2541,6 +2541,8 @@ body.home-immersive {
     object-fit: cover;
     object-position: center 35%;
     pointer-events: none;
+    -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+    mask-image: linear-gradient(to right, black 70%, transparent 100%);
     animation: hi-fade 1.1s cubic-bezier(0.4,0,0.2,1) both,
                hi-breathe 14s 1.1s ease-in-out infinite;
 }
